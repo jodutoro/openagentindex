@@ -4,7 +4,7 @@
 @font-face { font-family: "IBM Plex Mono"; font-weight: 400; font-style: normal; font-display: swap; src: url("fonts/IBMPlexMono-Regular.woff2") format("woff2"); }
 
 :root {
-  --paper: #FAFAF7; --surface: #FFFFFF; --rule: #DAD9D2; --ink: #16181D; --ink-2: #555960;
+  --paper: #FAFAF7; --surface: #FFFFFF; --rule: #DAD9D2; --ink: #16181D; --ink-2: #555960; --edge-cue: rgba(22,24,29,.22);
   --accent: #1F4FD1;
   --osi-fg: #1E6B3A; --osi-bg: #E6F2EA;
   --fair-fg: #8A5A00; --fair-bg: #FBF1DC;
@@ -71,7 +71,14 @@ main { padding: var(--sp-6) 0 var(--sp-7); }
 .label-line { margin: var(--sp-3) 0 0; }
 
 /* Ledger table */
-.table-wrap { overflow-x: auto; }
+/* Scroll region: edge cue appears only on a side that still has content to scroll to */
+.table-wrap { overflow-x: auto; max-width: 100%; background:
+  linear-gradient(to right, var(--surface), var(--surface)) left center / 16px 100% no-repeat local,
+  linear-gradient(to left, var(--surface), var(--surface)) right center / 16px 100% no-repeat local,
+  linear-gradient(to right, var(--edge-cue), transparent) left center / 12px 100% no-repeat scroll,
+  linear-gradient(to left, var(--edge-cue), transparent) right center / 12px 100% no-repeat scroll; }
+.table-wrap > table, .table-wrap > table thead th { background: transparent; }
+.table-wrap[role="region"]:focus-visible { outline-offset: -2px; }
 table { border-collapse: collapse; width: 100%; background: var(--surface); border: 1px solid var(--rule); font-size: var(--t-14); }
 caption { text-align: left; padding: var(--sp-3) 0; color: var(--ink-2); caption-side: top; background: var(--paper); }
 th, td { text-align: left; vertical-align: top; padding: var(--sp-3); border-top: 1px solid var(--rule); }
