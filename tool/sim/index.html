@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sim profile | Open Agent Index</title>
+<meta name="description" content="Sim: licence class, rank and sources in the Open Agent Index. Collected 2026-11-18.">
+<meta name="robots" content="noindex,nofollow">
+<link rel="canonical" href="https://openagentindex.com/tool/sim/">
+<link rel="icon" href="/openagentindex/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/openagentindex/static/fonts/IBMPlexSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/openagentindex/static/site.css">
+<meta property="og:site_name" content="Open Agent Index">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Sim profile | Open Agent Index">
+<meta property="og:description" content="Sim: licence class, rank and sources in the Open Agent Index. Collected 2026-11-18.">
+<meta property="og:url" content="https://openagentindex.com/tool/sim/">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://openagentindex.com/#website","url":"https://openagentindex.com/","name":"Open Agent Index","description":"A dated, transparent ranking of self-hostable agent tools for five business functions.","inLanguage":"en","publisher":{"@id":"https://jonathanduque.com/#person"}},{"@type":"Person","@id":"https://jonathanduque.com/#person","name":"Jonathan Duque","url":"https://jonathanduque.com/","sameAs":["https://www.linkedin.com/in/jonathanduque1/"]},{"@type":"WebPage","@id":"https://openagentindex.com/tool/sim/#webpage","url":"https://openagentindex.com/tool/sim/","name":"Sim profile","description":"Sim: licence class, rank and sources in the Open Agent Index. Collected 2026-11-18.","inLanguage":"en","isPartOf":{"@id":"https://openagentindex.com/#website"},"author":{"@id":"https://jonathanduque.com/#person"},"dateModified":"2026-11-18","about":{"@type":"SoftwareApplication","name":"Sim","url":"https://www.sim.ai"}}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="banner banner--staging" role="note"><div class="wrap">Staging copy, not indexed. Canonical address: https://openagentindex.com/tool/sim/</div></div>
+<header class="site-header"><div class="wrap">
+<a class="wordmark" href="/openagentindex/">Open Agent <span>Index</span></a>
+<nav class="site-nav" aria-label="Main"><ul><li><a href="/openagentindex/customer-support/">Customer support</a></li><li><a href="/openagentindex/lead-follow-up/">Lead follow-up</a></li><li><a href="/openagentindex/scheduling-intake/">Scheduling and intake</a></li><li><a href="/openagentindex/back-office/">Back office</a></li><li><a href="/openagentindex/reporting-content/">Reporting and content</a></li><li><a href="/openagentindex/methodology/">Method</a></li><li><a href="/openagentindex/about/">About</a></li></ul></nav>
+</div></header>
+<main id="main"><div class="wrap">
+
+<div class="page-head"><h1>Sim</h1>
+<p class="lede"><span class="chip chip--mixed">Mixed licence</span> <span class="num">Apache License 2.0 for the repository; Sim Enterprise License for apps/sim/ee</span></p>
+<dl class="meta-line"><div><dt>Collected </dt><dd><time datetime="2026-11-18">2026-11-18</time></dd></div></dl><p class="label-line"><span class="chip chip--pending">Research-based — not yet hands-on tested</span></p></div>
+<h2>Where it is ranked</h2>
+<ul><li><a href="/openagentindex/customer-support/">Customer support</a>: rank <span class="num">5</span>, score <span class="num">80.5</span>. Sim&#39;s Zendesk and Intercom integrations let a workflow agent read, create, update and search support tickets and conversations (Intercom&#39;s page names support triage and follow-up), and a workflow can be deployed as a hosted chat page with its own access control.</li><li><a href="/openagentindex/lead-follow-up/">Lead follow-up</a>: rank <span class="num">4</span>, score <span class="num">80.5</span>. Sim&#39;s HubSpot integration reads and updates CRM contacts, companies, deals and tickets and starts workflows from HubSpot events, and Sim&#39;s sales page describes agents for lead research, outreach, follow-up and CRM updates.</li><li><a href="/openagentindex/back-office/">Back office</a>: rank <span class="num">6</span>, score <span class="num">80.5</span>. Sim&#39;s finance page describes agents for invoice processing, reconciliation and recurring reports with approval routing, its QuickBooks integration reads and updates QuickBooks Online records, and its Human block can pause a run for a person to review or correct extracted data.</li></ul>
+<h2>Owner fit</h2><dl class="kv"><dt>Setup</dt><dd>Docker Compose single node through the &#39;bunx sim-setup&#39; wizard (needs Docker with Compose 2.24+, Bun and Node.js 20+; bundles PostgreSQL with pgvector, Redis and a scheduler), or a Helm install on Kubernetes; the docs give 2 CPU cores, 12 GiB RAM and 20 GiB SSD as an evaluation example and 4 cores, 16 GiB and 50 GiB for a team, and ask for TLS, email, object storage and backups to be configured before production use. <span class="small">Sources: <a href="https://docs.sim.ai/platform/self-hosting" rel="noopener">docs.sim.ai</a>, <a href="https://docs.sim.ai/platform/self-hosting/docker" rel="noopener">docs.sim.ai</a></span></dd><dt>Approval</dt><dd>yes — the Human block pauses a run until a person submits an approval, feedback or corrected data, with notifications through Slack, Gmail, Microsoft Teams, Twilio SMS or a webhook and no automatic timeout; the docs page and the pricing feature table state no plan restriction, and the block&#39;s source sits in apps/sim/blocks, outside the licensed ee directory. <span class="small">Sources: <a href="https://docs.sim.ai/workflows/blocks/human-in-the-loop" rel="noopener">docs.sim.ai</a>, <a href="https://www.sim.ai/pricing" rel="noopener">sim.ai</a></span></dd><dt>Data</dt><dd>Self-hosted: workspace data, tables, knowledge bases and run logs stay in your own PostgreSQL and storage, with credentials encrypted by keys you hold. Model calls go to whichever provider you configure (OpenAI, Anthropic, Google Gemini, Groq and others), so prompts leave the server unless you point Sim at a local model through Ollama or vLLM. <span class="small">Sources: <a href="https://docs.sim.ai" rel="noopener">docs.sim.ai</a>, <a href="https://docs.sim.ai/platform/self-hosting/security" rel="noopener">docs.sim.ai</a>, <a href="https://docs.sim.ai/platform/self-hosting" rel="noopener">docs.sim.ai</a></span></dd><dt>Cost</dt><dd>Free to self-host under Apache 2.0 (Docker Compose or Kubernetes); enterprise features in apps/sim/ee need a licence. Sim Cloud has Free, Pro, Max and Enterprise plans, with 1,000 one-time credits on Free and one credit worth $0.005 (pricing page seen 2026-11-18); dollar prices for Pro and Max were not shown in the fetched text. You also pay your chosen model provider for LLM calls. The customer-support and lead-follow-up uses documented here run through Zendesk, Intercom or HubSpot, which are separately priced services. <span class="small">Sources: <a href="https://www.sim.ai/pricing" rel="noopener">sim.ai</a></span></dd><dt>Community</dt><dd>GitHub repository: 30,157 stars and 329 open issues as of 2026-11-18. <span class="small">Sources: <a href="https://api.github.com/repos/simstudioai/sim" rel="noopener">api.github.com</a>, <a href="https://docs.sim.ai/llms.txt" rel="noopener">docs.sim.ai</a></span></dd></dl>
+<h2>Project health</h2><ul class="plain"><li class="num">30k stars</li><li class="num">Release v0.9.62, 2026-11-17</li><li class="num">100+ releases in 180 days</li><li class="num">Last commit 2026-11-17</li></ul><span class="small">Source: <a href="https://github.com/simstudioai/sim" rel="noopener">github.com</a></span>
+<h2>Licence</h2><p><span class="chip chip--mixed">Mixed licence</span> Apache License 2.0 for the repository; Sim Enterprise License for apps/sim/ee. The root LICENSE is Apache-2.0. The apps/sim/ee directory (SSO, access control, access requests, whitelabeling, SCIM and other enterprise features) is under a separate Sim Enterprise License that allows development, testing and internal non-production use only; production use of that directory requires an active Sim Enterprise subscription. packages/sim-cli and packages/sim-setup carry their own Apache-2.0 LICENSE files. <a href="https://raw.githubusercontent.com/simstudioai/sim/main/LICENSE" rel="noopener">Licence source</a></p>
+<p class="small">Project site: <a href="https://www.sim.ai" rel="noopener">sim.ai</a> · Docs: <a href="https://docs.sim.ai" rel="noopener">docs.sim.ai</a> · Repository: <a href="https://github.com/simstudioai/sim" rel="noopener">simstudioai/sim</a></p>
+</div></main>
+<footer class="site-footer"><div class="wrap">
+<ul>
+<li>Method by Jonathan Duque</li>
+<li><a href="/openagentindex/methodology/">Methodology</a></li>
+<li><a href="/openagentindex/methodology/#corrections">Corrections</a></li>
+</ul>
+<p>Data collected <time datetime="2026-11-18">2026-11-18</time>. Research-based — not yet hands-on tested.</p>
+<p class="small">Repository figures: GitHub API, retrieved 2026-11-18; Open Agent Index is not affiliated with or endorsed by GitHub.</p>
+</div></footer>
+</body>
+</html>

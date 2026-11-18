@@ -7,8 +7,8 @@ Method by Jonathan Duque (https://jonathanduque.com/). Scores come from publishe
 ## Pages
 - [Methodology](https://openagentindex.com/methodology/): sources, components, licence labels, corrections
 - [About](https://openagentindex.com/about/)
-- [Customer support](https://openagentindex.com/customer-support/): 6 tools ranked
-- [Lead follow-up](https://openagentindex.com/lead-follow-up/): 5 tools ranked
-- [Scheduling and intake](https://openagentindex.com/scheduling-intake/): 4 tools ranked
-- [Back office](https://openagentindex.com/back-office/): 7 tools ranked
-- [Reporting and content](https://openagentindex.com/reporting-content/): 7 tools ranked
+- [Customer support](https://openagentindex.com/customer-support/): 8 tools ranked
+- [Lead follow-up](https://openagentindex.com/lead-follow-up/): 8 tools ranked
+- [Scheduling and intake](https://openagentindex.com/scheduling-intake/): 5 tools ranked
+- [Back office](https://openagentindex.com/back-office/): 9 tools ranked
+- [Reporting and content](https://openagentindex.com/reporting-content/): 8 tools ranked

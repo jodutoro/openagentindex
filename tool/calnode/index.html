@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calnode profile | Open Agent Index</title>
+<meta name="description" content="Calnode: licence class, rank and sources in the Open Agent Index. Collected 2026-11-18.">
+<meta name="robots" content="noindex,nofollow">
+<link rel="canonical" href="https://openagentindex.com/tool/calnode/">
+<link rel="icon" href="/openagentindex/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/openagentindex/static/fonts/IBMPlexSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/openagentindex/static/site.css">
+<meta property="og:site_name" content="Open Agent Index">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Calnode profile | Open Agent Index">
+<meta property="og:description" content="Calnode: licence class, rank and sources in the Open Agent Index. Collected 2026-11-18.">
+<meta property="og:url" content="https://openagentindex.com/tool/calnode/">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://openagentindex.com/#website","url":"https://openagentindex.com/","name":"Open Agent Index","description":"A dated, transparent ranking of self-hostable agent tools for five business functions.","inLanguage":"en","publisher":{"@id":"https://jonathanduque.com/#person"}},{"@type":"Person","@id":"https://jonathanduque.com/#person","name":"Jonathan Duque","url":"https://jonathanduque.com/","sameAs":["https://www.linkedin.com/in/jonathanduque1/"]},{"@type":"WebPage","@id":"https://openagentindex.com/tool/calnode/#webpage","url":"https://openagentindex.com/tool/calnode/","name":"Calnode profile","description":"Calnode: licence class, rank and sources in the Open Agent Index. Collected 2026-11-18.","inLanguage":"en","isPartOf":{"@id":"https://openagentindex.com/#website"},"author":{"@id":"https://jonathanduque.com/#person"},"dateModified":"2026-11-18","about":{"@type":"SoftwareApplication","name":"Calnode","url":"https://calnode.com"}}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="banner banner--staging" role="note"><div class="wrap">Staging copy, not indexed. Canonical address: https://openagentindex.com/tool/calnode/</div></div>
+<header class="site-header"><div class="wrap">
+<a class="wordmark" href="/openagentindex/">Open Agent <span>Index</span></a>
+<nav class="site-nav" aria-label="Main"><ul><li><a href="/openagentindex/customer-support/">Customer support</a></li><li><a href="/openagentindex/lead-follow-up/">Lead follow-up</a></li><li><a href="/openagentindex/scheduling-intake/">Scheduling and intake</a></li><li><a href="/openagentindex/back-office/">Back office</a></li><li><a href="/openagentindex/reporting-content/">Reporting and content</a></li><li><a href="/openagentindex/methodology/">Method</a></li><li><a href="/openagentindex/about/">About</a></li></ul></nav>
+</div></header>
+<main id="main"><div class="wrap">
+
+<div class="page-head"><h1>Calnode</h1>
+<p class="lede"><span class="chip chip--osi">OSI-approved open source</span> <span class="num">Apache License 2.0</span></p>
+<dl class="meta-line"><div><dt>Collected </dt><dd><time datetime="2026-11-18">2026-11-18</time></dd></div></dl><p class="label-line"><span class="chip chip--pending">Research-based — not yet hands-on tested</span></p></div>
+<h2>Where it is ranked</h2>
+<ul><li><a href="/openagentindex/scheduling-intake/">Scheduling and intake</a>: rank <span class="num">4</span>, score <span class="num">70.5</span>. Calnode is a self-hosted booking-page scheduler (one Go binary with SQLite) where visitors pick a free slot, with a native MCP server whose booking tools list event types and free slots and create, get, reschedule and cancel bookings, and an optional bring-your-own-model &#39;Book by chat&#39; assistant on the booking page.</li></ul>
+<h2>Owner fit</h2><dl class="kv"><dt>Setup</dt><dd>One container or one static binary, with the data kept in a single SQLite file and no database server, cache or queue: docker run ghcr.io/calnode/calnode:latest with a data volume, BASE_URL and an encryption key; production wants HTTPS behind a TLS proxy. Built-in video needs a LiveKit endpoint. <span class="small">Sources: <a href="https://calnode.com" rel="noopener">calnode.com</a>, <a href="https://raw.githubusercontent.com/Calnode/calnode/main/DEPLOY.md" rel="noopener">raw.githubusercontent.com</a>, <a href="https://github.com/Calnode/calnode" rel="noopener">github.com</a></span></dd><dt>Approval</dt><dd>no — the only documented human step is the OAuth consent screen when an agent connects; no per-booking approval step is documented, and create_booking runs the same booking side effects as the REST API. <span class="small">Sources: <a href="https://github.com/Calnode/calnode" rel="noopener">github.com</a></span></dd><dt>Data</dt><dd>Self-hosted: one deployment is one isolated workspace with its own SQLite data. The chat assistant sees only free/busy windows, never calendar contents, and uses any OpenAI-compatible model endpoint the operator chooses (hosted or self-run); it is off by default. <span class="small">Sources: <a href="https://github.com/Calnode/calnode" rel="noopener">github.com</a>, <a href="https://calnode.com" rel="noopener">calnode.com</a></span></dd><dt>Cost</dt><dd>Free to self-host under Apache-2.0 (&#39;nothing is paywalled&#39;); the README says it can run on a $5 server. Optional built-in video needs a LiveKit endpoint (Cloud or self-hosted), and the operator pays any AI model provider they choose. The site also advertises done-for-you setup as a service (price not read). <span class="small">Sources: <a href="https://github.com/Calnode/calnode" rel="noopener">github.com</a>, <a href="https://calnode.com" rel="noopener">calnode.com</a></span></dd><dt>Community</dt><dd>GitHub repository: 146 stars (created 2026-06-23). <span class="small">Sources: <a href="https://api.github.com/repos/Calnode/calnode" rel="noopener">api.github.com</a></span></dd></dl>
+<h2>Project health</h2><ul class="plain"><li class="num">146 stars</li><li class="num">Release v0.14.0, 2026-11-07</li><li class="num">20 releases in 180 days</li><li class="num">Last commit 2026-11-18</li></ul><span class="small">Source: <a href="https://github.com/Calnode/calnode" rel="noopener">github.com</a></span>
+<h2>Licence</h2><p><span class="chip chip--osi">OSI-approved open source</span> Apache License 2.0. The repository LICENSE is the Apache License 2.0 and the README says &#39;nothing paywalled for self-host&#39;. Contributions are accepted under a CLA (CLA.md) whose text includes &#39;the right to license the project under different terms in the future&#39;, while contributors keep their copyright. The Apache-2.0 licence does not cover the Calnode name or logo, which TRADEMARK.md reserves. <a href="https://raw.githubusercontent.com/Calnode/calnode/main/LICENSE" rel="noopener">Licence source</a></p>
+<p class="small">Project site: <a href="https://calnode.com" rel="noopener">calnode.com</a> · Docs: <a href="https://github.com/Calnode/calnode" rel="noopener">github.com</a> · Repository: <a href="https://github.com/Calnode/calnode" rel="noopener">Calnode/calnode</a></p>
+</div></main>
+<footer class="site-footer"><div class="wrap">
+<ul>
+<li>Method by Jonathan Duque</li>
+<li><a href="/openagentindex/methodology/">Methodology</a></li>
+<li><a href="/openagentindex/methodology/#corrections">Corrections</a></li>
+</ul>
+<p>Data collected <time datetime="2026-11-18">2026-11-18</time>. Research-based — not yet hands-on tested.</p>
+<p class="small">Repository figures: GitHub API, retrieved 2026-11-18; Open Agent Index is not affiliated with or endorsed by GitHub.</p>
+</div></footer>
+</body>
+</html>
