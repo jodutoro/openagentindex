@@ -91,7 +91,14 @@ thead th { border-top: 0; border-bottom: 1px solid var(--ink); font-weight: 600;
 .page-head .research-note { font-size: var(--t-14); color: var(--ink-2); margin: var(--sp-3) 0 0; }
 .page-head .prose { margin-top: var(--sp-5); }
 .page-head .prose > :last-child { margin-bottom: 0; }
-.ledger td:nth-child(2) { width: 100%; }
+@media (min-width: 640px) {
+  /* Fixed layout: the four columns stay inside the content column; nested breakdown tables cannot widen it */
+  .ledger { table-layout: fixed; }
+  .ledger > thead > tr > th:nth-child(1) { width: 4.5rem; }
+  .ledger > thead > tr > th:nth-child(3) { width: 8.5rem; }
+  .ledger > thead > tr > th:nth-child(4) { width: 15rem; }
+  .ledger > tbody > tr > td .chip { white-space: normal; }
+}
 .rank { font: 600 var(--t-20)/1 var(--mono); color: var(--accent); }
 .score { font: 600 var(--t-20)/1 var(--mono); white-space: nowrap; }
 .score small { font: 400 0.75rem var(--mono); color: var(--ink-2); }
