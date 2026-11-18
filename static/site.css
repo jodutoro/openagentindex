@@ -85,6 +85,13 @@ caption { text-align: left; padding: var(--sp-3) 0; color: var(--ink-2); caption
 th, td { text-align: left; vertical-align: top; padding: var(--sp-3); border-top: 1px solid var(--rule); }
 thead th { border-top: 0; border-bottom: 1px solid var(--ink); font-weight: 600; background: var(--surface); white-space: nowrap; }
 .ledger tbody tr.detail td { padding-top: 0; border-top: 0; }
+.row-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-4) var(--sp-5); margin: 0 0 var(--sp-3); }
+.row-facts dt { color: var(--ink-2); font-size: 0.8125rem; margin-bottom: var(--sp-1); }
+.row-facts dd { margin: 0; overflow-wrap: anywhere; }
+.page-head .research-note { font-size: var(--t-14); color: var(--ink-2); margin: var(--sp-3) 0 0; }
+.page-head .prose { margin-top: var(--sp-5); }
+.page-head .prose > :last-child { margin-bottom: 0; }
+.ledger td:nth-child(2) { width: 100%; }
 .rank { font: 600 var(--t-20)/1 var(--mono); color: var(--accent); }
 .score { font: 600 var(--t-20)/1 var(--mono); white-space: nowrap; }
 .score small { font: 400 0.75rem var(--mono); color: var(--ink-2); }
@@ -130,6 +137,7 @@ table.plain { font-size: var(--t-14); }
   .ledger td { border: 0; padding: var(--sp-2) var(--sp-3); display: grid; grid-template-columns: 7.5rem 1fr; gap: var(--sp-3); }
   .ledger td::before { content: attr(data-label); color: var(--ink-2); font-size: 0.8125rem; }
   .ledger td.cell-rank { border-bottom: 1px solid var(--rule); background: var(--paper); }
+  .row-facts { grid-template-columns: 1fr; }
   .ledger tr.detail td { display: block; padding: 0 var(--sp-3) var(--sp-3); }
   .ledger tr.detail td::before { content: none; }
   .fn-list li { grid-template-columns: 1fr; }
