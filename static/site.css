@@ -76,7 +76,8 @@ main { padding: var(--sp-6) 0 var(--sp-7); }
   linear-gradient(to right, var(--surface), var(--surface)) left center / 16px 100% no-repeat local,
   linear-gradient(to left, var(--surface), var(--surface)) right center / 16px 100% no-repeat local,
   linear-gradient(to right, var(--edge-cue), transparent) left center / 12px 100% no-repeat scroll,
-  linear-gradient(to left, var(--edge-cue), transparent) right center / 12px 100% no-repeat scroll; }
+  linear-gradient(to left, var(--edge-cue), transparent) right center / 12px 100% no-repeat scroll,
+  linear-gradient(var(--surface), var(--surface)); }
 .table-wrap > table, .table-wrap > table thead th { background: transparent; }
 .table-wrap[role="region"]:focus-visible { outline-offset: -2px; }
 table { border-collapse: collapse; width: 100%; background: var(--surface); border: 1px solid var(--rule); font-size: var(--t-14); }
