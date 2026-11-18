@@ -1,0 +1,82 @@
+/* origin: own work, no registry port. Collision rules only; the a11ypros accordion reference named for this slot was not used, so no provenance row is owed. */
+/* Slot 7: mobile pass. Cross-slot collisions only; every slot keeps its own collapse. */
+@layer mobile {
+
+  /* ---------- all widths: Project health source line ---------- */
+  /* build.mjs healthCell puts a bare span.small between the list and the next h2. */
+  main .wrap > ul.plain + span.small {
+    display: block;
+    margin-block: 12px 40px;
+    overflow-wrap: anywhere;
+  }
+
+  /* ---------- touch and narrow: every standalone link is a 44px target ---------- */
+  .site-nav .nav-links--row a { min-height: 44px; }
+  @media (max-width: 1100px), (pointer: coarse) {
+    p.byline a,
+    .site-footer li > a,
+    main td > a:only-child,
+    table.ledger dd a,
+    table.ledger .row-facts li > a,
+    table.ledger a.small,
+    table.ledger td[data-label="Licence"] .small a,
+    main .wrap > ul.plain + span.small > a,
+    dl.kv dd > span.small > a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      min-width: 44px;
+    }
+    main ul.plain > li > a,
+    table.plain.stack td > a { display: flex; align-items: center; min-height: 44px; padding-block: 4px; }
+    main details > summary, .fn-contents__d > summary { min-height: 44px; display: inline-flex; align-items: center; }
+    .hub-hero__col { min-width: 44px; }
+    main a.fn { display: flex; align-items: center; min-height: 44px; }
+    /* names shorter than 44px wide ("n8n", "Sim") */
+    table.ledger a.tool-name { min-width: 44px; }
+  }
+
+  /* ---------- 761-900: hero plate collides (five labels in ~300px); use the phone plate ---------- */
+  @media (min-width: 761px) and (max-width: 900px) {
+    .hub-hero { grid-template-columns: minmax(0, 1fr); }
+    .hub-hero__head { border-right: 0; }
+    .hub-hero__plate {
+      flex-direction: column; align-items: stretch; justify-content: flex-start;
+      gap: 0; min-height: 0; padding: 8px 20px;
+    }
+    .hub-hero__col {
+      flex: none; flex-direction: row; align-items: center; justify-content: space-between;
+      gap: 12px; min-height: 48px; padding-block: 6px; border-bottom: 1px solid var(--rule);
+    }
+    .hub-hero__col:last-child { border-bottom: 0; }
+    .hub-hero__col::before { order: 3; font-size: 24px; min-width: 1.2em; text-align: right; }
+    .hub-hero__col::after {
+      order: 1; align-self: center; flex: 1 1 0; min-width: 0; padding: 0;
+      border-top: 0; min-height: 0; text-align: left;
+    }
+    .hub-hero__dots { order: 2; flex-direction: row; gap: 4px; flex: none; }
+  }
+
+  /* footer row: a plain-text item beside 44px links must share their centre line */
+  .site-footer ul { align-items: center; }
+
+  /* ---------- phones ---------- */
+  @media (max-width: 760px) {
+    /* caption touched the ledger frame; give it the cell inset */
+    table.ledger > caption { padding: 12px 16px; text-align: left; }
+    /* licence pill and "Licence details" read as one group */
+    table.ledger td[data-label="Licence"] .chip { margin-block: 4px; }
+    /* nothing may push the page sideways; long URLs and names wrap */
+    main, main .wrap { min-width: 0; }
+    main :is(p, li, dd, dt, td, h1, h2, h3) { overflow-wrap: anywhere; }
+  }
+
+  /* ---------- narrowest supported: 320 ---------- */
+  @media (max-width: 360px) {
+    .hub-hero__head h1 { font-size: clamp(30px, 10vw, 36px); }
+    .hub-hero__plate { padding-inline: 12px; }
+    table.ledger > tbody > tr:first-child { grid-template-columns: 44px minmax(0, 1fr); }
+    table.ledger > tbody > tr:first-child > td { padding-inline: 12px; }
+    table.ledger .rank { font-size: 36px; }
+  }
+}

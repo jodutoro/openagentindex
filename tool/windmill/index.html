@@ -8,8 +8,15 @@
 <meta name="robots" content="noindex,nofollow">
 <link rel="canonical" href="https://openagentindex.com/tool/windmill/">
 <link rel="icon" href="/openagentindex/favicon.svg" type="image/svg+xml">
-<link rel="preload" href="/openagentindex/static/fonts/IBMPlexSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/openagentindex/static/site.css">
+<link rel="preload" href="/openagentindex/static/fonts-v3/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/openagentindex/static/v3/tokens.css">
+<link rel="stylesheet" href="/openagentindex/static/v3/chrome.css">
+<link rel="stylesheet" href="/openagentindex/static/v3/label.css">
+<link rel="stylesheet" href="/openagentindex/static/v3/hub-hero.css">
+<link rel="stylesheet" href="/openagentindex/static/v3/function-head.css">
+<link rel="stylesheet" href="/openagentindex/static/v3/ranking.css">
+<link rel="stylesheet" href="/openagentindex/static/v3/evidence.css">
+<link rel="stylesheet" href="/openagentindex/static/v3/mobile.css">
 <meta property="og:site_name" content="Open Agent Index">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Windmill profile | Open Agent Index">
@@ -22,14 +29,17 @@
 <a class="skip" href="#main">Skip to content</a>
 <div class="banner banner--staging" role="note"><div class="wrap">Staging copy, not indexed. Canonical address: https://openagentindex.com/tool/windmill/</div></div>
 <header class="site-header"><div class="wrap">
-<a class="wordmark" href="/openagentindex/">Open Agent <span>Index</span></a>
-<nav class="site-nav" aria-label="Main"><ul><li><a href="/openagentindex/customer-support/">Customer support</a></li><li><a href="/openagentindex/lead-follow-up/">Lead follow-up</a></li><li><a href="/openagentindex/scheduling-intake/">Scheduling and intake</a></li><li><a href="/openagentindex/back-office/">Back office</a></li><li><a href="/openagentindex/reporting-content/">Reporting and content</a></li><li><a href="/openagentindex/methodology/">Method</a></li><li><a href="/openagentindex/about/">About</a></li></ul></nav>
+<a class="wordmark" href="/openagentindex/"><span class="wordmark-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="wordmark-text">Open Agent <span>Index</span></span></a>
+<nav class="site-nav" aria-label="Main">
+<ul class="nav-links nav-links--row"><li><a href="/openagentindex/customer-support/">Customer support</a></li><li><a href="/openagentindex/lead-follow-up/">Lead follow-up</a></li><li><a href="/openagentindex/scheduling-intake/">Scheduling and intake</a></li><li><a href="/openagentindex/back-office/">Back office</a></li><li><a href="/openagentindex/reporting-content/">Reporting and content</a></li><li><a href="/openagentindex/methodology/">Method</a></li><li><a href="/openagentindex/about/">About</a></li></ul>
+<details class="nav-menu"><summary>Menu</summary><ul class="nav-links nav-links--menu"><li><a href="/openagentindex/customer-support/">Customer support</a></li><li><a href="/openagentindex/lead-follow-up/">Lead follow-up</a></li><li><a href="/openagentindex/scheduling-intake/">Scheduling and intake</a></li><li><a href="/openagentindex/back-office/">Back office</a></li><li><a href="/openagentindex/reporting-content/">Reporting and content</a></li><li><a href="/openagentindex/methodology/">Method</a></li><li><a href="/openagentindex/about/">About</a></li></ul></details>
+</nav>
 </div></header>
-<main id="main"><div class="wrap">
+<main id="main" class="page-tool"><div class="wrap">
 
 <div class="page-head"><h1>Windmill</h1>
 <p class="lede"><span class="chip chip--mixed">Mixed licence</span> <span class="num">AGPLv3 core with Apache 2.0 clients/spec and proprietary enterprise/community restrictions</span></p>
-<dl class="meta-line"><div><dt>Collected </dt><dd><time datetime="2026-11-18">2026-11-18</time></dd></div></dl><p class="label-line"><span class="chip chip--pending">Research-based — not yet hands-on tested</span></p></div>
+<dl class="meta-line"><div><dt>Collected </dt><dd><time datetime="2026-11-18">2026-11-18</time></dd></div></dl><p class="label-line"><span class="v3-label">Research-based — not yet hands-on tested</span></p></div>
 <h2>Where it is ranked</h2>
 <ul><li><a href="/openagentindex/back-office/">Back office</a>: rank <span class="num">5</span>, score <span class="num">84.0</span>. Windmill runs scripts in multiple languages as jobs, chains them into flows, exposes apps and APIs, and provides secrets, data tables, and scheduling for internal operations.</li><li><a href="/openagentindex/reporting-content/">Reporting and content</a>: rank <span class="num">6</span>, score <span class="num">84.0</span>. Windmill AI Agent steps can process data, generate content, execute scripts, and make decisions inside automated workflows, with providers and models configured as resources.</li></ul>
 <h2>Owner fit</h2><dl class="kv"><dt>Setup</dt><dd>Docker Compose starts server, workers, PostgreSQL, and LSP; Kubernetes/Helm is available, and the documented minimum is 2 CPU cores, 4 GB RAM, and 20 GB disk. <span class="small">Sources: <a href="https://www.windmill.dev/platform/self-host" rel="noopener">windmill.dev</a></span></dd><dt>Approval</dt><dd>yes — flow approval steps suspend execution until approval/resume, and AI-agent tool calls can require approval before running. <span class="small">Sources: <a href="https://www.windmill.dev/docs/flows/flow_approval" rel="noopener">windmill.dev</a>, <a href="https://www.windmill.dev/docs/core_concepts/ai_agents" rel="noopener">windmill.dev</a></span></dd><dt>Data</dt><dd>Self-hosting keeps data on your machines and secrets in your network according to the self-hosting page; the architecture uses your server, workers, and PostgreSQL, with optional external AI providers receiving prompts/data according to configured use. <span class="small">Sources: <a href="https://www.windmill.dev/platform/self-host" rel="noopener">windmill.dev</a>, <a href="https://www.windmill.dev/docs/core_concepts/ai_agents" rel="noopener">windmill.dev</a></span></dd><dt>Cost</dt><dd>Community Edition is free with unlimited executions; pricing seen 2026-11-18 lists Enterprise from $120/month plus seat/compute pricing, including $170/month example base and $20/month per builder. <span class="small">Sources: <a href="https://www.windmill.dev/pricing" rel="noopener">windmill.dev</a></span></dd><dt>Community</dt><dd>18,608 GitHub stars (2026-11-18). <span class="small">Sources: <a href="https://api.github.com/repos/windmill-labs/windmill" rel="noopener">api.github.com</a></span></dd></dl>
@@ -45,6 +55,8 @@
 </ul>
 <p>Data collected <time datetime="2026-11-18">2026-11-18</time>. Research-based — not yet hands-on tested.</p>
 <p class="small">Repository figures: GitHub API, retrieved 2026-11-18; Open Agent Index is not affiliated with or endorsed by GitHub.</p>
+<div class="footer-mark-wrap" aria-hidden="true"><div class="footer-mark footer-mark--wide"></div><div class="footer-mark footer-mark--stack"></div></div>
 </div></footer>
+<script src="/openagentindex/static/v3/chrome.js" defer></script>
 </body>
 </html>

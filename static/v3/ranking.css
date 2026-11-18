@@ -1,0 +1,279 @@
+/* port: 21st.dev/@eugeneshilow/leaderboard-table (technique only, licence unverified): ruled row grammar
+   port: 21st.dev/@haydenbleasel/pill (technique only, licence unverified): pill shape language */
+/* v3 slot 2: ranking rows, score dots, licence pills. Tokens per DIRECTION-v3 section 5 (var names verbatim).
+   Everything sits in @layer slots. Selectors use child combinators under table.ledger because the
+   breakdown table is nested inside tr.detail. Owns every .chip* class except .v3-label. */
+@layer slots {
+
+/* ---------- chips (pill family) ---------- */
+.chip {
+  display: inline-flex; align-items: center;
+  min-height: 32px; padding: 5px 14px;
+  border: 1px solid var(--rule-strong); border-radius: 999px;
+  background: transparent; color: var(--fg);
+  font: 600 15px/1.35 var(--font, "Archivo", system-ui, sans-serif);
+  font-stretch: 92%; font-variation-settings: "wdth" 92;
+  letter-spacing: 0; text-transform: none; white-space: nowrap;
+}
+.chip--osi { background: var(--fg); border-color: var(--fg); color: var(--ink-0); }
+.chip--fair { border-color: var(--rule-strong); }
+.chip--source-available { border: 1px dashed var(--rule-strong); }
+.chip--mixed {
+  border-color: var(--rule-strong);
+  background: linear-gradient(90deg, rgba(244,246,249,.28) 50%, transparent 50%);
+}
+.chip--pending { border-color: var(--rule-strong); color: var(--fg-2); }
+/* Pending chips can carry a sentence ("No built-in AI documented as of ..."); let them wrap inside the column instead of pushing the page sideways at 390. */
+.chip--pending { white-space: normal; max-width: 100%; border-radius: 16px; }
+
+/* aiTag chip: a full sentence in a pill, so it wraps and tightens */
+table.ledger > tbody > tr > td[data-label="Tool"] .chip {
+  white-space: normal; min-height: 0; padding: 6px 14px;
+  font-size: 14px; font-weight: 450; line-height: 1.4; max-width: 52ch;
+}
+/* inline "pending" inside definition lists and cells */
+dl .chip--pending, ul .chip--pending { min-height: 24px; padding: 2px 12px; font-size: 14px; }
+/* chips beside their sentence in the methodology licence list */
+li > .chip { margin-inline-end: 8px; vertical-align: middle; }
+
+/* ---------- ledger: the ranked table ---------- */
+.table-wrap:has(> table.ledger) { container: ledger / inline-size; }
+
+table.ledger, table.ledger th, table.ledger td { box-sizing: border-box; }
+table.ledger {
+  width: 100%; table-layout: fixed; border-collapse: collapse;
+  border: 1px solid var(--rule); background: var(--ink-1);
+  font-variant-numeric: tabular-nums lining-nums;
+}
+table.ledger > caption {
+  caption-side: top; text-align: left; padding: 0 0 16px;
+  color: var(--fg-2); font-size: 14px; font-weight: 450; line-height: 1.45;
+}
+table.ledger > thead > tr > th {
+  padding: 12px 24px; text-align: left;
+  border-bottom: 1px solid var(--rule-strong); background: var(--ink-0);
+  color: var(--fg); font: 600 15px/1 var(--font, "Archivo", system-ui, sans-serif);
+  font-variation-settings: "wdth" 92; letter-spacing: 0; text-transform: none;
+}
+table.ledger > thead > tr > th:nth-child(1) { width: 112px; }
+table.ledger > thead > tr > th:nth-child(3) { width: 292px; }
+table.ledger > thead > tr > th:nth-child(4) { width: 268px; }
+
+table.ledger > tbody { border-bottom: 1px solid var(--rule); }
+table.ledger > tbody:last-of-type { border-bottom: 0; }
+table.ledger > tbody > tr:first-child > td {
+  padding: 24px; vertical-align: top; background: var(--ink-1);
+  transition: background-color 180ms var(--ease-out, cubic-bezier(.23,1,.32,1));
+}
+table.ledger > tbody > tr:first-child > td + td { border-left: 1px solid var(--rule); }
+
+/* rank numeral */
+table.ledger .cell-rank { padding-inline: 24px; }
+table.ledger .rank {
+  display: block; color: var(--fg);
+  font: 800 64px/.9 var(--font, "Archivo", system-ui, sans-serif);
+  font-variation-settings: "wdth" 70; font-variant-numeric: tabular-nums lining-nums;
+}
+
+/* tool name and what it does */
+table.ledger a.tool-name {
+  color: var(--fg); text-decoration: underline; text-decoration-color: var(--rule-strong);
+  text-decoration-thickness: 1px; text-underline-offset: 5px;
+  font: 650 22px/1.2 var(--font, "Archivo", system-ui, sans-serif); font-variation-settings: "wdth" 92;
+  transition: color 180ms var(--ease-out, ease-out), text-decoration-color 180ms var(--ease-out, ease-out);
+}
+table.ledger > tbody > tr:first-child p.small {
+  margin: 8px 0 0; max-width: 56ch; color: var(--fg-2); font-size: 16px; line-height: 1.5;
+}
+table.ledger > tbody > tr:first-child p.small:has(> .chip) { margin-top: 12px; }
+
+/* score cell: numeral, dots, components toggle */
+table.ledger .score {
+  color: var(--fg); font: 800 48px/1 var(--font, "Archivo", system-ui, sans-serif);
+  font-variation-settings: "wdth" 75; font-variant-numeric: tabular-nums lining-nums;
+}
+table.ledger .score small {
+  margin-inline-start: 6px; color: var(--fg-2);
+  font: 450 16px/1 var(--font, "Archivo", system-ui, sans-serif); font-variation-settings: "wdth" 100;
+}
+
+/* 20 dots, one dot = 5 points. Base state is the filled end state: visible with no CSS animation. */
+.dots { display: flex; align-items: center; gap: 4px; margin: 14px 0 16px; height: 8px; }
+.dots .d { flex: none; display: block; width: 8px; height: 8px; border-radius: 50%; }
+.dots .d--on { background: var(--signal); }
+.dots .d--off { background: var(--dot-off); }
+.dots .d--part {
+  width: 4px; height: 4px; margin-inline: 2px; background: var(--signal);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes v3-dot-in { from { opacity: .25; transform: scale(.6); } to { opacity: 1; transform: none; } }
+  .dots .d--on, .dots .d--part {
+    animation: v3-dot-in 600ms var(--ease-out, cubic-bezier(.23,1,.32,1)) backwards;
+    animation-delay: calc(min(var(--i, 0) * 8ms, 400ms));
+  }
+}
+
+/* disclosure toggles: summary is a pill */
+table.ledger summary {
+  display: inline-flex; align-items: center; min-height: 32px; padding: 6px 16px;
+  border: 1px solid var(--rule-strong); border-radius: 999px; cursor: pointer;
+  color: var(--fg); font: 600 15px/1.2 var(--font, "Archivo", system-ui, sans-serif);
+  font-variation-settings: "wdth" 92; list-style: none; user-select: none;
+  transition: background-color 180ms var(--ease-out, ease-out), border-color 180ms var(--ease-out, ease-out), transform 120ms var(--ease-out, ease-out);
+}
+table.ledger summary::-webkit-details-marker { display: none; }
+table.ledger summary::marker { content: ""; }
+table.ledger summary:active { transform: scale(.97); }
+table.ledger details[open] > summary { background: var(--ink-2); border-color: var(--accent); }
+table.ledger summary:focus-visible,
+table.ledger a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* components list under the score */
+table.ledger > tbody > tr:first-child details > div.small {
+  display: flex; justify-content: space-between; gap: 16px; max-width: 260px; padding: 8px 0 0;
+  color: var(--fg-2); font-size: 14px; line-height: 1.45;
+}
+table.ledger > tbody > tr:first-child details > summary + div.small { margin-top: 8px; }
+table.ledger details[open] > :not(summary) { animation: v3-fade 240ms var(--ease-out, ease-out); }
+@keyframes v3-fade { from { opacity: 0; } to { opacity: 1; } }
+
+/* licence cell */
+table.ledger td[data-label="Licence"] > div > .small { margin-top: 12px; }
+table.ledger td[data-label="Licence"] .small a,
+table.ledger .row-facts a.small { color: var(--accent); text-underline-offset: 4px; }
+
+/* ---------- detail row: raised cell ---------- */
+table.ledger > tbody > tr.detail > td {
+  padding: 24px 24px 24px 136px; background: var(--ink-2);
+  border-top: 1px solid var(--rule);
+}
+table.ledger .row-facts {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px 48px; margin: 0 0 24px;
+}
+table.ledger .row-facts > div { min-width: 0; }
+table.ledger .row-facts dt {
+  margin: 0 0 8px; color: var(--fg);
+  font: 650 16px/1.2 var(--font, "Archivo", system-ui, sans-serif); font-variation-settings: "wdth" 92;
+  letter-spacing: 0; text-transform: none;
+}
+table.ledger .row-facts dd { margin: 0; color: var(--fg); font-size: 16px; line-height: 1.5; }
+/* ownerFitSummary: numeral first, the O1..O5 line beneath */
+table.ledger .row-facts dd > .num:first-child {
+  display: block; font: 800 32px/1 var(--font, "Archivo", system-ui, sans-serif);
+  font-variation-settings: "wdth" 75; font-variant-numeric: tabular-nums lining-nums;
+}
+table.ledger .row-facts dd > .num:first-child + .small { display: block; margin-top: 8px; color: var(--fg-2); font-size: 14px; line-height: 1.45; }
+table.ledger .row-facts dd > .small:last-child { display: inline-block; margin-top: 8px; }
+/* sourcesCell: plain list, one ruled line per source */
+table.ledger .row-facts ul.plain { margin: 0; padding: 0; list-style: none; }
+table.ledger .row-facts ul.plain li { padding-top: 6px; padding-bottom: 6px; overflow-wrap: anywhere; }
+table.ledger .row-facts ul.plain li + li { border-top: 1px solid var(--rule); }
+table.ledger .row-facts ul.plain li:first-child { padding-top: 0; }
+
+/* ---------- breakdown() ---------- */
+table.ledger tr.detail details > .inner { padding-top: 16px; }
+table.ledger tr.detail .inner p { max-width: 68ch; margin: 0 0 16px; font-size: 16px; line-height: 1.5; }
+table.ledger tr.detail .inner p.small { color: var(--fg-2); font-size: 14px; margin: 16px 0 0; }
+table.ledger tr.detail .inner p.small a { color: var(--accent); }
+table.ledger tr.detail .inner .table-wrap { margin-top: 8px; }
+table.ledger table.plain {
+  width: 100%; border-collapse: collapse; border: 1px solid var(--rule); background: var(--ink-1);
+  font-variant-numeric: tabular-nums lining-nums;
+}
+table.ledger table.plain > caption {
+  caption-side: top; text-align: left; padding: 0 0 8px; color: var(--fg-2); font-size: 14px; font-weight: 450;
+}
+table.ledger table.plain > thead > tr > th {
+  padding: 10px 16px; text-align: left; background: var(--ink-0); border-bottom: 1px solid var(--rule-strong);
+  font: 600 14px/1.2 var(--font, "Archivo", system-ui, sans-serif); letter-spacing: 0; text-transform: none; color: var(--fg);
+}
+table.ledger table.plain > tbody > tr > td {
+  padding: 12px 16px; vertical-align: top; border-top: 1px solid var(--rule);
+  font-size: 15px; line-height: 1.45; overflow-wrap: anywhere;
+}
+table.ledger table.plain > tbody > tr:first-child > td { border-top: 0; }
+table.ledger table.plain > tbody > tr > td + td { border-left: 1px solid var(--rule); }
+table.ledger table.plain td.num { font-weight: 700; }
+table.ledger table.plain > thead > tr > th:last-child { width: 22%; }
+table.ledger table.plain td a { color: var(--accent); }
+
+/* ---------- hover: gated ---------- */
+@media (hover: hover) and (pointer: fine) {
+  table.ledger > tbody:hover > tr:first-child > td { background: var(--ink-2); }
+  table.ledger a.tool-name:hover { color: var(--accent); text-decoration-color: var(--accent); }
+  table.ledger summary:hover { background: var(--ink-2); border-color: var(--accent); }
+  table.ledger td a:not(.tool-name):hover { color: var(--fg); }
+}
+table.ledger a.tool-name:active { color: var(--accent); text-decoration-color: var(--accent); }   /* press, also on touch where hover is gated off */
+@media (pointer: coarse) {
+  table.ledger summary, table.ledger td[data-label="Licence"] .small a, table.ledger .row-facts a.small,
+  table.ledger tr.detail .inner p.small a { min-height: 44px; display: inline-flex; align-items: center; }
+}
+
+/* ---------- narrower tables (container, not viewport): 6px dots ---------- */
+@container ledger (max-width: 900px) {
+  table.ledger > thead > tr > th:nth-child(1) { width: 80px; }
+  table.ledger > thead > tr > th:nth-child(3) { width: 220px; }
+  table.ledger > thead > tr > th:nth-child(4) { width: 204px; }
+  table.ledger td[data-label="Licence"] .chip { white-space: normal; }
+  table.ledger > thead > tr > th, table.ledger > tbody > tr:first-child > td { padding-inline: 16px; }
+  table.ledger .rank { font-size: 48px; }
+  table.ledger .score { font-size: 36px; }
+  .dots { gap: 3px; }
+  .dots .d { width: 6px; height: 6px; }
+  .dots .d--part { width: 3px; height: 3px; margin-inline: 1.5px; }
+  table.ledger > tbody > tr.detail > td { padding: 20px 16px; }
+}
+
+/* ---------- stack at 760px: one cell per tool ---------- */
+@media (max-width: 760px) {
+  table.ledger, table.ledger > tbody { display: block; width: auto; }
+  table.ledger > caption { display: block; }
+  table.ledger > thead {
+    position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+  }
+  table.ledger > tbody > tr:first-child {
+    display: grid; grid-template-columns: 56px minmax(0, 1fr); grid-template-areas: "rank tool" "score score" "lic lic";
+    background: var(--ink-1);
+  }
+  table.ledger > tbody > tr:first-child > td { display: block; padding: 16px; border-left: 0 !important; min-width: 0; }
+  table.ledger > tbody > tr:first-child > td.cell-rank { grid-area: rank; padding-inline-end: 0; }
+  table.ledger > tbody > tr:first-child > td[data-label="Tool"] { grid-area: tool; padding-inline-start: 8px; }
+  table.ledger > tbody > tr:first-child > td[data-label="Score"] { grid-area: score; padding-top: 0; }
+  table.ledger > tbody > tr:first-child > td[data-label="Licence"] { grid-area: lic; padding-top: 0; }
+  table.ledger .rank { font-size: 40px; }
+  table.ledger .score { font-size: 32px; }
+  .dots { gap: 3px; margin: 12px 0; }
+  .dots .d { width: 6px; height: 6px; }
+  .dots .d--part { width: 3px; height: 3px; margin-inline: 1.5px; }
+  table.ledger summary { min-height: 44px; }
+  table.ledger a.tool-name { display: inline-flex; align-items: center; min-height: 44px; }
+  table.ledger > tbody > tr:first-child p.small { margin-top: 0; }
+  table.ledger > tbody > tr.detail { display: block; }
+  table.ledger > tbody > tr.detail > td { display: block; padding: 16px; }
+  table.ledger .row-facts { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  table.ledger td[data-label="Licence"] > div { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 16px; }
+  table.ledger td[data-label="Licence"] > div > .small { margin-top: 0; }
+
+  /* breakdown table stacks too, using the data-label cells */
+  table.ledger table.plain.stack, table.ledger table.plain.stack > tbody { display: block; }
+  table.ledger table.plain.stack > thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  table.ledger table.plain.stack > tbody > tr { display: block; border-top: 1px solid var(--rule-strong); padding: 8px 0; }
+  table.ledger table.plain.stack > tbody > tr:first-child { border-top: 0; }
+  table.ledger table.plain.stack > tbody > tr > td {
+    display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: 12px; border: 0 !important; padding: 6px 12px;
+  }
+  table.ledger table.plain.stack > tbody > tr > td::before {
+    content: attr(data-label); color: var(--fg-2); font-size: 14px; font-weight: 450;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  table.ledger summary:active { transform: none; }
+  table.ledger > tbody > tr:first-child > td,
+  table.ledger summary, table.ledger a.tool-name { transition-duration: 120ms; }
+  table.ledger details[open] > :not(summary) { animation: none; }
+}
+
+}

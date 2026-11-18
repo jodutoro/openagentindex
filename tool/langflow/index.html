@@ -8,8 +8,15 @@
 <meta name="robots" content="noindex,nofollow">
 <link rel="canonical" href="https://openagentindex.com/tool/langflow/">
 <link rel="icon" href="/openagentindex/favicon.svg" type="image/svg+xml">
-<link rel="preload" href="/openagentindex/static/fonts/IBMPlexSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/openagentindex/static/site.css">
+<link rel="preload" href="/openagentindex/static/fonts-v3/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/openagentindex/static/v3/tokens.css">
+<link rel="stylesheet" href="/openagentindex/static/v3/chrome.css">
+<link rel="stylesheet" href="/openagentindex/static/v3/label.css">
+<link rel="stylesheet" href="/openagentindex/static/v3/hub-hero.css">
+<link rel="stylesheet" href="/openagentindex/static/v3/function-head.css">
+<link rel="stylesheet" href="/openagentindex/static/v3/ranking.css">
+<link rel="stylesheet" href="/openagentindex/static/v3/evidence.css">
+<link rel="stylesheet" href="/openagentindex/static/v3/mobile.css">
 <meta property="og:site_name" content="Open Agent Index">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Langflow profile | Open Agent Index">
@@ -22,14 +29,17 @@
 <a class="skip" href="#main">Skip to content</a>
 <div class="banner banner--staging" role="note"><div class="wrap">Staging copy, not indexed. Canonical address: https://openagentindex.com/tool/langflow/</div></div>
 <header class="site-header"><div class="wrap">
-<a class="wordmark" href="/openagentindex/">Open Agent <span>Index</span></a>
-<nav class="site-nav" aria-label="Main"><ul><li><a href="/openagentindex/customer-support/">Customer support</a></li><li><a href="/openagentindex/lead-follow-up/">Lead follow-up</a></li><li><a href="/openagentindex/scheduling-intake/">Scheduling and intake</a></li><li><a href="/openagentindex/back-office/">Back office</a></li><li><a href="/openagentindex/reporting-content/">Reporting and content</a></li><li><a href="/openagentindex/methodology/">Method</a></li><li><a href="/openagentindex/about/">About</a></li></ul></nav>
+<a class="wordmark" href="/openagentindex/"><span class="wordmark-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="wordmark-text">Open Agent <span>Index</span></span></a>
+<nav class="site-nav" aria-label="Main">
+<ul class="nav-links nav-links--row"><li><a href="/openagentindex/customer-support/">Customer support</a></li><li><a href="/openagentindex/lead-follow-up/">Lead follow-up</a></li><li><a href="/openagentindex/scheduling-intake/">Scheduling and intake</a></li><li><a href="/openagentindex/back-office/">Back office</a></li><li><a href="/openagentindex/reporting-content/">Reporting and content</a></li><li><a href="/openagentindex/methodology/">Method</a></li><li><a href="/openagentindex/about/">About</a></li></ul>
+<details class="nav-menu"><summary>Menu</summary><ul class="nav-links nav-links--menu"><li><a href="/openagentindex/customer-support/">Customer support</a></li><li><a href="/openagentindex/lead-follow-up/">Lead follow-up</a></li><li><a href="/openagentindex/scheduling-intake/">Scheduling and intake</a></li><li><a href="/openagentindex/back-office/">Back office</a></li><li><a href="/openagentindex/reporting-content/">Reporting and content</a></li><li><a href="/openagentindex/methodology/">Method</a></li><li><a href="/openagentindex/about/">About</a></li></ul></details>
+</nav>
 </div></header>
-<main id="main"><div class="wrap">
+<main id="main" class="page-tool"><div class="wrap">
 
 <div class="page-head"><h1>Langflow</h1>
 <p class="lede"><span class="chip chip--osi">OSI-approved open source</span> <span class="num">MIT License</span></p>
-<dl class="meta-line"><div><dt>Collected </dt><dd><time datetime="2026-11-18">2026-11-18</time></dd></div></dl><p class="label-line"><span class="chip chip--pending">Research-based — not yet hands-on tested</span></p></div>
+<dl class="meta-line"><div><dt>Collected </dt><dd><time datetime="2026-11-18">2026-11-18</time></dd></div></dl><p class="label-line"><span class="v3-label">Research-based — not yet hands-on tested</span></p></div>
 <h2>Where it is ranked</h2>
 <ul><li><a href="/openagentindex/customer-support/">Customer support</a>: rank <span class="num">3</span>, score <span class="num">91.3</span>. Langflow can build chatbots and agent flows whose tools access company documentation, customer resources, web search, and external APIs to answer questions and take actions.</li><li><a href="/openagentindex/reporting-content/">Reporting and content</a>: rank <span class="num">3</span>, score <span class="num">91.3</span>. Langflow documents content generators and RAG flows that ingest files, create embeddings, retrieve relevant chunks, and generate responses from the indexed context.</li></ul>
 <h2>Owner fit</h2><dl class="kv"><dt>Setup</dt><dd>Docker quickstart is one container; Docker Compose adds persistent PostgreSQL and configurable environment variables, with the operator responsible for credentials and deployment configuration. <span class="small">Sources: <a href="https://docs.langflow.org/deployment-docker" rel="noopener">docs.langflow.org</a></span></dd><dt>Approval</dt><dd>yes — Human-in-the-Loop pauses a flow at a checkpoint for Approve/Reject actions, and Agent tools can be individually configured to require approval. <span class="small">Sources: <a href="https://docs.langflow.org/human-in-the-loop" rel="noopener">docs.langflow.org</a></span></dd><dt>Data</dt><dd>Self-hosted files are uploaded to and processed by the Langflow server; configured model/API providers receive requests made by the flow, and the docs require provider API keys for model use. <span class="small">Sources: <a href="https://docs.langflow.org/chat-with-rag" rel="noopener">docs.langflow.org</a>, <a href="https://docs.langflow.org/agents" rel="noopener">docs.langflow.org</a>, <a href="https://docs.langflow.org/deployment-docker" rel="noopener">docs.langflow.org</a></span></dd><dt>Cost</dt><dd>Free to self-host: MIT-licensed, installed with pip, Docker or Langflow Desktop. langflow.org also offers a free cloud account (checked 2026-11-18). The operator pays for the server and for any model-provider API keys the flows use. <span class="small">Sources: <a href="https://raw.githubusercontent.com/langflow-ai/langflow/main/LICENSE" rel="noopener">raw.githubusercontent.com</a>, <a href="https://docs.langflow.org/" rel="noopener">docs.langflow.org</a>, <a href="https://www.langflow.org" rel="noopener">langflow.org</a></span></dd><dt>Community</dt><dd>156,447 GitHub stars (2026-11-18). <span class="small">Sources: <a href="https://api.github.com/repos/langflow-ai/langflow" rel="noopener">api.github.com</a></span></dd></dl>
@@ -45,6 +55,8 @@
 </ul>
 <p>Data collected <time datetime="2026-11-18">2026-11-18</time>. Research-based — not yet hands-on tested.</p>
 <p class="small">Repository figures: GitHub API, retrieved 2026-11-18; Open Agent Index is not affiliated with or endorsed by GitHub.</p>
+<div class="footer-mark-wrap" aria-hidden="true"><div class="footer-mark footer-mark--wide"></div><div class="footer-mark footer-mark--stack"></div></div>
 </div></footer>
+<script src="/openagentindex/static/v3/chrome.js" defer></script>
 </body>
 </html>

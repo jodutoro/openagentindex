@@ -1,0 +1,289 @@
+/* port: 21st.dev/@eugeneshilow/bench-matrix (technique only, licence unverified) */
+/* port: 21st.dev/@kvnkld/inline-citations (technique only, licence unverified) */
+/* v3 slot: evidence. Ruled matrices, numbered source lists, key/value facts.
+   Technique ported from 21st eugeneshilow/bench-matrix (ruled matrix, highlighted median column, footnote line)
+   and kvnkld/inline-citations (numbered refs). No code copied. Scoped to main so link order is irrelevant.
+   Ranking owns table.ledger, tr.detail and every .chip*; nothing here reaches inside them. */
+@layer slots {
+
+  /* ---------- section cells: evidence, panel, movers ---------- */
+  main :is(section.evidence, section.panel, section.movers) {
+    border-top: 1px solid var(--rule);
+    padding-top: 48px;      /* physical px first: detect.mjs reads neither padding-block nor clamp(); the clamp line below is the live value */
+    padding-bottom: 48px;
+    padding-block: clamp(48px, 6vw, 96px);
+    margin: 0;
+  }
+  main :is(section.evidence, section.panel, section.movers) > h2 {
+    margin: 0 0 var(--sp-5, 24px);
+    color: var(--fg);
+  }
+  main :is(section.evidence, section.panel, section.movers) > :is(p, ul) {
+    max-width: 68ch;
+    color: var(--fg);
+  }
+  main :is(section.evidence, section.panel, section.movers) > p { margin: 0 0 16px; }
+
+  /* AI-answer lists and movers: ruled rows, no bullets */
+  main :is(section.panel, section.movers) > ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 24px;
+    border-top: 1px solid var(--rule);
+  }
+  main :is(section.panel, section.movers) > ul > li {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--rule);
+    font-variant-numeric: tabular-nums lining-nums;
+  }
+  main section.panel > p.small { color: var(--fg-2); font-size: 14px; line-height: 1.45; margin-top: 24px; }
+
+  /* ---------- ruled matrices (not the ledger, not the stacked breakdown) ---------- */
+  main table.plain:not(.ledger, .stack) {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    background: transparent;
+    font-size: 16px;
+    line-height: 1.5;
+    font-variant-numeric: tabular-nums lining-nums;
+    border-radius: 0;
+    border: 0;
+    border-top: 1px solid var(--rule-strong);
+  }
+  main table.plain:not(.ledger, .stack) caption {
+    caption-side: top;
+    text-align: left;
+    padding: 0 0 12px;
+    color: var(--fg-2);
+    font-size: 14px;
+    font-weight: 450;
+    line-height: 1.45;
+  }
+  main table.plain:not(.ledger, .stack) :is(th, td) {
+    padding: 12px 16px;
+    text-align: left;
+    vertical-align: top;
+    border: 0;
+    border-bottom: 1px solid var(--rule);
+    background: transparent;
+    color: var(--fg);
+  }
+  main table.plain:not(.ledger, .stack) thead th {
+    font-size: 15px;
+    font-weight: 650;
+    font-stretch: 92%;
+    border-bottom: 1px solid var(--rule-strong);
+    color: var(--fg);
+    white-space: nowrap;
+  }
+  main table.plain:not(.ledger, .stack) :is(th, td):first-child { padding-left: 0; }
+  main table.plain:not(.ledger, .stack) :is(th, td):last-child { padding-right: 0; }
+  main table.plain:not(.ledger, .stack) td.num,
+  main table.plain:not(.ledger, .stack) .num {
+    font-family: inherit;
+    font-variant-numeric: tabular-nums lining-nums;
+    font-weight: 600;
+  }
+  /* Right-align numeric columns so digits line up */
+  main table.plain:not(.ledger, .stack) td.num { text-align: right; }
+  main table.plain:not(.ledger, .stack) td.num:first-child { text-align: left; }
+  /* Panel table: "Named in" is a sentence, not a figure */
+  main section.panel table.plain :is(th, td):last-child { text-align: left !important; }
+  main section.panel table.plain td.num:last-child { font-weight: 400; }
+  /* Header of a numeric last column aligns with its digits */
+  main table.plain:not(.ledger, .stack):has(td.num:last-child) thead th:last-child { text-align: right; }
+  main section.panel > ul + ul { border-top: 0; margin-top: -24px; }
+
+  /* Evidence matrix: Component | Median | Range. Median column raised in --ink-2. */
+  main section.evidence table.plain thead th:nth-child(n+2) { text-align: right; }
+  main section.evidence table.plain :is(th, td):nth-child(2) {
+    background: var(--ink-2);
+    padding-inline: 24px;
+  }
+  main section.evidence table.plain td:nth-child(2) { font-weight: 800; font-stretch: 85%; font-size: 18px; }
+  main section.evidence table.plain tbody tr:last-child td { border-bottom-color: var(--rule-strong); }
+
+  /* Footnote line under the matrix */
+  main section.evidence .table-wrap + p {
+    margin: 12px 0 0;
+    max-width: 68ch;
+    color: var(--fg-2);
+    font-size: 14px;
+    font-weight: 450;
+    line-height: 1.45;
+  }
+
+  /* Scroll region keeps its focus ring inside */
+  main :is(section.evidence, section.panel) .table-wrap {
+    margin: 24px 0 0;
+    max-width: 720px;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+  }
+  main section.panel .table-wrap { max-width: 640px; }
+
+  @media (hover: hover) and (pointer: fine) {
+    main table.plain:not(.ledger, .stack) tbody tr { transition: background-color 180ms var(--ease-out, ease-out); }
+    main table.plain:not(.ledger, .stack) tbody tr:hover :is(td:not(:nth-child(2)), th) { background: var(--ink-2); }
+  }
+
+  /* ---------- key / value facts (methodology, owner fit) ---------- */
+  main dl.kv {
+    margin: 0 0 32px;
+    padding: 0;
+    border-top: 1px solid var(--rule-strong);
+    display: grid;
+    grid-template-columns: minmax(120px, 200px) minmax(0, 68ch);
+    column-gap: 32px;
+    font-variant-numeric: tabular-nums lining-nums;
+  }
+  main dl.kv > dt,
+  main dl.kv > dd {
+    margin: 0;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  main dl.kv > dt {
+    color: var(--fg);
+    font-size: 16px;
+    font-weight: 650;
+    font-stretch: 92%;
+    line-height: 1.5;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+  main dl.kv > dd { color: var(--fg); font-size: 16px; line-height: 1.5; overflow-wrap: anywhere; }
+  main dl.kv .small { color: var(--fg-2); font-size: 14px; line-height: 1.45; }
+  main dl.kv .small a { color: var(--fg-2); }
+
+  /* ---------- numbered source lists: sourcesCell, ownerFit "Sources:" links ---------- */
+  main ul.plain {
+    list-style: none;
+    margin: 0 0 16px;
+    padding: 0;
+    max-width: 68ch;
+  }
+  /* Source lists: every li is just a link. Health lines carry li.num text and are excluded. */
+  main ul.plain:not(:has(> li.num)) { counter-reset: ref; }
+  main ul.plain:not(:has(> li.num)) > li {
+    counter-increment: ref;
+    display: grid;
+    grid-template-columns: 2.5ch minmax(0, 1fr);
+    column-gap: 12px;
+    align-items: baseline;
+    padding: 8px 0;
+    margin: 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 16px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+  }
+  main ul.plain:not(:has(> li.num)) > li::before {
+    content: counter(ref);
+    color: var(--fg);
+    font-size: 14px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums lining-nums;
+    text-align: right;
+  }
+  main ul.plain:not(:has(> li.num)) > li > a {
+    color: var(--fg-2);
+    text-decoration: underline;
+    text-decoration-color: var(--rule-strong);
+    text-underline-offset: 3px;
+    min-height: 24px;
+    transition: color 180ms var(--ease-out, ease-out), text-decoration-color 180ms var(--ease-out, ease-out);
+  }
+  main ul.plain:not(:has(> li.num)) > li > a:hover { color: var(--fg); text-decoration-color: var(--accent); }
+  main ul.plain:not(:has(> li.num)) > li > a:active { transform: scale(.97); transform-origin: left center; }
+
+  /* Health lines: plain ruled facts */
+  main ul.plain:has(> li.num) { border-top: 1px solid var(--rule-strong); }
+  main ul.plain:has(> li.num) > li {
+    margin: 0;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--rule);
+    font-variant-numeric: tabular-nums lining-nums;
+  }
+  main ul.plain:has(> li.num) + span.small { display: block; margin-top: 12px; color: var(--fg-2); font-size: 14px; }
+  main ul.plain:has(> li.num) + span.small a { color: var(--fg-2); }
+
+  /* ---------- methodology: licence-class list (chips belong to ranking) ---------- */
+  main #licence-labels > ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-width: 68ch;
+    border-top: 1px solid var(--rule-strong);
+  }
+  main #licence-labels > ul > li {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 16px;
+    line-height: 1.5;
+  }
+
+  /* ---------- tool profile (marker: main.page-tool, set by build.mjs on tool profiles) ----------
+     5.3 spacing: h2 -> own content 24px, 96px between sections, 8:4 measure for tables, 68ch for prose and lists.
+     measure-8 = eight of twelve columns at a 32px column gap inside the 1280px wrap. */
+  main.page-tool .wrap { --measure-8: min(100%, calc((min(100%, 1280px) - 352px) / 12 * 8 + 224px)); }
+  main.page-tool .wrap > h2 { margin: 96px 0 24px; }
+  main.page-tool .wrap > h2:first-of-type { margin-top: 64px; }
+  main.page-tool .wrap > :is(p, ul) { max-width: 68ch; }
+  main.page-tool .wrap > p.small { margin-top: 24px; }
+  main.page-tool .wrap > dl.kv,
+  main.page-tool .wrap > ul.plain:has(> li.num) { width: var(--measure-8); max-width: var(--measure-8); }
+  main.page-tool .wrap > dl.kv { grid-template-columns: minmax(120px, 200px) minmax(0, 1fr); margin-bottom: 0; }
+  main.page-tool .wrap > ul.plain:has(> li.num) { margin-bottom: 0; }
+  /* Proper names keep their casing (12.6): same size, weight and width, no uppercase. */
+  main.page-tool .wrap > .page-head > h1 { text-transform: none; }
+
+  /* Methodology: same heading rhythm (flat h2s plus the #edition and #licence-labels sections). */
+  main .prose:has(> #how-scored) > h2,
+  main :is(#edition, #licence-labels) > h2 { margin: 96px 0 24px; }
+
+  main .prose:has(> #how-scored) > :is(p, ul) { max-width: 68ch; }
+  main :is(#edition, #licence-labels) > dl.kv { margin-bottom: 0; }
+
+  @media (max-width: 760px) {
+    main .prose:has(> #how-scored) > h2,
+    main :is(#edition, #licence-labels) > h2 { margin-top: 64px; }
+
+    main.page-tool .wrap > h2 { margin-top: 64px; }
+    main.page-tool .wrap > h2:first-of-type { margin-top: 48px; }
+    main.page-tool .wrap > dl.kv { grid-template-columns: 1fr; }
+    main.page-tool .wrap > dl.kv,
+    main.page-tool .wrap > ul.plain:has(> li.num) { width: auto; max-width: none; }
+  }
+
+  /* ---------- 760px: matrices stay readable; data-label tables stack ---------- */
+  @media (max-width: 760px) {
+    main :is(section.evidence, section.panel, section.movers) { padding-top: 48px; padding-bottom: 48px; }
+    main dl.kv { grid-template-columns: 1fr; }
+    main dl.kv > dt { padding: 12px 0 0; border-bottom: 0; color: var(--fg-2); font-size: 14px; font-weight: 450; }
+    main dl.kv > dd { padding: 2px 0 12px; }
+    main table.plain:not(.ledger, .stack) :is(th, td) { padding: 12px 8px; }
+    main section.evidence table.plain :is(th, td):nth-child(2) { padding-inline: 12px; }
+    main section.evidence table.plain td:nth-child(2) { font-size: 16px; }
+    main table.plain:not(.ledger, .stack) caption { white-space: normal; }
+
+    /* any evidence-side table that carries data-label cells collapses to one cell per row */
+    main table.plain.stack:not(.ledger *) thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+    main table.plain.stack:not(.ledger *), main table.plain.stack:not(.ledger *) tbody,
+    main table.plain.stack:not(.ledger *) tr, main table.plain.stack:not(.ledger *) td { display: block; width: 100%; }
+    main table.plain.stack:not(.ledger *) td { display: grid; grid-template-columns: 6rem 1fr; gap: 12px; padding: 6px 0; border: 0; }
+    main table.plain.stack:not(.ledger *) td::before { content: attr(data-label); color: var(--fg-2); font-size: 14px; }
+    main table.plain.stack:not(.ledger *) tr { border-top: 1px solid var(--rule); padding: 8px 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    main table.plain tbody tr, main ul.plain > li > a { transition-duration: 120ms; }
+    main ul.plain > li > a:active { transform: none; }
+  }
+}

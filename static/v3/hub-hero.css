@@ -1,0 +1,337 @@
+/* v3 slot hub-hero. Scoped to .hub-hero, .fn-legend, .fn-list, #findings. Tokens: DIRECTION-v3 section 5.
+   port: 21st.dev/@hochart.gabriel.svis/blue-halftone (technique only: static CSS dot screens, no WebGL; licence unverified)
+   Order (amendment 1): .hub-hero, then the legend (h2 + .fn-list) directly under it, then the prose. */
+@layer slots {
+
+  /* ---- the two-cell head ---------------------------------------------------------- */
+  .hub-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    margin-block: 0 var(--space-8, 64px);
+  }
+  .hub-hero__head {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 48px 48px 48px 0;
+    min-width: 0;
+  }
+  .hub-hero__head h1 {
+    margin: 0 0 8px;
+    color: var(--fg);
+    font-weight: 750;
+    font-stretch: 78%;
+    font-size: clamp(36px, 4vw, 60px);  /* between h1 and display tokens: holds the title to 3 lines in the 7fr cell at 1280 */
+    line-height: .92;
+    text-transform: uppercase;
+    letter-spacing: 0;
+    text-wrap: balance;
+  }
+  .hub-hero__head :is(.meta-line, .label-line, .byline) { margin: 0; }
+  .hub-hero__head .meta-line div { display: flex; gap: .35em; }
+  .hub-hero__head .meta-line :is(dt, dd) { margin: 0; color: var(--fg-2); font-size: 16px; }
+  .hub-hero__head .byline { font-size: 16px; }
+
+  /* ---- the plate: halftone field + dot columns ------------------------------------ */
+  .hub-hero__plate {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    gap: 8px;
+    min-height: 360px;
+    padding: 32px 24px 24px;
+    background: var(--ink-1);
+    border-left: 1px solid var(--rule);   /* the head/plate divider lives on the plate, so the head has no bordered edge to sit against */
+  }
+  /* Halftone field: ported look of 21st hochart.gabriel.svis/blue-halftone, static, no WebGL.
+     Two dot screens (fine + coarse, offset grid), each cut by a radial mask. Decorative. */
+  .hub-hero__plate::before,
+  .hub-hero__plate::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+  }
+  .hub-hero__plate::before {
+    background-image: radial-gradient(circle at 50% 50%, var(--fill) 0 1.6px, transparent 2.1px);
+    background-size: 12px 12px;
+    -webkit-mask-image: radial-gradient(ellipse 85% 90% at 78% 30%, #000 0, rgba(0,0,0,.55) 45%, transparent 85%);
+            mask-image: radial-gradient(ellipse 85% 90% at 78% 30%, #000 0, rgba(0,0,0,.55) 45%, transparent 85%);
+  }
+  .hub-hero__plate::after {
+    background-image: radial-gradient(circle at 50% 50%, var(--fill) 0 3px, transparent 3.6px);
+    background-size: 24px 24px;
+    background-position: 6px 6px;
+    -webkit-mask-image: radial-gradient(ellipse 55% 60% at 82% 22%, #000 0, transparent 80%);
+            mask-image: radial-gradient(ellipse 55% 60% at 82% 22%, #000 0, transparent 80%);
+  }
+
+  .hub-hero__col {
+    position: relative;
+    z-index: 1;
+    flex: 1 1 0;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--fg);
+    outline-offset: 2px;
+  }
+  .hub-hero__col::before {            /* tool count, sits on top of its own stack */
+    content: attr(data-count);
+    font-size: 32px;
+    font-weight: 800;
+    font-stretch: 75%;
+    line-height: 1;
+    font-variant-numeric: tabular-nums lining-nums;
+    color: var(--fg);
+  }
+  .hub-hero__dots {
+    display: flex;
+    flex-direction: column-reverse;   /* rank 1 sits on the baseline */
+    gap: 6px;
+  }
+  .hub-hero__dots i {
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--fg);             /* amendment 3: data dots rest at --fg, never --fg-2 */
+    transition: background-color 180ms var(--ease-out, cubic-bezier(.23,1,.32,1));
+    /* base state = filled end state; the animation below is enhancement only */
+    animation: hub-dot-fill 250ms var(--ease-out, cubic-bezier(.23,1,.32,1)) backwards;
+    animation-delay: calc(min(var(--i, 0) * 8ms, 400ms));
+  }
+  @keyframes hub-dot-fill {
+    from { opacity: .25; transform: scale(.6); }
+    to   { opacity: 1;   transform: none; }
+  }
+  .hub-hero__col::after {             /* function name under the baseline */
+    content: attr(data-name);
+    align-self: stretch;
+    padding-top: 12px;
+    border-top: 1px solid var(--rule-strong);
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    font-stretch: 92%;
+    line-height: 1.2;
+    color: var(--fg);
+    text-wrap: balance;
+    box-sizing: content-box;
+    min-height: 3.6em;                /* 3 lines: every stack ends on one baseline whatever the label wraps to */
+  }
+
+  /* hover / focus: lift the column to signal cobalt (pointer devices only for hover) */
+  .hub-hero__col:focus-visible { outline: 2px solid var(--accent); }
+  .hub-hero__col:focus-visible i { background: var(--signal); }
+  @media (hover: hover) and (pointer: fine) {
+    .hub-hero__col:hover i { background: var(--signal); }
+    .hub-hero__col:hover::after { color: var(--accent); }
+  }
+
+  /* ---- the legend: five function cells (plate and cells are one object) ------------ */
+  .fn-legend > h2,
+  h2:has(+ .fn-list) {
+    margin: 0 0 var(--space-5, 24px);   /* 5.3 scale: 24 to its own content; the hero's 64 sits above */
+  }
+  .fn-list {
+    list-style: none;
+    margin: 0 0 var(--space-9, 96px);   /* 96 between sections */
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    border-top: 1px solid var(--rule);
+    border-left: 1px solid var(--rule);
+  }
+  .fn-list > li {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 24px;
+    padding: 24px;
+    min-height: 44px;
+    background: var(--ink-1);
+    border-right: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    transition: background-color 180ms var(--ease-out, cubic-bezier(.23,1,.32,1));
+  }
+  .fn-list > li > .count { margin-top: auto; }
+  /* each cell's own dots: one 10px dot per ranked tool, wrapping row, aria-hidden, no entrance animation */
+  .fn-dots { display: flex; flex-wrap: wrap; gap: 6px; min-height: 10px; }
+  .fn-dots i {
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--fg);
+    transition: background-color 180ms var(--ease-out, cubic-bezier(.23,1,.32,1));
+  }
+  .fn-list > li:has(.fn:focus-visible) .fn-dots i { background: var(--signal); }
+  @media (hover: hover) and (pointer: fine) {
+    .fn-list > li:hover .fn-dots i { background: var(--signal); }
+  }
+  .fn-list .fn {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 22px;
+    font-weight: 650;
+    font-stretch: 92%;
+    line-height: 1.2;
+    color: var(--fg);
+    text-decoration: none;
+  }
+  .fn-list .fn::after { content: ""; position: absolute; inset: 0; }  /* whole cell is the link */
+  .fn-list .fn:focus-visible { outline: none; }
+  .fn-list > li:has(.fn:focus-visible) { outline: 2px solid var(--accent); outline-offset: -2px; }
+  .fn-list .small { color: var(--fg-2); }
+  .fn-list .count {
+    font-size: 16px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums lining-nums;
+    color: var(--accent);
+  }
+  .fn-list > li:active .fn { transform: scale(.985); }
+  .fn-list .fn { transition: transform 120ms var(--ease-out, cubic-bezier(.23,1,.32,1)); transform-origin: left center; }
+
+  @media (hover: hover) and (pointer: fine) {
+    .fn-list > li:hover { background: var(--ink-2); }
+  }
+
+  /* cross-lighting between legend cell n and plate column n (five functions, fixed) */
+  @media (hover: hover) and (pointer: fine) {
+    main:has(.fn-list > li:nth-child(1):hover) .hub-hero__col:nth-child(1) i,
+    main:has(.fn-list > li:nth-child(2):hover) .hub-hero__col:nth-child(2) i,
+    main:has(.fn-list > li:nth-child(3):hover) .hub-hero__col:nth-child(3) i,
+    main:has(.fn-list > li:nth-child(4):hover) .hub-hero__col:nth-child(4) i,
+    main:has(.fn-list > li:nth-child(5):hover) .hub-hero__col:nth-child(5) i { background: var(--signal); }
+    main:has(.hub-hero__col:nth-child(1):hover) .fn-list > li:nth-child(1),
+    main:has(.hub-hero__col:nth-child(2):hover) .fn-list > li:nth-child(2),
+    main:has(.hub-hero__col:nth-child(3):hover) .fn-list > li:nth-child(3),
+    main:has(.hub-hero__col:nth-child(4):hover) .fn-list > li:nth-child(4),
+    main:has(.hub-hero__col:nth-child(5):hover) .fn-list > li:nth-child(5) { background: var(--ink-2); }
+    main:has(.hub-hero__col:nth-child(1):hover) .fn-list > li:nth-child(1) .fn-dots i,
+    main:has(.hub-hero__col:nth-child(2):hover) .fn-list > li:nth-child(2) .fn-dots i,
+    main:has(.hub-hero__col:nth-child(3):hover) .fn-list > li:nth-child(3) .fn-dots i,
+    main:has(.hub-hero__col:nth-child(4):hover) .fn-list > li:nth-child(4) .fn-dots i,
+    main:has(.hub-hero__col:nth-child(5):hover) .fn-list > li:nth-child(5) .fn-dots i { background: var(--signal); }
+  }
+  main:has(.fn-list > li:nth-child(1) .fn:focus-visible) .hub-hero__col:nth-child(1) i,
+  main:has(.fn-list > li:nth-child(2) .fn:focus-visible) .hub-hero__col:nth-child(2) i,
+  main:has(.fn-list > li:nth-child(3) .fn:focus-visible) .hub-hero__col:nth-child(3) i,
+  main:has(.fn-list > li:nth-child(4) .fn:focus-visible) .hub-hero__col:nth-child(4) i,
+  main:has(.fn-list > li:nth-child(5) .fn:focus-visible) .hub-hero__col:nth-child(5) i { background: var(--signal); }
+
+  /* ---- hub prose: hanging-head composition on the 12-column grid ---------------------
+     Wide screens: each h2 hangs in columns 1-4, its body sits in columns 5-12 (8 columns,
+     68ch cap). "Five jobs owners hand off": the five definitions run two to a row in
+     columns 5-8 / 9-12, the fifth spans the row. Source order is unchanged. */
+  @media (min-width: 1101px) {
+    .hub-hero ~ .prose {
+      max-width: none;
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      column-gap: 24px;
+      row-gap: 16px;
+      margin-bottom: 96px;
+    }
+    .hub-hero ~ .prose > * { margin: 0; grid-column: 5 / 13; max-width: 68ch; }
+    .hub-hero ~ .prose > h2 { grid-column: 1 / 5; max-width: none; }
+    .hub-hero ~ .prose > :has(+ h2) { margin-bottom: 80px; }   /* 16px row gap + 80 = the 96 section break */
+    .hub-hero ~ .prose > p:first-child { font-size: 22px; line-height: 1.4; }
+    .hub-hero ~ .prose > h2:first-of-type ~ p:nth-of-type(-n+6) { max-width: none; }
+    .hub-hero ~ .prose > h2:first-of-type ~ p:nth-of-type(-n+6):nth-of-type(even) { grid-column: 5 / 9; }
+    .hub-hero ~ .prose > h2:first-of-type ~ p:nth-of-type(-n+6):nth-of-type(odd) { grid-column: 9 / 13; }
+    .hub-hero ~ .prose > h2:first-of-type ~ p:nth-of-type(-n+6):nth-of-type(6) { grid-column: 5 / 13; max-width: 68ch; }
+  }
+
+  /* 68ch of body text (16px) = 701px, the cap every other hub prose block gets; the 22px lede would make a literal 68ch 845px */
+  .hub-hero ~ .prose > p:first-of-type { max-width: min(100%, 68ch, 701px); }
+
+  /* ---- findings: one ruled panel cell ----------------------------------------------- */
+  #findings {
+    margin-block: var(--space-7, 48px);
+    padding: 32px;
+    background: var(--ink-1);
+    border: 1px solid var(--rule);
+  }
+  #findings > h2 { margin-top: 0; margin-bottom: var(--space-5, 24px); }
+  @media (min-width: 1101px) {
+    #findings { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px; }
+    #findings > h2 { grid-column: 1 / 5; }
+    #findings > ul { grid-column: 5 / 13; }
+  }
+  #findings ul { list-style: none; margin: 0; padding: 0; max-width: 68ch; }
+  #findings li { padding-block: 12px; border-top: 1px solid var(--rule); font-variant-numeric: tabular-nums lining-nums; }
+  #findings li:first-child { border-top: 0; }
+
+  /* ---- narrow: plate rotates to rows, legend stacks --------------------------------- */
+  @media (max-width: 1100px) {
+    .fn-list { grid-template-columns: minmax(0, 1fr); }
+    .fn-list { margin-bottom: var(--space-8, 64px); }
+    .fn-list > li { gap: 16px; }
+    .fn-list > li > .count { margin-top: 0; }
+    .hub-hero ~ .prose > h2 { margin-top: 96px; margin-bottom: 24px; }
+    #findings > h2 { margin-bottom: 24px; }
+  }
+  @media (max-width: 760px) {
+    .hub-hero ~ .prose > h2 { margin-top: 64px; }
+    .hub-hero { grid-template-columns: minmax(0, 1fr); }
+    .hub-hero__head { padding: 32px 0; gap: 12px; }
+    .hub-hero__plate { border-left: 0; }
+    .hub-hero__head h1 { font-size: clamp(36px, 10.5vw, 48px); }
+    .hub-hero__plate {
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: flex-start;
+      gap: 0;
+      min-height: 0;
+      padding: 8px 16px;
+      margin-inline: calc(var(--gutter, 20px) * -1);
+    }
+    .hub-hero__col {
+      flex: none;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      min-height: 48px;
+      padding-block: 6px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .hub-hero__col:last-child { border-bottom: 0; }
+    .hub-hero__col::before { order: 3; font-size: 24px; min-width: 1.2em; text-align: right; }
+    .hub-hero__col::after {
+      order: 1;
+      align-self: center;
+      flex: 1 1 0;
+      min-width: 0;
+      padding: 0;
+      border-top: 0;
+      min-height: 0;
+      text-align: left;
+    }
+    .hub-hero__dots { order: 2; flex-direction: row; gap: 4px; flex: none; }
+    .fn-list > li { padding: 16px; gap: 12px; }
+    #findings { padding: 20px 16px; }
+  }
+
+  /* ---- reduced motion: dot fill and stagger off; colour transitions kept at 120ms ----- */
+  @media (prefers-reduced-motion: reduce) {
+    .hub-hero__dots i, .fn-dots i { animation: none; transition-duration: 120ms; }
+    .fn-list > li { transition-duration: 120ms; }
+    .fn-list .fn { transition: none; }
+    .fn-list > li:active .fn { transform: none; }
+  }
+}

@@ -8,8 +8,15 @@
 <meta name="robots" content="noindex,nofollow">
 <link rel="canonical" href="https://openagentindex.com/tool/dify/">
 <link rel="icon" href="/openagentindex/favicon.svg" type="image/svg+xml">
-<link rel="preload" href="/openagentindex/static/fonts/IBMPlexSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/openagentindex/static/site.css">
+<link rel="preload" href="/openagentindex/static/fonts-v3/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/openagentindex/static/v3/tokens.css">
+<link rel="stylesheet" href="/openagentindex/static/v3/chrome.css">
+<link rel="stylesheet" href="/openagentindex/static/v3/label.css">
+<link rel="stylesheet" href="/openagentindex/static/v3/hub-hero.css">
+<link rel="stylesheet" href="/openagentindex/static/v3/function-head.css">
+<link rel="stylesheet" href="/openagentindex/static/v3/ranking.css">
+<link rel="stylesheet" href="/openagentindex/static/v3/evidence.css">
+<link rel="stylesheet" href="/openagentindex/static/v3/mobile.css">
 <meta property="og:site_name" content="Open Agent Index">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Dify profile | Open Agent Index">
@@ -22,14 +29,17 @@
 <a class="skip" href="#main">Skip to content</a>
 <div class="banner banner--staging" role="note"><div class="wrap">Staging copy, not indexed. Canonical address: https://openagentindex.com/tool/dify/</div></div>
 <header class="site-header"><div class="wrap">
-<a class="wordmark" href="/openagentindex/">Open Agent <span>Index</span></a>
-<nav class="site-nav" aria-label="Main"><ul><li><a href="/openagentindex/customer-support/">Customer support</a></li><li><a href="/openagentindex/lead-follow-up/">Lead follow-up</a></li><li><a href="/openagentindex/scheduling-intake/">Scheduling and intake</a></li><li><a href="/openagentindex/back-office/">Back office</a></li><li><a href="/openagentindex/reporting-content/">Reporting and content</a></li><li><a href="/openagentindex/methodology/">Method</a></li><li><a href="/openagentindex/about/">About</a></li></ul></nav>
+<a class="wordmark" href="/openagentindex/"><span class="wordmark-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="wordmark-text">Open Agent <span>Index</span></span></a>
+<nav class="site-nav" aria-label="Main">
+<ul class="nav-links nav-links--row"><li><a href="/openagentindex/customer-support/">Customer support</a></li><li><a href="/openagentindex/lead-follow-up/">Lead follow-up</a></li><li><a href="/openagentindex/scheduling-intake/">Scheduling and intake</a></li><li><a href="/openagentindex/back-office/">Back office</a></li><li><a href="/openagentindex/reporting-content/">Reporting and content</a></li><li><a href="/openagentindex/methodology/">Method</a></li><li><a href="/openagentindex/about/">About</a></li></ul>
+<details class="nav-menu"><summary>Menu</summary><ul class="nav-links nav-links--menu"><li><a href="/openagentindex/customer-support/">Customer support</a></li><li><a href="/openagentindex/lead-follow-up/">Lead follow-up</a></li><li><a href="/openagentindex/scheduling-intake/">Scheduling and intake</a></li><li><a href="/openagentindex/back-office/">Back office</a></li><li><a href="/openagentindex/reporting-content/">Reporting and content</a></li><li><a href="/openagentindex/methodology/">Method</a></li><li><a href="/openagentindex/about/">About</a></li></ul></details>
+</nav>
 </div></header>
-<main id="main"><div class="wrap">
+<main id="main" class="page-tool"><div class="wrap">
 
 <div class="page-head"><h1>Dify</h1>
 <p class="lede"><span class="chip chip--source-available">Source-available</span> <span class="num">Dify Open Source License (modified Apache License 2.0 with additional conditions)</span></p>
-<dl class="meta-line"><div><dt>Collected </dt><dd><time datetime="2026-11-18">2026-11-18</time></dd></div></dl><p class="label-line"><span class="chip chip--pending">Research-based — not yet hands-on tested</span></p></div>
+<dl class="meta-line"><div><dt>Collected </dt><dd><time datetime="2026-11-18">2026-11-18</time></dd></div></dl><p class="label-line"><span class="v3-label">Research-based — not yet hands-on tested</span></p></div>
 <h2>Where it is ranked</h2>
 <ul><li><a href="/openagentindex/customer-support/">Customer support</a>: rank <span class="num">2</span>, score <span class="num">94.8</span>. Dify&#39;s docs include a tutorial, &quot;Customer Service Bot With Knowledge Base&quot;, that builds a Chatflow answering customer questions from an imported knowledge base and embeds it on a website; the same docs describe chatbots, chatflows and agents on a visual canvas, published as a web app, a website embed or an API.</li><li><a href="/openagentindex/reporting-content/">Reporting and content</a>: rank <span class="num">1</span>, score <span class="num">94.8</span>. Dify&#39;s Human Input node pauses a workflow so a person can review AI-generated content and choose Approve, Regenerate or similar branches before it is published; the docs include a Content Review Workflow example.</li></ul>
 <h2>Owner fit</h2><dl class="kv"><dt>Setup</dt><dd>Docker Compose: clone a release, copy .env.example to .env, bring up the stack (nginx on port 80 by default). A third-party review states it needs Docker Compose v2.24.0+, at least 2 CPU cores and 4 GiB RAM. <span class="small">Sources: <a href="https://docs.dify.ai/getting-started/install-self-hosted/docker-compose" rel="noopener">docs.dify.ai</a>, <a href="https://heybotify.com/tools/dify/" rel="noopener">heybotify.com</a></span></dd><dt>Approval</dt><dd>Yes: the Human Input node pauses a workflow and sends a form (web app or email) to a named person with decision buttons (e.g. approve/regenerate/forward) and a timeout branch; an API integration flow for it is documented. <span class="small">Sources: <a href="https://docs.dify.ai/en/self-host/use-dify/nodes/human-input" rel="noopener">docs.dify.ai</a>, <a href="https://docs.dify.ai/en/api-reference/guides/human-input-flow" rel="noopener">docs.dify.ai</a></span></dd><dt>Data</dt><dd>Self-hosted Community Edition keeps apps, knowledge and logs on your server; prompts go to whichever model providers you configure. Dify Cloud plans include message credits for hosted models. <span class="small">Sources: <a href="https://docs.dify.ai/getting-started/install-self-hosted/docker-compose" rel="noopener">docs.dify.ai</a>, <a href="https://www.dify.ai/pricing" rel="noopener">dify.ai</a></span></dd><dt>Cost</dt><dd>Self-host free (infrastructure and model API costs are yours). Cloud (seen 2026-11-18 on dify.ai/pricing): Professional $590 per workspace per year, Team $1,590 per workspace per year. <span class="small">Sources: <a href="https://www.dify.ai/pricing" rel="noopener">dify.ai</a></span></dd><dt>Community</dt><dd>About 160k GitHub stars (2026-11-18); the docs link a Discord server. <span class="small">Sources: <a href="https://docs.dify.ai/en/self-host/use-dify/getting-started/introduction" rel="noopener">docs.dify.ai</a></span></dd></dl>
@@ -45,6 +55,8 @@
 </ul>
 <p>Data collected <time datetime="2026-11-18">2026-11-18</time>. Research-based — not yet hands-on tested.</p>
 <p class="small">Repository figures: GitHub API, retrieved 2026-11-18; Open Agent Index is not affiliated with or endorsed by GitHub.</p>
+<div class="footer-mark-wrap" aria-hidden="true"><div class="footer-mark footer-mark--wide"></div><div class="footer-mark footer-mark--stack"></div></div>
 </div></footer>
+<script src="/openagentindex/static/v3/chrome.js" defer></script>
 </body>
 </html>

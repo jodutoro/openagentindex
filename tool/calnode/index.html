@@ -8,8 +8,15 @@
 <meta name="robots" content="noindex,nofollow">
 <link rel="canonical" href="https://openagentindex.com/tool/calnode/">
 <link rel="icon" href="/openagentindex/favicon.svg" type="image/svg+xml">
-<link rel="preload" href="/openagentindex/static/fonts/IBMPlexSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/openagentindex/static/site.css">
+<link rel="preload" href="/openagentindex/static/fonts-v3/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/openagentindex/static/v3/tokens.css">
+<link rel="stylesheet" href="/openagentindex/static/v3/chrome.css">
+<link rel="stylesheet" href="/openagentindex/static/v3/label.css">
+<link rel="stylesheet" href="/openagentindex/static/v3/hub-hero.css">
+<link rel="stylesheet" href="/openagentindex/static/v3/function-head.css">
+<link rel="stylesheet" href="/openagentindex/static/v3/ranking.css">
+<link rel="stylesheet" href="/openagentindex/static/v3/evidence.css">
+<link rel="stylesheet" href="/openagentindex/static/v3/mobile.css">
 <meta property="og:site_name" content="Open Agent Index">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Calnode profile | Open Agent Index">
@@ -22,14 +29,17 @@
 <a class="skip" href="#main">Skip to content</a>
 <div class="banner banner--staging" role="note"><div class="wrap">Staging copy, not indexed. Canonical address: https://openagentindex.com/tool/calnode/</div></div>
 <header class="site-header"><div class="wrap">
-<a class="wordmark" href="/openagentindex/">Open Agent <span>Index</span></a>
-<nav class="site-nav" aria-label="Main"><ul><li><a href="/openagentindex/customer-support/">Customer support</a></li><li><a href="/openagentindex/lead-follow-up/">Lead follow-up</a></li><li><a href="/openagentindex/scheduling-intake/">Scheduling and intake</a></li><li><a href="/openagentindex/back-office/">Back office</a></li><li><a href="/openagentindex/reporting-content/">Reporting and content</a></li><li><a href="/openagentindex/methodology/">Method</a></li><li><a href="/openagentindex/about/">About</a></li></ul></nav>
+<a class="wordmark" href="/openagentindex/"><span class="wordmark-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="wordmark-text">Open Agent <span>Index</span></span></a>
+<nav class="site-nav" aria-label="Main">
+<ul class="nav-links nav-links--row"><li><a href="/openagentindex/customer-support/">Customer support</a></li><li><a href="/openagentindex/lead-follow-up/">Lead follow-up</a></li><li><a href="/openagentindex/scheduling-intake/">Scheduling and intake</a></li><li><a href="/openagentindex/back-office/">Back office</a></li><li><a href="/openagentindex/reporting-content/">Reporting and content</a></li><li><a href="/openagentindex/methodology/">Method</a></li><li><a href="/openagentindex/about/">About</a></li></ul>
+<details class="nav-menu"><summary>Menu</summary><ul class="nav-links nav-links--menu"><li><a href="/openagentindex/customer-support/">Customer support</a></li><li><a href="/openagentindex/lead-follow-up/">Lead follow-up</a></li><li><a href="/openagentindex/scheduling-intake/">Scheduling and intake</a></li><li><a href="/openagentindex/back-office/">Back office</a></li><li><a href="/openagentindex/reporting-content/">Reporting and content</a></li><li><a href="/openagentindex/methodology/">Method</a></li><li><a href="/openagentindex/about/">About</a></li></ul></details>
+</nav>
 </div></header>
-<main id="main"><div class="wrap">
+<main id="main" class="page-tool"><div class="wrap">
 
 <div class="page-head"><h1>Calnode</h1>
 <p class="lede"><span class="chip chip--osi">OSI-approved open source</span> <span class="num">Apache License 2.0</span></p>
-<dl class="meta-line"><div><dt>Collected </dt><dd><time datetime="2026-11-18">2026-11-18</time></dd></div></dl><p class="label-line"><span class="chip chip--pending">Research-based — not yet hands-on tested</span></p></div>
+<dl class="meta-line"><div><dt>Collected </dt><dd><time datetime="2026-11-18">2026-11-18</time></dd></div></dl><p class="label-line"><span class="v3-label">Research-based — not yet hands-on tested</span></p></div>
 <h2>Where it is ranked</h2>
 <ul><li><a href="/openagentindex/scheduling-intake/">Scheduling and intake</a>: rank <span class="num">4</span>, score <span class="num">70.5</span>. Calnode is a self-hosted booking-page scheduler (one Go binary with SQLite) where visitors pick a free slot, with a native MCP server whose booking tools list event types and free slots and create, get, reschedule and cancel bookings, and an optional bring-your-own-model &#39;Book by chat&#39; assistant on the booking page.</li></ul>
 <h2>Owner fit</h2><dl class="kv"><dt>Setup</dt><dd>One container or one static binary, with the data kept in a single SQLite file and no database server, cache or queue: docker run ghcr.io/calnode/calnode:latest with a data volume, BASE_URL and an encryption key; production wants HTTPS behind a TLS proxy. Built-in video needs a LiveKit endpoint. <span class="small">Sources: <a href="https://calnode.com" rel="noopener">calnode.com</a>, <a href="https://raw.githubusercontent.com/Calnode/calnode/main/DEPLOY.md" rel="noopener">raw.githubusercontent.com</a>, <a href="https://github.com/Calnode/calnode" rel="noopener">github.com</a></span></dd><dt>Approval</dt><dd>no — the only documented human step is the OAuth consent screen when an agent connects; no per-booking approval step is documented, and create_booking runs the same booking side effects as the REST API. <span class="small">Sources: <a href="https://github.com/Calnode/calnode" rel="noopener">github.com</a></span></dd><dt>Data</dt><dd>Self-hosted: one deployment is one isolated workspace with its own SQLite data. The chat assistant sees only free/busy windows, never calendar contents, and uses any OpenAI-compatible model endpoint the operator chooses (hosted or self-run); it is off by default. <span class="small">Sources: <a href="https://github.com/Calnode/calnode" rel="noopener">github.com</a>, <a href="https://calnode.com" rel="noopener">calnode.com</a></span></dd><dt>Cost</dt><dd>Free to self-host under Apache-2.0 (&#39;nothing is paywalled&#39;); the README says it can run on a $5 server. Optional built-in video needs a LiveKit endpoint (Cloud or self-hosted), and the operator pays any AI model provider they choose. The site also advertises done-for-you setup as a service (price not read). <span class="small">Sources: <a href="https://github.com/Calnode/calnode" rel="noopener">github.com</a>, <a href="https://calnode.com" rel="noopener">calnode.com</a></span></dd><dt>Community</dt><dd>GitHub repository: 146 stars (created 2026-06-23). <span class="small">Sources: <a href="https://api.github.com/repos/Calnode/calnode" rel="noopener">api.github.com</a></span></dd></dl>
@@ -45,6 +55,8 @@
 </ul>
 <p>Data collected <time datetime="2026-11-18">2026-11-18</time>. Research-based — not yet hands-on tested.</p>
 <p class="small">Repository figures: GitHub API, retrieved 2026-11-18; Open Agent Index is not affiliated with or endorsed by GitHub.</p>
+<div class="footer-mark-wrap" aria-hidden="true"><div class="footer-mark footer-mark--wide"></div><div class="footer-mark footer-mark--stack"></div></div>
 </div></footer>
+<script src="/openagentindex/static/v3/chrome.js" defer></script>
 </body>
 </html>

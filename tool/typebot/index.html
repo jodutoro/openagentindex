@@ -8,8 +8,15 @@
 <meta name="robots" content="noindex,nofollow">
 <link rel="canonical" href="https://openagentindex.com/tool/typebot/">
 <link rel="icon" href="/openagentindex/favicon.svg" type="image/svg+xml">
-<link rel="preload" href="/openagentindex/static/fonts/IBMPlexSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/openagentindex/static/site.css">
+<link rel="preload" href="/openagentindex/static/fonts-v3/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/openagentindex/static/v3/tokens.css">
+<link rel="stylesheet" href="/openagentindex/static/v3/chrome.css">
+<link rel="stylesheet" href="/openagentindex/static/v3/label.css">
+<link rel="stylesheet" href="/openagentindex/static/v3/hub-hero.css">
+<link rel="stylesheet" href="/openagentindex/static/v3/function-head.css">
+<link rel="stylesheet" href="/openagentindex/static/v3/ranking.css">
+<link rel="stylesheet" href="/openagentindex/static/v3/evidence.css">
+<link rel="stylesheet" href="/openagentindex/static/v3/mobile.css">
 <meta property="og:site_name" content="Open Agent Index">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Typebot profile | Open Agent Index">
@@ -22,14 +29,17 @@
 <a class="skip" href="#main">Skip to content</a>
 <div class="banner banner--staging" role="note"><div class="wrap">Staging copy, not indexed. Canonical address: https://openagentindex.com/tool/typebot/</div></div>
 <header class="site-header"><div class="wrap">
-<a class="wordmark" href="/openagentindex/">Open Agent <span>Index</span></a>
-<nav class="site-nav" aria-label="Main"><ul><li><a href="/openagentindex/customer-support/">Customer support</a></li><li><a href="/openagentindex/lead-follow-up/">Lead follow-up</a></li><li><a href="/openagentindex/scheduling-intake/">Scheduling and intake</a></li><li><a href="/openagentindex/back-office/">Back office</a></li><li><a href="/openagentindex/reporting-content/">Reporting and content</a></li><li><a href="/openagentindex/methodology/">Method</a></li><li><a href="/openagentindex/about/">About</a></li></ul></nav>
+<a class="wordmark" href="/openagentindex/"><span class="wordmark-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="wordmark-text">Open Agent <span>Index</span></span></a>
+<nav class="site-nav" aria-label="Main">
+<ul class="nav-links nav-links--row"><li><a href="/openagentindex/customer-support/">Customer support</a></li><li><a href="/openagentindex/lead-follow-up/">Lead follow-up</a></li><li><a href="/openagentindex/scheduling-intake/">Scheduling and intake</a></li><li><a href="/openagentindex/back-office/">Back office</a></li><li><a href="/openagentindex/reporting-content/">Reporting and content</a></li><li><a href="/openagentindex/methodology/">Method</a></li><li><a href="/openagentindex/about/">About</a></li></ul>
+<details class="nav-menu"><summary>Menu</summary><ul class="nav-links nav-links--menu"><li><a href="/openagentindex/customer-support/">Customer support</a></li><li><a href="/openagentindex/lead-follow-up/">Lead follow-up</a></li><li><a href="/openagentindex/scheduling-intake/">Scheduling and intake</a></li><li><a href="/openagentindex/back-office/">Back office</a></li><li><a href="/openagentindex/reporting-content/">Reporting and content</a></li><li><a href="/openagentindex/methodology/">Method</a></li><li><a href="/openagentindex/about/">About</a></li></ul></details>
+</nav>
 </div></header>
-<main id="main"><div class="wrap">
+<main id="main" class="page-tool"><div class="wrap">
 
 <div class="page-head"><h1>Typebot</h1>
 <p class="lede"><span class="chip chip--source-available">Source-available</span> <span class="num">Functional Source License, Version 1.1, Apache 2.0 Future License</span></p>
-<dl class="meta-line"><div><dt>Collected </dt><dd><time datetime="2026-11-18">2026-11-18</time></dd></div></dl><p class="label-line"><span class="chip chip--pending">Research-based — not yet hands-on tested</span></p></div>
+<dl class="meta-line"><div><dt>Collected </dt><dd><time datetime="2026-11-18">2026-11-18</time></dd></div></dl><p class="label-line"><span class="v3-label">Research-based — not yet hands-on tested</span></p></div>
 <h2>Where it is ranked</h2>
 <ul><li><a href="/openagentindex/customer-support/">Customer support</a>: rank <span class="num">8</span>, score <span class="num">70.3</span>. Typebot&#39;s docs describe a chatbot builder for conversational apps including customer support, deployable on a website or WhatsApp; its FAQ says live chat is not native and human takeover is done by hitting the Chatwoot block.</li><li><a href="/openagentindex/lead-follow-up/">Lead follow-up</a>: rank <span class="num">8</span>, score <span class="num">65.0</span>. Typebot&#39;s docs list lead qualification as a use case; flows chain input blocks (text, email, buttons), logic blocks and integration blocks (webhooks, OpenAI) and collect results in real time.</li><li><a href="/openagentindex/scheduling-intake/">Scheduling and intake</a>: rank <span class="num">5</span>, score <span class="num">70.3</span>. Typebot ships Date and Time input blocks that let a conversational flow collect booking details before passing them on via integration blocks or webhooks; it is an intake front end, not a calendar or availability engine.</li></ul>
 <h2>Owner fit</h2><dl class="kv"><dt>Setup</dt><dd>Self-hosting guide in the docs: two apps, the builder and the viewer, plus a Postgres database; deployment guides cover Docker, Vercel and a manual install. The docs say the managed cloud saves substantial developer time. <span class="small">Sources: <a href="https://docs.typebot.com/self-hosting/get-started" rel="noopener">docs.typebot.com</a></span></dd><dt>Approval</dt><dd>No approve-before-send step is documented. FAQ: live chat is not native; human takeover is available through the Chatwoot block. <span class="small">Sources: <a href="https://docs.typebot.com/faq" rel="noopener">docs.typebot.com</a></span></dd><dt>Data</dt><dd>Self-hosted: builder, viewer and results database run on your server. AI blocks send prompts to the LLM provider whose API key you configure (bring your own LLM). <span class="small">Sources: <a href="https://docs.typebot.com/self-hosting/get-started" rel="noopener">docs.typebot.com</a>, <a href="https://docs.typebot.com/editor/blocks/integrations/openai" rel="noopener">docs.typebot.com</a>, <a href="https://chatbotscape.com/alternatives/chatbase" rel="noopener">chatbotscape.com</a></span></dd><dt>Cost</dt><dd>Self-host: no licence fee for internal use (infrastructure and LLM API costs are yours). Cloud (seen 2026-11-18): Free 200 chats/month, $39/month Starter (2,000 chats), $89/month (10,000 chats). <span class="small">Sources: <a href="https://typebot.com/pricing" rel="noopener">typebot.com</a></span></dd><dt>Community</dt><dd>About 11k GitHub stars (2026-11-18); 3,000+ members on Discord as published on typebot.com. <span class="small">Sources: <a href="https://typebot.com" rel="noopener">typebot.com</a></span></dd></dl>
@@ -45,6 +55,8 @@
 </ul>
 <p>Data collected <time datetime="2026-11-18">2026-11-18</time>. Research-based — not yet hands-on tested.</p>
 <p class="small">Repository figures: GitHub API, retrieved 2026-11-18; Open Agent Index is not affiliated with or endorsed by GitHub.</p>
+<div class="footer-mark-wrap" aria-hidden="true"><div class="footer-mark footer-mark--wide"></div><div class="footer-mark footer-mark--stack"></div></div>
 </div></footer>
+<script src="/openagentindex/static/v3/chrome.js" defer></script>
 </body>
 </html>

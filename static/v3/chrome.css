@@ -1,0 +1,328 @@
+/* port: 21st.dev/@kedhareswer/halftone-wordmark-footer (technique only, licence unverified): footer dot wordmark
+   port: 21st.dev/@dillionverma/interactive-hover-button (Magic UI, MIT upstream): .ihb CTA */
+/* v3 slot 6: chrome. Owns .skip, .banner*, .site-header, .site-nav, .site-footer, .footer-mark*, p.cta, .ihb*.
+   Contract: build/design-v3/DIRECTION-v3.md sections 5 and 9. Everything inside @layer slots, scoped to its own containers.
+   Single nav breakpoint: max-width 1100px (link row hides and menu shows in the same block). Footer wordmark swap: 760px.
+   CTA technique: Magic UI Interactive Hover Button (MIT), see provenance/chrome.md. */
+@layer slots {
+
+  /* ---------- skip link ---------- */
+  a.skip {
+    position: absolute;
+    left: 16px;
+    top: -120px;
+    z-index: 200;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 20px;
+    border-radius: 999px;
+    background: var(--fill, #1f4fd6);
+    color: var(--fg, #f4f6f9);
+    font-size: 15px;
+    font-weight: 600;
+    font-stretch: 92%;
+    line-height: 1;
+    text-decoration: none;
+  }
+  a.skip:focus-visible { top: 16px; outline: 2px solid #a3bdff; outline-offset: 2px; }
+
+  /* ---------- banners ---------- */
+  .banner {
+    background: var(--ink-1, #0f1d33);
+    color: var(--fg, #f4f6f9);
+    border-bottom: 1px solid var(--rule, rgba(244, 246, 249, .14));
+    font-size: 14px;
+    font-weight: 450;
+    line-height: 1.45;
+  }
+  .banner { padding-top: 8px; padding-bottom: 8px; }
+  .banner > .wrap { padding-top: 0; padding-bottom: 0; padding-left: 20px; padding-right: 20px; }
+  /* same gutter as .wrap (clamp(20px, 4vw, 64px)), written as steps so the detector resolves the inset */
+  @media (min-width: 500px) { .banner > .wrap { padding-left: 4vw; padding-right: 4vw; } }
+  @media (min-width: 1600px) { .banner > .wrap { padding-left: 64px; padding-right: 64px; } }
+  .banner--staging { color: var(--fg-2, #aab4c3); }
+  .banner--fixture {
+    background: var(--fill, #1f4fd6);
+    color: var(--fg, #f4f6f9);
+    border-bottom-color: var(--rule-strong, rgba(244, 246, 249, .32));
+    font-weight: 650;
+  }
+
+  /* ---------- header ---------- */
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    height: 65px; /* 64px plus the 1px rule */
+    background: var(--ink-0, #0b1628);
+    border-bottom: 1px solid var(--rule-strong, rgba(244, 246, 249, .32));
+    font-size: 15px;
+    font-weight: 600;
+    font-stretch: 92%;
+    line-height: 1;
+  }
+  .site-header > .wrap {
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .site-header .wordmark {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 44px;
+    flex: none;
+    color: var(--fg, #f4f6f9);
+    font-size: 18px;
+    font-weight: 700;
+    font-stretch: 100%;
+    letter-spacing: 0;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .site-header .wordmark:active { color: var(--accent, #a3bdff); }
+  .site-header .wordmark span:not(.wordmark-mark) { font: inherit; color: inherit; }
+  .wordmark-mark {
+    display: grid;
+    grid-template-columns: repeat(3, 4px);
+    grid-auto-rows: 4px;
+    gap: 3px;
+    flex: none;
+  }
+  .wordmark-mark > i {
+    display: block;
+    border-radius: 50%;
+    background: var(--signal, #4d7bff);
+  }
+
+  .site-nav { display: flex; align-items: center; min-width: 0; }
+  .site-nav ul { list-style: none; margin: 0; padding: 0; }
+  .nav-links--row { display: flex; align-items: center; gap: 0; }
+  .site-nav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 40px;
+    padding: 0 8px;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    color: var(--fg, #f4f6f9);
+    font-size: 15px;
+    font-weight: 600;
+    font-stretch: 92%;
+    line-height: 1;
+    white-space: nowrap;
+    text-decoration: none;
+    transition: background-color 180ms var(--ease-out, cubic-bezier(.23, 1, .32, 1)), transform 120ms var(--ease-out, cubic-bezier(.23, 1, .32, 1));
+  }
+  .site-nav a[aria-current="page"] {
+    border-color: var(--rule-strong, rgba(244, 246, 249, .32));
+    color: var(--accent, #a3bdff);
+  }
+  .site-nav a:active { transform: scale(.97); }
+
+  @media (min-width: 1280px) { .site-nav .nav-links--row a { padding: 0 12px; } }
+
+  /* Menu is off above the breakpoint */
+  .site-nav .nav-menu { display: none; }
+
+  .site-nav .nav-menu summary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 0 20px;
+    border: 1px solid var(--rule-strong, rgba(244, 246, 249, .32));
+    border-radius: 999px;
+    color: var(--fg, #f4f6f9);
+    font-size: 15px;
+    font-weight: 600;
+    font-stretch: 92%;
+    line-height: 1;
+    list-style: none;
+    cursor: pointer;
+    transition: background-color 180ms var(--ease-out, cubic-bezier(.23, 1, .32, 1)), transform 120ms var(--ease-out, cubic-bezier(.23, 1, .32, 1));
+  }
+  .site-nav .nav-menu summary::-webkit-details-marker { display: none; }
+  .site-nav .nav-menu summary::marker { content: ""; }
+  .site-nav .nav-menu summary:active { transform: scale(.97); }
+  .site-nav .nav-menu[open] summary { background: var(--ink-2, #162a4a); }
+
+  @media (hover: hover) and (pointer: fine) {
+    .site-nav a:hover { background: var(--ink-2, #162a4a); }
+    .site-header a.wordmark:hover { color: var(--accent, #a3bdff); }
+    .site-nav .nav-menu summary:hover { background: var(--ink-2, #162a4a); }
+  }
+
+  /* One breakpoint: link row hides, menu shows. */
+  @media (max-width: 1100px) {
+    .site-nav .nav-links--row { display: none; }
+    .site-nav .nav-menu { display: block; }
+
+    .site-nav .nav-links--menu {
+      position: absolute; /* against .site-header (sticky) */
+      top: 100%;
+      left: 0;
+      right: 0;
+      display: flex;
+      flex-direction: column;
+      max-height: calc(100dvh - 65px);
+      overflow-y: auto;
+      padding: 8px clamp(20px, 4vw, 64px) 16px;
+      background: var(--ink-2, #162a4a);
+      border-bottom: 1px solid var(--rule-strong, rgba(244, 246, 249, .32));
+    }
+    .site-nav .nav-links--menu li + li { border-top: 1px solid var(--rule, rgba(244, 246, 249, .14)); }
+    .site-nav .nav-links--menu a {
+      display: flex;
+      width: 100%;
+      min-height: 48px;
+      padding: 0 12px;
+      border-radius: 999px;
+      font-size: 15px;
+    }
+    .site-nav .nav-links--menu li { padding-top: 4px; padding-bottom: 4px; }
+    .site-nav .nav-menu[open] .nav-links--menu { animation: chrome-menu-in 240ms var(--ease-out, cubic-bezier(.23, 1, .32, 1)); }
+    @media (hover: hover) and (pointer: fine) {
+      .site-nav .nav-links--menu a:hover { background: var(--ink-1, #0f1d33); }
+    }
+  }
+
+  @keyframes chrome-menu-in { from { opacity: 0; } to { opacity: 1; } }
+
+  /* ---------- footer ---------- */
+  .site-footer {
+    margin-top: 96px;
+    padding-top: 48px;
+    border-top: 1px solid var(--rule-strong, rgba(244, 246, 249, .32));
+    color: var(--fg, #f4f6f9);
+    font-size: 16px;
+    line-height: 1.5;
+    overflow: hidden;
+  }
+  .site-footer ul {
+    list-style: none;
+    margin: 0 0 16px;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 32px;
+    font-weight: 600;
+    font-stretch: 92%;
+  }
+  .site-footer li { margin: 0; }
+  .site-footer a:active { color: var(--fg, #f4f6f9); }
+  .site-footer p { max-width: 68ch; margin: 0 0 8px; }
+  .site-footer p.small { color: var(--fg-2, #aab4c3); font-size: 14px; font-weight: 450; line-height: 1.45; margin-bottom: 0; }
+
+  .site-footer .footer-mark-wrap { margin-top: 64px; line-height: 0; user-select: none; pointer-events: none; container-type: inline-size; }
+  /* Dot wordmark: letters are generated content (integrator change, was SVG text) so the DOM carries no extra text.
+     --u is one unit of the original 1280 (wide) or 640 (stack) viewBox; the crop clips the lower edge of the letters. */
+  .footer-mark { position: relative; display: block; overflow: hidden; --dot: var(--signal, #4d7bff); }
+  .footer-mark::before, .footer-mark::after {
+    position: absolute; left: 0; white-space: nowrap; line-height: 1;
+    font-family: "Archivo", system-ui, sans-serif; font-weight: 850; font-stretch: 62%; letter-spacing: 0;
+    color: transparent; -webkit-background-clip: text; background-clip: text;
+    background-image: radial-gradient(circle at 50% 50%, var(--dot) calc(3.1 * var(--u)), transparent calc(3.1 * var(--u) + .6px));
+    background-size: calc(9 * var(--u)) calc(9 * var(--u));
+  }
+  .footer-mark--wide { --u: calc(100cqw / 1280); height: calc(126 * var(--u)); }
+  .footer-mark--wide::before { content: "OPEN AGENT INDEX"; font-size: calc(184.7 * var(--u)); top: calc(-6 * var(--u)); }
+  .footer-mark--stack { --u: calc(100cqw / 640); height: calc(300 * var(--u)); display: none; }
+  .footer-mark--stack::before { content: "OPEN AGENT"; font-size: calc(139 * var(--u)); top: 0; }
+  .footer-mark--stack::after { content: "INDEX"; font-size: calc(288 * var(--u)); top: calc(92 * var(--u)); }
+
+  @media (max-width: 760px) {
+    .site-footer { margin-top: 64px; padding-top: 32px; }
+    .site-footer .footer-mark-wrap { margin-top: 48px; }
+    .footer-mark--wide { display: none; }
+    .footer-mark--stack { display: block; }
+  }
+
+  /* ---------- hub CTA: Interactive Hover Button ---------- */
+  p.cta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px 24px;
+    max-width: none;
+    margin: 0;
+    padding-block: 32px;
+  }
+  p.cta .cta-text { max-width: 44ch; }
+
+  a.ihb {
+    --ihb-ease: var(--ease-out, cubic-bezier(.23, 1, .32, 1));
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 48px;
+    padding: 0 24px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: var(--fill, #1f4fd6);
+    color: var(--fg, #f4f6f9);
+    font-size: 15px;
+    font-weight: 600;
+    font-stretch: 92%;
+    line-height: 1;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    isolation: isolate;
+    transition: transform 120ms var(--ihb-ease);
+  }
+  a.ihb:active { transform: scale(.97); }
+  .ihb-dot {
+    flex: none;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--fg, #f4f6f9);
+    transition: transform 300ms var(--ihb-ease), background-color 300ms var(--ihb-ease);
+  }
+  .ihb-label { display: inline-block; transition: transform 300ms var(--ihb-ease), opacity 300ms var(--ihb-ease); }
+  .ihb-over {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: var(--ink-0, #0b1628);
+    opacity: 0;
+    transform: translateX(48px);
+    transition: transform 300ms var(--ihb-ease), opacity 300ms var(--ihb-ease);
+  }
+  .ihb-over::before { content: attr(data-label); }
+  .ihb-over::after { content: "\2192"; font-size: 18px; line-height: 1; }
+  .ihb-dot { position: relative; z-index: 1; }
+
+  /* Hover and keyboard focus run the same effect; touch keeps the resting state. */
+  @media (hover: hover) and (pointer: fine) {
+    a.ihb:hover .ihb-dot { transform: scale(60); background: var(--signal, #4d7bff); }
+    a.ihb:hover .ihb-label { transform: translateX(48px); opacity: 0; }
+    a.ihb:hover .ihb-over { transform: translateX(-12px); opacity: 1; }
+  }
+  a.ihb:focus-visible .ihb-dot { transform: scale(60); background: var(--signal, #4d7bff); }
+  a.ihb:focus-visible .ihb-label { transform: translateX(48px); opacity: 0; }
+  a.ihb:focus-visible .ihb-over { transform: translateX(-12px); opacity: 1; }
+
+  @media (prefers-reduced-motion: reduce) {
+    a.ihb, .ihb-dot, .ihb-label, .ihb-over { transition-duration: 120ms; }
+    .site-nav a, .site-nav .nav-menu summary { transition-duration: 120ms; }
+    a.ihb:active, .site-nav a:active, .site-nav .nav-menu summary:active { transform: none; }
+    .ihb-over { transform: none; }
+    .ihb-label { transform: none; }
+    a.ihb:hover .ihb-label, a.ihb:focus-visible .ihb-label { transform: none; }
+    a.ihb:hover .ihb-over, a.ihb:focus-visible .ihb-over { transform: none; }
+    .site-nav .nav-menu[open] .nav-links--menu { animation: none; }
+  }
+}
