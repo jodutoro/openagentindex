@@ -1,0 +1,11 @@
+{
+  "name": "Open Agent Index",
+  "short_name": "Agent Index",
+  "icons": [
+    { "src": "/v4/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/v4/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ],
+  "theme_color": "#1f4fd6",
+  "background_color": "#0b1628",
+  "display": "browser"
+}

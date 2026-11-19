@@ -1,0 +1,341 @@
+/* origin: own code, ported from build/design-v4/studies/C/study.css (Explorer). No registry port.
+   Contract: build/design-v4/DIRECTION-v4.md sections 4 to 7, STUDY-PICK must-fix 1 to 14. Tokens, theme and chart colours come from
+   tokens.css / theme.css / charts.css; nothing in this file names a colour. Proportion: one ratio, 1:3 (rail : results).
+   Layers follow v3: @layer slots for the look, @layer mobile for narrow-width overrides. Filtering rules live in filter.css (unlayered). */
+@layer tokens, base, slots, mobile;
+
+@layer slots {
+  :root { --gut: clamp(20px, 4vw, 64px); --hdr-h: 65px; }
+  .defs { position: absolute; width: 0; height: 0; overflow: hidden; }
+  .fine { font-size: 14px; font-weight: 450; line-height: 1.45; color: var(--fg-2); }
+  .nodata { font-size: 14px; color: var(--fg-2); }
+  .res-note { margin: 0 0 12px; }
+
+  /* ---------- head band: 1:3, readouts left, reading right ---------- */
+  .head { display: grid; grid-template-columns: 1fr 3fr; border-bottom: 1px solid var(--rule-strong); }
+  .head-l { padding: 40px 32px 32px 0; display: flex; flex-direction: column; justify-content: space-between; gap: 24px; min-width: 0; }
+  .head-r { padding: 40px 0 32px; padding-left: 32px; border-left: 1px solid var(--rule); min-width: 0; }
+  .head h1 { max-width: 20ch; }
+  .head--hub h1 { font-size: clamp(36px, 3.3vw, 50px); max-width: 30ch; }
+  .head--hub .lede, .head .lede { margin: 16px 0 0; font-size: 20px; line-height: 1.4; color: var(--fg); max-width: 62ch; }
+  .head--hub .lede p { margin: 0; }
+  .readout { display: grid; grid-template-columns: repeat(auto-fit, minmax(0, 1fr)); gap: 16px 24px; margin: 0; }
+  .readout > div { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+  .readout dd { order: -1; margin: 0; font-size: clamp(36px, 3.5vw, 52px); font-weight: 800; font-stretch: 70%; line-height: .9; color: var(--fg); }
+  .readout dt { font-size: 14px; line-height: 1.3; color: var(--fg-2); }
+  .meta { margin: 0; }
+  .mono {
+    display: inline-grid; place-items: center; width: 40px; height: 40px; background: var(--fill); color: var(--on-fill);
+    font-size: 16px; font-weight: 800; font-stretch: 80%; line-height: 1; letter-spacing: 0; user-select: none;
+  }
+  .mono.mono--xl { width: 100%; max-width: 168px; aspect-ratio: 1; height: auto; font-size: clamp(48px, 5vw, 72px); }
+  .tool-h1 { text-transform: none; font-size: clamp(44px, 6vw, 88px); overflow-wrap: anywhere; }
+  .tool-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin: 16px 0 0; font-size: 16px; }
+  .tool-meta .lchips { margin: 0; }
+  .tool-go { margin: 16px 0 12px; }
+  .head--tool .head-l { justify-content: flex-start; }
+
+  /* hub: head and plate are one fold; the plate is the dominant figure */
+  .plate-band { border-bottom: 1px solid var(--rule-strong); }
+  .fig-plate { margin: 0; padding: 28px 0 32px; }
+  .fig-t { display: block; margin-bottom: 8px; font-size: 15px; font-weight: 650; font-stretch: 92%; color: var(--fg); }
+  .plate { list-style: none; margin: 0; padding: 0; }
+  .plate li { display: grid; grid-template-columns: minmax(168px, 280px) minmax(0, 560px) 44px; justify-content: start; align-items: center; gap: 16px; min-height: 48px; border-top: 1px solid var(--rule); }
+  .plate li:last-child { border-bottom: 1px solid var(--rule); }
+  .plate a { align-self: stretch; display: flex; align-items: center; font-size: 20px; font-weight: 700; font-stretch: 85%; line-height: 1.15; color: var(--fg); text-decoration: none; }
+  .plate svg { display: block; width: 100%; height: auto; max-height: 20px; }
+  .plate .num { justify-self: end; font-size: 28px; font-weight: 800; font-stretch: 75%; line-height: 1; }
+  .pd { fill: var(--fg); transition: fill 180ms var(--ease-out); }
+  .plate li:has(a:active) .pd { fill: var(--accent); }
+  @media (hover: hover) and (pointer: fine) {
+    .plate a:hover { color: var(--accent); text-decoration: underline; }
+    .plate li:hover .pd { fill: var(--signal); }
+  }
+  .plate li:has(a:focus-visible) .pd { fill: var(--signal); }
+
+  /* ---------- explorer: sticky rail beside results ---------- */
+  .explorer { display: grid; grid-template-columns: 1fr 3fr; align-items: start; }
+  .explorer--fn { grid-template-areas: "rail lead" "rail results"; }
+  .explorer--fn > .rail { grid-area: rail; }
+  .explorer--fn > .lead-fig { grid-area: lead; }
+  .explorer--fn > .results { grid-area: results; }
+  .lead-fig { min-width: 0; padding: 24px 0 0; padding-left: 32px; border-left: 1px solid var(--rule); }
+  .lead-fig > .chart { border: 1px solid var(--rule); background: var(--ink-1); padding: 20px 24px; }
+  .rail { position: sticky; top: var(--hdr-h); max-height: calc(100vh - var(--hdr-h)); overflow: auto; padding: 24px 24px 32px 0; overscroll-behavior: contain; }
+  .results { padding: 24px 0 0; padding-left: 32px; border-left: 1px solid var(--rule); min-width: 0; min-height: 100%; }
+  .explorer--fn > .results { padding-top: 0; }
+  .sheet { display: none; }
+  .rf { border: 0; margin: 0 0 24px; padding: 0; min-width: 0; }
+  .rf legend, .rf-l { padding: 0; margin: 0 0 8px; font-size: 15px; font-weight: 650; font-stretch: 92%; color: var(--fg); }
+  .sw-links, .toc { list-style: none; margin: 0; padding: 0; }
+  .sw {
+    position: relative; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 8px;
+    min-height: 40px; padding: 0 14px; margin-bottom: 2px; border: 1px solid transparent; border-radius: 999px;
+    color: var(--fg); font-size: 15px; font-weight: 600; font-stretch: 92%; line-height: 1.15; text-decoration: none; cursor: pointer;
+    transition: background-color 180ms var(--ease-out), transform 120ms var(--ease-out);
+  }
+  .sw .num { color: var(--fg-2); font-weight: 600; }
+  .sw:active { transform: scale(.97); }
+  .sw:has(input:checked), .sw[aria-current="page"] { border-color: var(--rule-strong); background: var(--ink-2); color: var(--accent); }
+  .sw--rank { grid-template-columns: 28px 1fr auto; }
+  .sw--rank .rkn { font-size: 20px; font-weight: 800; font-stretch: 75%; color: var(--fg); }
+  .sw input, .lf input { position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; pointer-events: none; }
+  .sw:has(input:focus-visible), .lf:has(input:focus-visible) { outline: 2px solid var(--focus); outline-offset: 2px; }
+  .lf { position: relative; display: flex; align-items: center; gap: 8px; min-height: 40px; cursor: pointer; border-radius: 999px; }
+  .lf .num { color: var(--fg-2); font-size: 15px; }
+  .lf .chip { transition: background-color 180ms var(--ease-out), transform 120ms var(--ease-out); }
+  .lf:active .chip { transform: scale(.97); }
+  .lf input:checked + .chip { background: var(--fill); border-color: var(--fill); border-style: solid; color: var(--on-fill); }
+  .lf input:checked + .chip::before { content: "\2713"; margin-right: 6px; }
+  .toc a { display: inline-flex; align-items: center; min-height: 36px; font-size: 15px; }
+  @media (hover: hover) and (pointer: fine) {
+    .sw:hover { background: var(--ink-2); }
+    .lf:hover .chip { border-color: var(--fg); }
+  }
+  .rule-list { list-style: none; margin: 0; padding: 0; }
+  .rail--rules, .rail--tool { position: static; max-height: none; overflow: visible; }
+  .rule-list li { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 10px 0; border-top: 1px solid var(--rule); }
+  .rule-list .rn { font-size: 20px; font-weight: 800; font-stretch: 75%; }
+
+  /* ---------- link buttons: GitHub / Website / Docs, text only ---------- */
+  .go { display: flex; flex-wrap: wrap; gap: 6px; }
+  .btn, .go a {
+    display: inline-flex; align-items: center; justify-content: center; min-height: 32px; padding: 0 12px; border: 1px solid var(--rule-strong); border-radius: 999px;
+    color: var(--fg); font-size: 14px; font-weight: 600; font-stretch: 92%; line-height: 1; text-decoration: none; white-space: nowrap;
+    transition: background-color 180ms var(--ease-out), border-color 180ms var(--ease-out), transform 120ms var(--ease-out);
+  }
+  .btn:active, .go a:active { transform: scale(.97); background: var(--ink-2); color: var(--accent); }
+  @media (hover: hover) and (pointer: fine) { .btn:hover, .go a:hover { background: var(--ink-2); border-color: var(--fg); } }
+  .tool-go .go a { min-height: 40px; padding: 0 18px; font-size: 15px; }
+  .rows .chip { min-height: 28px; padding: 3px 12px; font-size: 14px; }
+
+  /* ---------- results list: one ruled row per tool ---------- */
+  .res-h { margin: 48px 0 12px; }
+  .results > .res-h:first-child, .results > .figband:first-child + .res-h { margin-top: 8px; }
+  .results { --rkw: 36px; --cols: var(--rkw) 40px minmax(130px, 1fr) 256px 140px 196px; }
+  .results:has(.cov) { --rkw: 76px; }
+  .rh { display: grid; grid-template-columns: var(--cols); column-gap: 12px; padding: 0 0 8px; border-bottom: 1px solid var(--rule-strong); font-size: 14px; color: var(--fg-2); }
+  .rows { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+  .row {
+    display: grid; grid-template-columns: var(--cols); column-gap: 12px; row-gap: 6px; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--rule);
+    grid-template-areas: "rk mono name sc st lc" "rk mono go go lb lb" "ev ev ev ev ev ev";
+  }
+  .row > .rk { grid-area: rk; font-size: 24px; font-weight: 800; font-stretch: 75%; line-height: 1; }
+  .row > .mono { grid-area: mono; }
+  .row > .tool-name { grid-area: name; min-width: 0; color: var(--fg); font-size: 18px; font-weight: 700; font-stretch: 92%; line-height: 1.15; text-decoration: none; }
+  .row > .go { grid-area: go; }
+  .row .tool-name:active { color: var(--accent); }
+  @media (hover: hover) and (pointer: fine) { .row .tool-name:hover { color: var(--accent); text-decoration: underline; } .row:hover { background: color-mix(in srgb, var(--ink-2) 55%, transparent); } }
+  .row > .sc { grid-area: sc; display: flex; align-items: center; gap: 10px; min-width: 0; }
+  .row .sc .num { font-size: 28px; font-weight: 800; font-stretch: 75%; line-height: 1; min-width: 2.9ch; text-align: right; }
+  .row .sdots { --d: 8px; --pitch: 9px; }
+  .row > .st { grid-area: st; display: flex; align-items: center; gap: 8px; }
+  .row > .st .num { font-size: 15px; font-weight: 600; }
+  .row > .lc { grid-area: lc; }
+  .row > .lb { grid-area: lb; justify-self: start; }
+  .row .lchips { margin: 0; }
+  .row > .evidence { grid-area: ev; margin-top: 2px; border-top: 0; }
+  .row > .evidence > summary { min-height: 32px; padding: 0; font-size: 15px; }
+  .row > .evidence > summary::before { width: 20px; height: 20px; font-size: 14px; }
+  /* About shelf (renders only when jonathans-favs.json holds confirmed entries) */
+  .shelf { margin-top: 56px; max-width: 68ch; }
+  .shelf > h2 { margin: 0 0 16px; }
+  .shelf > p { margin: 0 0 24px; }
+  .shelf__list, .shelf__facts { list-style: none; margin: 0; padding: 0; }
+  .shelf__item { padding: 16px 0; border-top: 1px solid var(--rule); }
+  .shelf__name { margin: 0; font-size: 20px; font-weight: 700; font-stretch: 92%; }
+  .shelf__line { margin: 6px 0 0; }
+  .shelf__why { color: var(--fg-2); }
+  .shelf__facts { margin-top: 6px; color: var(--fg-2); }
+  /* compact row (ranks after position 10): the function's own sentence, the AI tag, one link to the score breakdown on the profile */
+  .row > .cx { grid-area: ev; min-width: 0; }
+  .cx p { margin: 2px 0 0; max-width: 72ch; font-size: 15px; line-height: 1.4; color: var(--fg-2); }
+  .cx .cx-go { margin-top: 6px; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; }
+  .cx .cx-go .chip { min-height: 28px; padding: 3px 12px; font-size: 14px; }
+  .cx .cx-bd { display: inline-flex; align-items: center; min-height: 32px; font-size: 15px; font-weight: 600; color: var(--accent); text-underline-offset: 3px; }
+  .v { display: none; align-items: center; gap: 10px; }
+  .v.v-all { display: inline-flex; }
+  .cov { flex-direction: column; align-items: flex-start; gap: 2px; font-size: 24px; font-weight: 800; font-stretch: 75%; line-height: 1; color: var(--fg); }
+  .cov::after { font-size: 14px; font-weight: 450; font-stretch: 100%; line-height: 1.2; color: var(--fg-2); }
+  .logtick { display: block; overflow: visible; }
+  .logtick .ax, .logtick .tk { stroke: var(--rule-strong); stroke-width: 1; fill: none; }
+  .logtick { width: 96px; height: 22px; }
+  .logtick > path { stroke: var(--chart-1); stroke-width: 3; fill: none; }
+  .logtick > circle { fill: var(--chart-1); r: 3.5px; }
+
+  /* ---------- licence filter: pure CSS, OR across the checked classes (a tool has one class). Label filters live in filter.css. ---------- */
+  .explorer:has(#lic-osi:checked, #lic-fair-code:checked, #lic-source-available:checked, #lic-mixed:checked) .row { display: none; }
+  .explorer:has(#lic-osi:checked) .row[data-lic="osi"],
+  .explorer:has(#lic-fair-code:checked) .row[data-lic="fair-code"],
+  .explorer:has(#lic-source-available:checked) .row[data-lic="source-available"],
+  .explorer:has(#lic-mixed:checked) .row[data-lic="mixed"] { display: grid; }
+
+  /* ---------- figure bands: ruled cells that meet ---------- */
+  .figband { display: grid; gap: 1px; margin: 0 0 1px; background: var(--rule); border: 1px solid var(--rule); }
+  .results > .figband + .figband { margin-top: -1px; border-top: 0; }
+  .figband > .chart { margin: 0; border-top: 0; padding: 20px 24px; background: var(--ink-1); min-width: 0; }
+  .figband--fn2, .figband--tool { grid-template-columns: 1fr 1fr; }
+  .figband--hub, .figband--fn, .figband--bd, .figband--pipe, .figband--one { grid-template-columns: 1fr; }
+
+  /* ---------- evidence drawers ---------- */
+  details.evidence { border-top: 1px solid var(--rule); }
+  details.evidence > summary {
+    display: flex; align-items: center; gap: 12px; min-height: 48px; padding: 4px 0; cursor: pointer; list-style: none;
+    font-size: 16px; font-weight: 600; font-stretch: 92%; color: var(--fg); transition: transform 120ms var(--ease-out);
+  }
+  details.evidence > summary::-webkit-details-marker { display: none; }
+  details.evidence > summary::before {
+    content: "+"; flex: none; display: inline-grid; place-items: center; width: 24px; height: 24px; border: 1px solid var(--rule-strong);
+    border-radius: 50%; font-size: 16px; line-height: 1; color: var(--accent);
+  }
+  details.evidence[open] > summary::before { content: "\2212"; }
+  details.evidence > summary:active { transform: scale(.99); }
+  @media (hover: hover) and (pointer: fine) { details.evidence > summary:hover { color: var(--accent); } }
+  details.evidence[open] > .ev-body { animation: ev-in 240ms var(--ease-out); }
+  @keyframes ev-in { from { opacity: 0; } to { opacity: 1; } }
+  .ev-body { padding: 4px 0 24px 36px; font-size: 16px; line-height: 1.55; min-width: 0; }
+  .ev-body > p, .ev-body .prose { max-width: 68ch; }
+  .ev-body .table-wrap { margin: 12px 0; }
+  .ev-body h3 { margin: 24px 0 8px; }
+  .ev-body h3:first-child { margin-top: 8px; }
+  .drawers { margin-top: 8px; padding-bottom: 1px; border-bottom: 1px solid var(--rule); }
+  .drawers > .res-h { margin: 32px 0 4px; font-size: clamp(22px, 2vw, 28px); }
+  .head-r > details.evidence { margin-top: 20px; max-width: 68ch; }
+  .row-facts { margin: 0 0 12px; }
+  .fn-list { list-style: none; margin: 0; padding: 0; }
+  .fn-list li { padding: 8px 0; border-top: 1px solid var(--rule); }
+  .fn-list .count { margin-left: 8px; color: var(--fg-2); }
+  .fn-list .small { margin-top: 2px; color: var(--fg-2); }
+  p.cta { padding-block: 32px; }
+
+  /* v3 open minors, kept with the layout so they travel together: methodology kv and table sit flush with no doubled rule */
+  .ev-body dl.kv { margin: 0 0 32px; }
+}
+
+@layer mobile {
+  /* ---------- medium widths: rows wrap to two lines ---------- */
+  @media (max-width: 1359px) {
+    .results { --cols: var(--rkw) 40px minmax(0, 1fr) auto; }
+    .rh { display: none; }
+    .row { grid-template-areas: "rk mono name sc" "rk mono go go" "rk mono st lc" "rk mono lb lb" "ev ev ev ev"; row-gap: 8px; }
+    .row .go { flex-wrap: nowrap; }
+    .figband--tool, .figband--fn2 { grid-template-columns: 1fr; }
+  }
+  /* head readouts stack under the title below 1180 so the numerals never reach the 1:3 rule (STUDY-PICK 6) */
+  @media (max-width: 1179px) {
+    .head { grid-template-columns: 1fr; }
+    .head-r { order: 1; padding: 32px 0 20px; border-left: 0; }
+    .head-l { order: 2; padding: 0 0 24px; flex-direction: column-reverse; }
+    .head--tool { grid-template-columns: 120px 1fr; }
+    .head--tool .head-l { order: 0; padding: 32px 24px 0 0; flex-direction: column; }
+    .head--tool .head-r { order: 0; padding-top: 28px; }
+    .readout { display: flex; flex-wrap: wrap; gap: 16px 32px; }
+  }
+
+  /* ---------- phones: rail becomes a sticky filter sheet (details, no JS) ---------- */
+  @media (max-width: 760px) {
+    .explorer, .explorer--fn { grid-template-columns: 1fr; grid-template-areas: none; }
+    .explorer--fn { grid-template-areas: "lead" "rail" "results"; }
+    .explorer--fn > .lead-fig { grid-area: lead; padding: 16px 0 0; border-left: 0; }
+    .lead-fig > .chart { margin-inline: calc(-1 * var(--gut)); border-inline: 0; padding-inline: var(--gut); }
+    .head--tool { grid-template-columns: 96px 1fr; }
+    .mono--xl { font-size: calc(48px * .5); letter-spacing: -.02em; }
+    .rail {
+      top: var(--hdr-h); z-index: 30; max-height: none; overflow: visible; padding: 0 var(--gut);
+      margin-inline: calc(-1 * var(--gut)); background: var(--ink-0); border-block: 1px solid var(--rule-strong);
+    }
+    .rail--rules, .rail--tool { position: static; }
+    .sheet { display: block; }
+    .sheet > summary {
+      display: flex; align-items: center; justify-content: space-between; min-height: 52px; cursor: pointer; list-style: none;
+      font-size: 16px; font-weight: 650; font-stretch: 92%; color: var(--fg);
+    }
+    .sheet > summary::-webkit-details-marker { display: none; }
+    .sheet > summary::after { content: "+"; display: inline-grid; place-items: center; width: 32px; height: 32px; border: 1px solid var(--rule-strong); border-radius: 50%; color: var(--accent); }
+    .sheet[open] > summary::after { content: "\2212"; }
+    .rail-body { display: none; }
+    .rail:has(> .sheet[open]) > .rail-body { display: block; max-height: calc(100dvh - var(--hdr-h) - 54px); overflow: auto; padding: 4px 0 16px; animation: ev-in 240ms var(--ease-out); }
+    .results { padding: 16px 0 0; border-left: 0; }
+    .explorer--fn > .results { padding-top: 16px; }
+    .results { --cols: 40px 40px minmax(0, 1fr); }
+    .row { grid-template-columns: var(--rkw) 40px minmax(0, 1fr); grid-template-areas: "rk mono name" "sc sc sc" "st st lc" "lb lb lb" "go go go" "ev ev ev"; row-gap: 10px; padding: 16px 0; }
+    .row > .rk { font-size: 20px; }
+    .row > .tool-name { display: inline-flex; align-items: center; min-height: 44px; }
+    .results:has(.cov) .row { grid-template-columns: 40px minmax(0, 1fr); grid-template-areas: "mono name" "rk rk" "sc sc" "st lc" "lb lb" "go go" "ev ev"; }
+    .cov { flex-direction: row; align-items: baseline; gap: 6px; font-size: 20px; }
+    .row > .lc { justify-self: end; }
+    .row > .st { grid-column: 1 / 3; }
+    /* function and profile lists: the stars tick plus number need about 150px, more than the two narrow columns it spans on the hub variant, so it takes the full width and the licence label drops to its own line */
+    .results:not(:has(.cov)) .row { grid-template-areas: "rk mono name" "sc sc sc" "st st st" "lc lc lc" "lb lb lb" "go go go" "ev ev ev"; }
+    .results:not(:has(.cov)) .row > .st { grid-column: 1 / -1; }
+    .results:not(:has(.cov)) .row > .lc { justify-self: start; }
+    .btn, .go a { min-height: 44px; padding: 0 16px; font-size: 15px; }
+    .cx .cx-bd { min-height: 44px; }
+    .sw, .lf, .toc a { min-height: 44px; }
+    .figband { margin-inline: calc(-1 * var(--gut)); border-inline: 0; }
+    .figband > .chart { padding-inline: var(--gut); }
+    .ev-body { padding-left: 0; }
+    .tool-meta { font-size: 15px; }
+    .plate li { grid-template-columns: minmax(0, 1fr) 36px; row-gap: 4px; padding: 10px 0; }
+    .plate li svg { grid-column: 1 / -1; grid-row: 2; }
+    .plate a { font-size: 18px; }
+    .go { gap: 8px; }
+  }
+  @media (max-width: 400px) {
+    .head h1 { overflow-wrap: anywhere; }
+    .head--tool { grid-template-columns: 72px 1fr; }
+    .tool-h1 { font-size: 40px; }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn, .go a, .sw, .lf .chip, details.evidence > summary, .pd { transition-duration: 120ms; }
+  .btn:active, .go a:active, .sw:active, .lf:active .chip, details.evidence > summary:active { transform: none; }
+  details.evidence[open] > .ev-body, .rail:has(> .sheet[open]) > .rail-body { animation: none; }
+}
+
+/* ---------- designed states, one rule per component (hover, press, focus) ----------
+   The rail, rows, buttons, chips and drawers each carry their own hover, press and focus-visible state. Focus rings follow each shape. */
+@layer slots {
+  .go a:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 999px; }
+  .btn:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 999px; }
+  .tool-name:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; border-radius: 2px; }
+  .plate a:focus-visible { outline: 2px solid var(--focus); outline-offset: -2px; }
+  .toc a:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 4px; }
+  .sw:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 999px; }
+  .sheet > summary:focus-visible { outline: 2px solid var(--focus); outline-offset: -2px; }
+  details.evidence > summary:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 4px; }
+  .fn-list a:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 2px; }
+  .ev-body a:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 2px; }
+  .row:focus-within { background: color-mix(in srgb, var(--ink-2) 40%, transparent); }
+  .toc a:active { color: var(--fg); }
+  .sheet > summary:active { background: var(--ink-2); }
+  .fn-list a:active { color: var(--fg); }
+  .ev-body a:active { color: var(--fg); }
+  .row:active .mono { transform: scale(.96); }
+  .mono { transition: transform 120ms var(--ease-out), background-color 180ms var(--ease-out); }
+  @media (hover: hover) and (pointer: fine) {
+    .toc a:hover { color: var(--fg); text-decoration-thickness: 2px; }
+    .sheet > summary:hover { background: var(--ink-2); }
+    .fn-list a:hover { color: var(--fg); }
+    .ev-body a:hover { color: var(--fg); }
+    .row:hover .mono { background: var(--signal); }
+    .sw-links a.sw:hover { color: var(--accent); }
+    .rule-list li:hover { background: var(--ink-2); }
+    .lf:hover .num { color: var(--fg); }
+    .figband > .chart:hover { background: var(--ink-1); }
+    .go a:hover { color: var(--fg); }
+    .tool-meta a:hover { color: var(--fg); }
+    .meta a:hover { color: var(--fg); }
+  }
+  .meta a:active { color: var(--fg); }
+  .meta a:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 2px; }
+  .lf:focus-within .num { color: var(--fg); }
+  .rule-list li:focus-within { background: var(--ink-2); }
+  .toc a:focus { outline-offset: 2px; }
+  .res-note a:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mono { transition: none; }
+  .row:active .mono { transform: none; }
+}

@@ -62,15 +62,15 @@
   .hub-hero__plate::before {
     background-image: radial-gradient(circle at 50% 50%, var(--fill) 0 1.6px, transparent 2.1px);
     background-size: 12px 12px;
-    -webkit-mask-image: radial-gradient(ellipse 85% 90% at 78% 30%, #000 0, rgba(0,0,0,.55) 45%, transparent 85%);
-            mask-image: radial-gradient(ellipse 85% 90% at 78% 30%, #000 0, rgba(0,0,0,.55) 45%, transparent 85%);
+    -webkit-mask-image: radial-gradient(ellipse 85% 90% at 78% 30%, var(--mask-on) 0, var(--mask-mid) 45%, transparent 85%);
+            mask-image: radial-gradient(ellipse 85% 90% at 78% 30%, var(--mask-on) 0, var(--mask-mid) 45%, transparent 85%);
   }
   .hub-hero__plate::after {
     background-image: radial-gradient(circle at 50% 50%, var(--fill) 0 3px, transparent 3.6px);
     background-size: 24px 24px;
     background-position: 6px 6px;
-    -webkit-mask-image: radial-gradient(ellipse 55% 60% at 82% 22%, #000 0, transparent 80%);
-            mask-image: radial-gradient(ellipse 55% 60% at 82% 22%, #000 0, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse 55% 60% at 82% 22%, var(--mask-on) 0, transparent 80%);
+            mask-image: radial-gradient(ellipse 55% 60% at 82% 22%, var(--mask-on) 0, transparent 80%);
   }
 
   .hub-hero__col {

@@ -249,15 +249,24 @@
   main :is(#edition, #licence-labels) > h2 { margin: 96px 0 24px; }
 
   main .prose:has(> #how-scored) > :is(p, ul) { max-width: 68ch; }
-  main :is(#edition, #licence-labels) > dl.kv { margin-bottom: 0; }
+  /* v3 minor 1 (closed in v4): the kv block and the table below it no longer touch or double their rule */
+  main :is(#edition, #licence-labels) > dl.kv { margin-bottom: 48px; }
+  main dl.kv + .table-wrap { margin-top: 0; }
 
   @media (max-width: 760px) {
     main .prose:has(> #how-scored) > h2,
     main :is(#edition, #licence-labels) > h2 { margin-top: 64px; }
+    main :is(#edition, #licence-labels) > dl.kv { margin-bottom: 32px; }
 
     main.page-tool .wrap > h2 { margin-top: 64px; }
     main.page-tool .wrap > h2:first-of-type { margin-top: 48px; }
     main.page-tool .wrap > dl.kv { grid-template-columns: 1fr; }
+    main.page-tool .wrap > dl.kv,
+    main.page-tool .wrap > ul.plain:has(> li.num) { width: auto; max-width: none; }
+  }
+
+  /* v3 minor 4 (closed in v4): the tool kv and health lists use the full measure from 1100px down, not 760px */
+  @media (max-width: 1100px) {
     main.page-tool .wrap > dl.kv,
     main.page-tool .wrap > ul.plain:has(> li.num) { width: auto; max-width: none; }
   }

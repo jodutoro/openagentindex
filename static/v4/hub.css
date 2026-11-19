@@ -1,0 +1,132 @@
+/* v4 hub, "calm top, v4 results" (build/design-v4/HUB-CALM.md). Linked after layout.css (and before theme.css) on every page; every rule is scoped
+   under .hubx, so no other page changes. Hero = the v3 composition (H1 left, dot-column plate right). Results = the v4 Explorer, untouched.
+   Unlayered on purpose: it must win over the layout.css layers for the hub only. Tokens only; no new hue. */
+
+/* ---------- hero: one idea, one band ---------- */
+.hubx .hx-hero {
+  display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+  margin: 0 0 var(--space-7, 48px);
+}
+.hubx .hx-head { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 20px; padding: 40px 48px 40px 0; min-width: 0; }
+.hubx .hx-head h1 {
+  margin: 0; max-width: 13em; color: var(--fg); font-size: clamp(36px, 4vw, 60px); font-weight: 750; font-stretch: 78%;
+  line-height: .92; text-transform: uppercase; letter-spacing: 0; text-wrap: balance;
+}
+.hubx .hx-meta { margin: 0; font-size: 16px; line-height: 1.4; color: var(--fg-2); }
+
+/* ---------- the plate: halftone field + one dot column per rendered job ---------- */
+.hubx .hx-plate {
+  position: relative; isolation: isolate; overflow: hidden; margin: 0; min-width: 0;
+  display: flex; flex-direction: column; justify-content: flex-end; gap: 20px;
+  min-height: 0; padding: 24px 24px 16px; background: var(--ink-1); border-left: 1px solid var(--rule);
+}
+.hubx .hx-plate::before, .hubx .hx-plate::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+.hubx .hx-plate::before {
+  background-image: radial-gradient(circle at 50% 50%, var(--fill) 0 1.6px, transparent 2.1px); background-size: 12px 12px;
+  -webkit-mask-image: radial-gradient(ellipse 85% 90% at 78% 30%, var(--mask-on) 0, var(--mask-mid) 45%, transparent 85%);
+          mask-image: radial-gradient(ellipse 85% 90% at 78% 30%, var(--mask-on) 0, var(--mask-mid) 45%, transparent 85%);
+}
+.hubx .hx-plate::after {
+  background-image: radial-gradient(circle at 50% 50%, var(--fill) 0 3px, transparent 3.6px); background-size: 24px 24px; background-position: 6px 6px;
+  -webkit-mask-image: radial-gradient(ellipse 55% 60% at 82% 22%, var(--mask-on) 0, transparent 80%);
+          mask-image: radial-gradient(ellipse 55% 60% at 82% 22%, var(--mask-on) 0, transparent 80%);
+}
+.hubx .hx-cols { list-style: none; margin: 0; padding: 0; display: flex; align-items: flex-end; justify-content: space-around; gap: 8px; }
+.hubx .hx-cols > li { flex: 1 1 0; min-width: 0; display: flex; }
+.hubx .hx-col {
+  flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 12px;
+  color: var(--fg); text-decoration: none; outline-offset: 2px;
+}
+.hubx .hx-n { font-size: 32px; font-weight: 800; font-stretch: 75%; line-height: 1; color: var(--fg); }
+.hubx .hx-cols { --hx-h: 230px; --hx-pitch: calc(var(--hx-h) / var(--hx-max, 10)); --hx-d: min(10px, calc(var(--hx-pitch) * .6)); }  /* the tallest column always fits the same band */
+.hubx .hx-dots { display: flex; flex-direction: column-reverse; gap: calc(var(--hx-pitch) - var(--hx-d)); }  /* rank 1 sits on the baseline */
+.hubx .hx-dots i {
+  display: block; width: var(--hx-d, 10px); height: var(--hx-d, 10px); border-radius: 50%; background: var(--fg);
+  transition: background-color 180ms var(--ease-out, cubic-bezier(.23, 1, .32, 1));
+  animation: hx-dot 250ms var(--ease-out, cubic-bezier(.23, 1, .32, 1)) backwards;   /* base state is the filled end state; the entrance is enhancement only */
+}
+.hubx .hx-dots i:nth-child(2) { animation-delay: 24ms; } .hubx .hx-dots i:nth-child(3) { animation-delay: 48ms; }
+.hubx .hx-dots i:nth-child(4) { animation-delay: 72ms; } .hubx .hx-dots i:nth-child(5) { animation-delay: 96ms; }
+.hubx .hx-dots i:nth-child(6) { animation-delay: 120ms; } .hubx .hx-dots i:nth-child(7) { animation-delay: 144ms; }
+.hubx .hx-dots i:nth-child(8) { animation-delay: 168ms; } .hubx .hx-dots i:nth-child(n+9) { animation-delay: 192ms; }
+@keyframes hx-dot { from { opacity: .25; transform: scale(.6); } to { opacity: 1; transform: none; } }
+.hubx .hx-name {
+  align-self: stretch; padding-top: 12px; border-top: 1px solid var(--rule-strong); min-height: 3.6em; box-sizing: content-box;
+  text-align: center; font-size: 14px; font-weight: 600; font-stretch: 92%; line-height: 1.2; color: var(--fg); text-wrap: balance; overflow-wrap: break-word;
+  transition: color 180ms var(--ease-out, cubic-bezier(.23, 1, .32, 1));
+}
+.hubx .hx-cap { margin: 0; font-size: 15px; line-height: 1.3; color: var(--fg-2); text-align: right; font-variant-numeric: tabular-nums lining-nums; }
+.hubx .hx-col:focus-visible { outline: 2px solid var(--focus, var(--accent)); }
+.hubx .hx-col:focus-visible i { background: var(--signal); }
+.hubx .hx-col:active .hx-n, .hubx .hx-col:active .hx-name { transform: scale(.97); }
+@media (hover: hover) and (pointer: fine) {
+  .hubx .hx-col:hover i { background: var(--signal); }
+  .hubx .hx-col:hover .hx-name { color: var(--accent); }
+}
+
+/* daylight: the plate is the cobalt enamel sign (theme.css pattern, same tokens). No halftone shimmer, one even dot grid. */
+html[data-theme="light"] .hubx .hx-plate { background: var(--fill); --fg: var(--on-fill); --fg-2: var(--on-fill); --signal: var(--plate-hover); --rule-strong: var(--plate-rule); --focus: var(--on-fill); }
+html[data-theme="light"] .hubx .hx-plate::before { background-image: radial-gradient(circle at 50% 50%, var(--plate-dot) 0 1.4px, transparent 1.9px); background-size: 12px 12px; -webkit-mask-image: none; mask-image: none; }
+html[data-theme="light"] .hubx .hx-plate::after { display: none; }
+html[data-theme="light"] .hubx .hx-col:hover .hx-name { color: var(--plate-hover); }
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) .hubx .hx-plate { background: var(--fill); --fg: var(--on-fill); --fg-2: var(--on-fill); --signal: var(--plate-hover); --rule-strong: var(--plate-rule); --focus: var(--on-fill); }
+  :root:not([data-theme]) .hubx .hx-plate::before { background-image: radial-gradient(circle at 50% 50%, var(--plate-dot) 0 1.4px, transparent 1.9px); background-size: 12px 12px; -webkit-mask-image: none; mask-image: none; }
+  :root:not([data-theme]) .hubx .hx-plate::after { display: none; }
+}
+
+/* ---------- results: the v4 Explorer starts right under the hero ---------- */
+.hubx .rail { padding-top: 0; }
+.hubx .results { padding-top: 0; }
+.hubx .res-h { margin-top: 0; }
+
+/* ---------- below the rows: the lede and the licence figure, then the drawers ---------- */
+.hubx .hx-after { margin-top: 40px; display: grid; gap: 32px; }
+.hubx .hx-lede { margin: 0; max-width: 62ch; font-size: 20px; line-height: 1.45; color: var(--fg); }
+.hubx .hx-lede p { margin: 0; }
+.hubx .hx-lic { border-top: 1px solid var(--rule); padding-top: 24px; }
+.hubx .hx-lic .chart { margin: 0; border: 0; background: none; padding: 0; }
+
+/* ---------- widths ---------- */
+@media (max-width: 1180px) {
+  .hubx .hx-hero { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .hubx .hx-head { padding-right: 32px; }
+  .hubx .hx-plate { padding-inline: 16px; }
+  .hubx .hx-cols { gap: 4px; }
+}
+@media (max-width: 1000px) {            /* stacked: the plate runs full width as a horizontal strip of columns */
+  .hubx .hx-hero { grid-template-columns: minmax(0, 1fr); }
+  .hubx .hx-head { padding: 32px 0; gap: 16px; }
+  .hubx .hx-plate { border-left: 0; border-top: 1px solid var(--rule); min-height: 0; padding: 32px 24px 20px; }
+  .hubx .hx-cols { gap: 12px; }
+}
+@media (max-width: 760px) {             /* v3 mobile: the plate turns into ruled rows, name left, dots, count right */
+  .hubx .hx-head h1 { font-size: clamp(36px, 10.5vw, 48px); }
+  .hubx .hx-hero { margin-bottom: var(--space-6, 32px); }
+  .hubx .hx-plate { margin-inline: calc(var(--gutter, 20px) * -1); padding: 8px 20px 16px; gap: 8px; }
+  .hubx .hx-cols { flex-direction: column; align-items: stretch; gap: 0; }
+  .hubx .hx-cols > li { border-bottom: 1px solid var(--rule-strong); }
+  .hubx .hx-cols > li:last-child { border-bottom: 0; }
+  .hubx .hx-col { flex-direction: row; align-items: center; justify-content: space-between; gap: 12px; min-height: 48px; padding-block: 6px; }
+  .hubx .hx-n { order: 3; font-size: 24px; min-width: 1.2em; text-align: right; }
+  .hubx .hx-cols { --hx-h: 180px; }   /* on mobile the same fit runs along the row */
+  .hubx .hx-dots { order: 2; flex-direction: row; flex: none; width: var(--hx-h); justify-content: flex-start; }
+  .hubx .hx-name { order: 1; flex: 1 1 0; align-self: center; padding: 0; border-top: 0; min-height: 0; text-align: left; font-size: 16px; }
+  .hubx .hx-cap { text-align: left; }
+  .hubx .hx-after { margin-top: 32px; }
+  .hubx .hx-lede { font-size: 18px; }
+}
+
+@media (max-width: 390px) {             /* 320 to 390: ruled rows must fit; name shrinks first, dots yield, count keeps its width */
+  .hubx .hx-col { gap: 8px; }
+  .hubx .hx-name { min-width: 0; overflow-wrap: anywhere; }
+  .hubx .hx-cols { --hx-h: 96px; }
+  .hubx .hx-dots { flex: 0 1 var(--hx-h); min-width: 0; overflow: hidden; }
+  .hubx .hx-n { flex: none; font-size: 22px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hubx .hx-dots i { animation: none; transition-duration: 120ms; }
+  .hubx .hx-name { transition: none; }
+  .hubx .hx-col:active .hx-n, .hubx .hx-col:active .hx-name { transform: none; }
+}

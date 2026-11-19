@@ -20,7 +20,7 @@
 .chip--source-available { border: 1px dashed var(--rule-strong); }
 .chip--mixed {
   border-color: var(--rule-strong);
-  background: linear-gradient(90deg, rgba(244,246,249,.28) 50%, transparent 50%);
+  background: linear-gradient(90deg, var(--chip-mixed) 50%, transparent 50%);
 }
 .chip--pending { border-color: var(--rule-strong); color: var(--fg-2); }
 /* Pending chips can carry a sentence ("No built-in AI documented as of ..."); let them wrap inside the column instead of pushing the page sideways at 390. */

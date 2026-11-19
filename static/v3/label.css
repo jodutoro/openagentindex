@@ -10,8 +10,8 @@
 
   .label-line > .v3-label,
   .v3-label {
-    --_fill: var(--fill, #1f4fd6);
-    --_fg: var(--fg, #f4f6f9);
+    --_fill: var(--fill);
+    --_fg: var(--on-fill);
     display: inline-flex;
     align-items: center;
     gap: 10px;
@@ -58,7 +58,7 @@
   p.research-note {
     margin: 12px 0 0;
     max-width: 68ch;
-    color: var(--fg-2, #aab4c3);
+    color: var(--fg-2);
     font-size: 14px;
     font-weight: 450;
     line-height: 1.45;

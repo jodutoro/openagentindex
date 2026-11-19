@@ -1,0 +1,250 @@
+/* Open Agent Index v4: chart slot. Pairs with site/lib/v4/charts.mjs.
+   Colour only through tokens (tokens.css). No hex here. Charts are static: no JS, no canvas.
+   Text in the SVGs is set in user units: 15px in the 320 viewBox (narrow) and 17px in the 800 viewBox (wide).
+   The narrow SVG is shown below a 704px figure width, the wide one from 704px up, and neither is ever
+   rendered smaller than 0.88 of its viewBox, so text stays at 14px or more. */
+@layer tokens, base, slots, mobile;
+
+@layer slots {
+  .chart {
+    margin: 0;
+    padding-block: var(--space-5, 24px);
+    border-top: 1px solid var(--rule);
+    container-type: inline-size;
+    position: relative;
+    color: var(--fg);
+    font-variant-numeric: tabular-nums lining-nums;
+  }
+  .chart__cap {
+    max-width: 62ch;
+    margin: 0 0 var(--space-4, 16px);
+    font-size: 16px;
+    line-height: 1.45;
+    color: var(--fg-2);
+  }
+  .chart__cap strong { color: var(--fg); font-weight: 600; }
+  .chart__cap a { color: var(--accent); }
+
+  .chart__body { display: block; }
+  .chart__plot { min-width: 0; container-type: inline-size; }
+
+  .chart__svg { display: block; width: 100%; height: auto; overflow: visible; }
+  .chart__svg--tall { max-width: 420px; }
+  .chart__svg--wide { display: none; max-width: 800px; }
+  /* Below 300px of plot width the 320 viewBox renders under 0.88: bump its text so it stays 14px or more (16.5 x 280/320 = 14.4). */
+  @container (max-width: 299px) { .chart svg.chart__svg--tall text { font-size: 16.5px; } }
+  .chart__svg--one { max-width: 300px; }
+  @container (min-width: 704px) {
+    .chart__svg--tall { display: none; }
+    .chart__svg--wide { display: block; }
+  }
+
+  /* text inside svg: size in user units */
+  .chart svg text {
+    font-family: "Archivo", system-ui, sans-serif;
+    font-size: 15px;
+    font-stretch: 100%;
+    font-variant-numeric: tabular-nums lining-nums;
+    fill: var(--fg);
+  }
+  .chart svg.chart__svg--wide text { font-size: 17px; }
+  .chart svg .t-2 { fill: var(--chart-label, var(--fg-2)); }
+  .chart svg .t-strong { font-weight: 700; }
+  .chart svg .t-onfill { fill: var(--on-fill); }
+
+  /* marks */
+  .chart .c-track { fill: var(--dot-off); }
+  .chart .c-grid { stroke: var(--chart-grid, var(--rule)); stroke-width: 1; fill: none; }
+  .chart .c-axis { stroke: var(--rule-strong); stroke-width: 1; }
+  .chart .seg-1 { fill: var(--chart-1, var(--signal)); }
+  .chart .seg-2 { fill: var(--chart-2, var(--accent)); }
+  .chart .seg-3, .chart .seg-4 { stroke: var(--chart-1, var(--signal)); stroke-width: 1.5; }
+  .chart .pat-stroke { stroke: var(--chart-1, var(--signal)); stroke-width: 2; }
+  .chart .pat-fill { fill: var(--chart-1, var(--signal)); }
+  .chart .dot-on { fill: var(--chart-1, var(--signal)); }
+  .chart .dot-part { fill: var(--chart-1, var(--signal)); }
+  .chart .dot-off { fill: var(--dot-off); }
+  .chart .mk-fill { fill: var(--chart-1, var(--signal)); stroke: var(--ink-0); stroke-width: 2; }
+  .chart .mk-ring { fill: var(--ink-0); stroke: var(--chart-1, var(--signal)); stroke-width: 3; }
+
+  /* licence waffle: solid, outline, half, hatched */
+  .chart .lc-solid { fill: var(--chart-1, var(--signal)); }
+  .chart .lc-ring { fill: none; stroke: var(--chart-1, var(--signal)); stroke-width: 2; }
+  .chart .lc-hatch { stroke: none; }
+  .chart .lc-pending { stroke-dasharray: 2 3; }
+
+  /* diagrams */
+  .chart .c-box { fill: var(--ink-1); stroke: var(--rule-strong); stroke-width: 1.5; }
+  .chart .c-box--fill, .chart .c-box--leaf { fill: var(--fill); stroke: var(--fill); }
+  .chart .c-box--ghost { fill: none; }
+  .chart .c-box--dash { fill: none; stroke: var(--fg-2); stroke-dasharray: 6 4; }
+  .chart .c-frame { fill: none; stroke: var(--chart-1, var(--signal)); stroke-width: 2; }
+  .chart .c-edge { fill: none; stroke: var(--fg-2); stroke-width: 1.75; }
+  .chart .c-edge--dash { stroke-dasharray: 6 4; }
+  .chart .c-arrow { fill: var(--fg-2); }
+
+  /* monogram */
+  .monogram { display: inline-block; flex: none; vertical-align: middle; }
+  .monogram .mono-plate { fill: var(--fill); }
+  .monogram .mono-t { fill: var(--on-fill); font-family: "Archivo", system-ui, sans-serif; font-size: 18px; font-weight: 700; font-stretch: 100%; letter-spacing: 0; }
+
+  /* legend */
+  .chart__legend {
+    display: flex; flex-wrap: wrap; gap: 8px 24px;
+    margin: var(--space-4, 16px) 0 0; padding: 0; list-style: none;
+    font-size: 15px; line-height: 1.3; color: var(--fg);
+  }
+  .chart__legend li { display: flex; align-items: center; gap: 10px; min-height: 24px; }
+  .chart__swatch { flex: none; display: block; }
+  .chart__legend--stack { flex-direction: column; gap: 10px; }
+  .chart__legend--stack .chart__lbl { flex: 1; }
+  .chart__legend--stack .chart__n { font-weight: 700; min-width: 2ch; text-align: right; }
+
+  /* licence: dot grid beside its legend when there is room */
+  @container (min-width: 560px) {
+    .chart__body--side { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: var(--space-6, 32px); align-items: center; }
+    .chart__body--side .chart__legend { margin-top: 0; }
+  }
+
+  /* visually hidden table equivalent */
+  .sr-only {
+    position: absolute !important;
+    width: 1px; height: 1px; margin: -1px; padding: 0; border: 0;
+    overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
+
+/* Enhancement only. Base state is the finished chart. Explicit from/to (DIRECTION-v3 5.4), transform and opacity only. */
+@layer slots {
+  @media (prefers-reduced-motion: no-preference) {
+    @keyframes chart-in { from { opacity: .25; transform: scale(.6); } to { opacity: 1; transform: none; } }
+    @keyframes chart-grow { from { opacity: .25; transform: scaleX(.6); } to { opacity: 1; transform: none; } }
+    .chart .dot-on, .chart .dot-part, .chart .lc-dot {
+      transform-box: fill-box; transform-origin: center;
+      animation: chart-in 600ms var(--ease-out, cubic-bezier(.23, 1, .32, 1)) both;
+      animation-delay: min(calc(var(--i, 0) * 8ms), 400ms);
+    }
+    .chart--comparison .seg, .chart--stars .seg {
+      transform-box: fill-box; transform-origin: left center;
+      animation: chart-grow 600ms var(--ease-out, cubic-bezier(.23, 1, .32, 1)) both;
+      animation-delay: min(calc(var(--i, 0) * 8ms), 400ms);
+    }
+  }
+}
+
+@layer mobile {
+  @media (max-width: 760px) {
+    .chart { padding-block: var(--space-4, 16px); }
+    .chart__cap { font-size: 16px; }
+    .chart__legend { flex-direction: column; gap: 8px; }
+    .chart__legend li { min-height: 28px; }
+  }
+}
+
+/* ---- v4 round 2: HTML charts (comparison, funnel, breakdown) and the CSS score dots. All text here is HTML, 14px or more. */
+@layer slots {
+  /* hs-1..4: the four criterion fills. Solid, solid, hatched, dotted: told apart without colour. */
+  .chart .hs-1 { background: var(--chart-1, var(--signal)); }
+  .chart .hs-2 { background: var(--chart-2, var(--accent)); }
+  .chart .hs-3 { background: repeating-linear-gradient(135deg, var(--chart-1, var(--signal)) 0 2px, transparent 2px 6px); box-shadow: inset 0 0 0 1.5px var(--chart-1, var(--signal)); }
+  .chart .hs-4 { background: radial-gradient(circle at 3px 3px, var(--chart-1, var(--signal)) 1.5px, transparent 2px) 0 0 / 6px 6px; box-shadow: inset 0 0 0 1.5px var(--chart-1, var(--signal)); }
+
+  /* v3 20-dot score row from one custom property. 1 dot = 5 points. */
+  .sdots {
+    --d: 10px; --pitch: 12px;
+    display: inline-block; flex: none; vertical-align: middle;
+    width: calc(var(--pitch) * 20); height: var(--d);
+    background: linear-gradient(90deg, var(--signal) calc(var(--score, 0) * 1%), var(--dot-off) 0);
+    -webkit-mask: radial-gradient(circle closest-side, #000 calc(100% - .5px), transparent 100%) 0 0 / var(--pitch) 100% repeat-x;
+            mask: radial-gradient(circle closest-side, #000 calc(100% - .5px), transparent 100%) 0 0 / var(--pitch) 100% repeat-x;
+  }
+
+  /* functionComparison */
+  .cmp__rows, .fn__rows, .bd__rows { list-style: none; margin: 0; padding: 0; }
+  .cmp__row, .cmp__axis {
+    display: grid; align-items: center; column-gap: 12px;
+    grid-template-columns: 2.75rem minmax(0, 1fr) auto;
+    grid-template-areas: "rank name score" "bar bar bar";
+    row-gap: 6px; padding-block: 8px; min-height: 66px;
+  }
+  .cmp__rank, .cmp__score { font-size: 22px; font-weight: 700; line-height: 1.1; font-variant-numeric: tabular-nums lining-nums; }
+  .cmp__rank { grid-area: rank; }
+  .cmp__score { grid-area: score; text-align: right; }
+  .cmp__name { grid-area: name; font-size: 16px; line-height: 1.25; font-weight: 600; color: var(--fg); min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-decoration: none; }
+  a.cmp__name:hover { text-decoration: underline; }
+  a.cmp__name:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+  .cmp__bar, .cmp__strip {
+    grid-area: bar; position: relative; display: flex; height: 22px; min-width: 0;
+    background: linear-gradient(90deg, var(--chart-grid, var(--rule)) 1px, transparent 1px) 0 0 / 25% 100%, var(--dot-off);
+  }
+  .cmp__seg { display: block; flex: none; height: 100%; width: calc(var(--w) * 1%); box-shadow: inset -1.5px 0 var(--ink-0); }
+  .cmp__strip { background: linear-gradient(90deg, var(--chart-grid, var(--rule)) 1px, transparent 1px) 0 0 / 25% 100%; border-bottom: 1px solid var(--rule-strong); }
+  .cmp__strip i { position: absolute; top: 50%; left: calc(var(--s) * 1%); width: 8px; height: 8px; margin: -4px 0 0 -4px; border-radius: 50%; background: var(--fg-2); }
+  .cmp__more { grid-area: more; font-size: 16px; line-height: 1.3; color: var(--fg-2); }
+  .cmp__row--more { grid-template-areas: "more more more" "bar bar bar"; }
+  .cmp__axis { min-height: 0; padding-block: 4px 0; grid-template-areas: "bar bar bar"; }
+  .cmp__ticks { grid-area: bar; position: relative; display: block; height: 22px; font-size: 14px; line-height: 22px; color: var(--chart-label, var(--fg-2)); font-variant-numeric: tabular-nums; }
+  .cmp__ticks span { position: absolute; left: calc(var(--p) * 1%); transform: translateX(-50%); white-space: nowrap; } /* the last tick (100) sits at left:100% and wraps to one digit per line in a narrow plot */
+  .cmp__ticks span:first-child { transform: none; }
+  .cmp__ticks span:last-child { transform: translateX(-100%); }
+  .cmp__sw { display: block; width: 28px; height: 14px; flex: none; }
+  .cmp__legend b, .bd__w { font-weight: 700; font-variant-numeric: tabular-nums; }
+  @container (min-width: 560px) {
+    .cmp__row, .cmp__axis { grid-template-columns: 3rem 12rem minmax(0, 1fr) 4.75rem; grid-template-areas: "rank name bar score"; row-gap: 0; min-height: 48px; padding-block: 6px; }
+    .cmp__row--more { grid-template-areas: "more more bar ."; }
+    .cmp__more { grid-area: more; }
+    .cmp__axis { grid-template-areas: "rank name bar score"; min-height: 0; }
+    .cmp__bar, .cmp__strip { height: 24px; }
+  }
+
+  /* decisionFunnel */
+  .fn__head, .fn__row { display: grid; align-items: center; column-gap: 12px; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "q left" "dots dots"; row-gap: 8px; }
+  .fn__head { grid-template-areas: "dots dots"; grid-template-columns: minmax(0, 1fr); padding-bottom: 4px; }
+  .fn__row { padding: 12px 0; border-top: 1px solid var(--rule); }
+  .fn__q { grid-area: q; font-size: 16px; line-height: 1.3; display: flex; align-items: baseline; gap: 10px; }
+  .fn__no { font-size: 22px; font-weight: 700; min-width: 1ch; font-variant-numeric: tabular-nums; }
+  .fn__left { grid-area: left; font-size: 16px; text-align: right; white-space: nowrap; color: var(--fg-2); }
+  .fn__left b { font-size: 22px; color: var(--fg); font-variant-numeric: tabular-nums; }
+  .fn__head .fn__dots, .fn__row .fn__dots { grid-area: dots; }
+  .fn__dots { display: grid; grid-template-columns: repeat(var(--n), minmax(0, 1fr)); align-items: center; justify-items: center; min-height: 28px; }
+  .fn__dots b { font-size: 14px; font-weight: 700; line-height: 1; color: var(--fg-2); letter-spacing: 0; }
+  .fn__dots i { display: block; width: 8px; height: 8px; border-radius: 50%; background: var(--dot-off); }
+  .fn__dots i.on { width: 16px; height: 16px; background: var(--signal); }
+  .fn__answer { display: flex; align-items: center; gap: 12px; margin: 8px 0 0; padding-top: 14px; border-top: 1px solid var(--rule-strong); font-size: 16px; line-height: 1.4; }
+  .fn__answer b { font-weight: 700; }
+  .fn__mono { flex: none; display: grid; place-items: center; width: 36px; height: 36px; background: var(--fill); color: var(--on-fill); font-size: 14px; font-weight: 700; }
+  .fn__note { margin: 8px 0 0; font-size: 14px; color: var(--fg-2); }
+  @container (min-width: 560px) {
+    .fn__head, .fn__row { grid-template-columns: minmax(12rem, 17rem) minmax(0, 560px) 1fr; grid-template-areas: "q dots left"; row-gap: 0; column-gap: 20px; }
+    .fn__head { grid-template-areas: ". dots ."; }
+    .fn__left { text-align: left; }
+  }
+
+  /* scoreBreakdown */
+  .bd__row { display: grid; align-items: center; column-gap: 12px; row-gap: 6px; padding: 12px 0; border-top: 1px solid var(--rule); grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "lab val" "track track"; }
+  .bd__lab { grid-area: lab; font-size: 16px; font-weight: 600; }
+  .bd__w { margin-left: 6px; font-weight: 400; color: var(--fg-2); }
+  .bd__val { grid-area: val; font-size: 16px; color: var(--fg-2); text-align: right; white-space: nowrap; }
+  .bd__val b { font-size: 22px; color: var(--fg); font-variant-numeric: tabular-nums; }
+  .bd__track { grid-area: track; position: relative; display: block; height: 22px; width: calc(var(--tw) * 1%); background: var(--dot-off); }
+  .bd__fill { position: absolute; left: 0; top: 0; bottom: 0; display: block; width: calc(var(--s) * 1%); }
+  .bd__tick { position: absolute; top: -5px; bottom: -5px; left: calc(var(--s) * 1%); width: 3px; margin-left: -1.5px; background: var(--fg); box-shadow: 0 0 0 1px var(--ink-0); }
+  .bd__tick--here { top: -9px; bottom: -9px; }
+  .bd__tick--key { position: static; display: block; flex: none; width: 3px; height: 18px; margin: 0 12px 0 0; }
+  .bd__jobs li { align-items: flex-start; }
+  .bd__total { display: flex; justify-content: space-between; gap: 12px; margin: 0; padding-top: 14px; border-top: 1px solid var(--rule-strong); font-size: 16px; font-weight: 600; }
+  .bd__total b { font-size: 22px; font-variant-numeric: tabular-nums; }
+  @container (min-width: 560px) {
+    .bd__row { grid-template-columns: 13rem minmax(0, 1fr) 8rem; grid-template-areas: "lab track val"; row-gap: 0; }
+    .bd__track { height: 24px; }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .cmp__seg { transform-origin: left center; animation: chart-grow 600ms var(--ease-out, cubic-bezier(.23, 1, .32, 1)) both; animation-delay: min(calc(var(--i, 0) * 8ms), 400ms); }
+    .bd__fill { transform-origin: left center; animation: chart-grow 600ms var(--ease-out, cubic-bezier(.23, 1, .32, 1)) both; }
+  }
+}
+@layer mobile {
+  @media (max-width: 480px) { .sdots { --pitch: 9px; --d: 8px; } }
+}

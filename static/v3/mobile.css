@@ -21,6 +21,7 @@
     table.ledger a.small,
     table.ledger td[data-label="Licence"] .small a,
     main .wrap > ul.plain + span.small > a,
+    main.page-tool p.small > a,
     dl.kv dd > span.small > a {
       display: inline-flex;
       align-items: center;
@@ -73,10 +74,10 @@
 
   /* ---------- narrowest supported: 320 ---------- */
   @media (max-width: 360px) {
-    .hub-hero__head h1 { font-size: clamp(30px, 10vw, 36px); }
+    .hub-hero__head h1 { font-size: 36px; } /* v3 minor 3 (closed in v4): the token floor, not 32px */
     .hub-hero__plate { padding-inline: 12px; }
     table.ledger > tbody > tr:first-child { grid-template-columns: 44px minmax(0, 1fr); }
     table.ledger > tbody > tr:first-child > td { padding-inline: 12px; }
-    table.ledger .rank { font-size: 36px; }
+    table.ledger .rank { font-size: 40px; } /* v3 minor 3: token minimum */
   }
 }

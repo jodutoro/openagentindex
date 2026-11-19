@@ -1,0 +1,109 @@
+/* origin: own code, no registry port. v4 theme toggle + daylight variants of v3 decoration.
+   Unlayered on purpose: it must win over @layer slots/mobile without !important.
+   Daylight = cobalt-enamel sign plate: no glow, no shadow, no halftone shimmer, hairline rules. */
+
+/* ---------- toggle: v3 control style (pill, 1px --rule-strong, 15px/600/92%) ---------- */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex: none;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0;
+  border: 1px solid var(--rule-strong);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--fg);
+  font: 600 15px/1 "Archivo", system-ui, sans-serif;
+  font-stretch: 92%;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color 180ms var(--ease-out), transform 120ms var(--ease-out);
+}
+.theme-toggle__icon { flex: none; display: block; }
+.theme-toggle__label { display: none; }
+
+/* icon shows the destination: sun in dark (go light), moon in light (go dark) */
+.theme-toggle__icon--moon { display: none; }
+html[data-theme="light"] .theme-toggle__icon--sun { display: none; }
+html[data-theme="light"] .theme-toggle__icon--moon { display: block; }
+
+/* no script, no control: the head script sets data-theme, so its absence means nothing would happen on click */
+:root:not([data-theme]) .theme-toggle { display: none; }
+
+@media (min-width: 761px) {
+  .theme-toggle { min-height: 40px; padding: 0 16px 0 14px; }
+  .theme-toggle__label { display: inline; }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .theme-toggle:hover { background: var(--ink-2); }
+}
+.theme-toggle:active { transform: scale(.97); }
+.theme-toggle:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+/* header placement: nav takes the free space, toggle sits after it (after the Menu control at <=1100px) */
+.site-header > .wrap > .site-nav { margin-left: auto; }
+.site-header > .wrap { gap: 12px; }
+@media (min-width: 761px) { .site-header > .wrap { gap: 16px; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle { transition: none; }
+  .theme-toggle:active { transform: none; }
+}
+
+/* narrow phones: wordmark + Menu + toggle must share 280px at 320 */
+@media (max-width: 400px) {
+  .site-header > .wrap { gap: 8px; }
+  .site-header .site-nav .nav-menu summary { padding: 0 12px; }
+}
+@media (max-width: 360px) {
+  .site-header .wordmark { gap: 8px; font-size: 16px; }
+  .site-header .site-nav .nav-menu summary { padding: 0 8px; }
+}
+
+/* ---------- daylight variants of ink-only decoration ---------- */
+/* Hub hero plate: on ink it is a lit halftone (glow). On daylight it becomes the enamel sign plate itself:
+   a solid --fill panel, white figures, one even dot grid struck in white at 16%. No masks, no second screen, no glow.
+   The plate re-points three tokens locally, so every v3 rule inside it (counts, dots, labels, hover, focus) keeps working. */
+html[data-theme="light"] .hub-hero__plate {
+  background: var(--fill);
+  --fg: var(--on-fill);
+  --signal: var(--plate-hover);
+  --rule-strong: var(--plate-rule);
+  --focus: var(--on-fill);
+}
+html[data-theme="light"] .hub-hero__plate::before {
+  background-image: radial-gradient(circle at 50% 50%, var(--plate-dot) 0 1.4px, transparent 1.9px);
+  background-size: 12px 12px;
+  -webkit-mask-image: none;
+          mask-image: none;
+}
+html[data-theme="light"] .hub-hero__plate::after { display: none; }
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) .hub-hero__plate {
+    background: var(--fill);
+    --fg: var(--on-fill);
+    --signal: var(--plate-hover);
+    --rule-strong: var(--plate-rule);
+    --focus: var(--on-fill);
+  }
+  :root:not([data-theme]) .hub-hero__plate::before {
+    background-image: radial-gradient(circle at 50% 50%, var(--plate-dot) 0 1.4px, transparent 1.9px);
+    background-size: 12px 12px;
+    -webkit-mask-image: none;
+            mask-image: none;
+  }
+  :root:not([data-theme]) .hub-hero__plate::after { display: none; }
+}
+
+/* Footer dot wordmark: on ink it is a lit dot screen. On daylight the letters are solid enamel cobalt, one flat fill,
+   no screen (background-clip:text is kept from v3, so the same crop and no DOM text). */
+html[data-theme="light"] .footer-mark::before,
+html[data-theme="light"] .footer-mark::after { background-image: none; background-color: var(--fill); }
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) .footer-mark::before,
+  :root:not([data-theme]) .footer-mark::after { background-image: none; background-color: var(--fill); }
+}
