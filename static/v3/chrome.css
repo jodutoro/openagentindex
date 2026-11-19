@@ -231,10 +231,10 @@
     background-size: calc(9 * var(--u)) calc(9 * var(--u));
   }
   .footer-mark--wide { --u: calc(100cqw / 1280); height: calc(126 * var(--u)); }
-  .footer-mark--wide::before { content: "OPEN AGENT INDEX"; font-size: calc(184.7 * var(--u)); top: calc(-6 * var(--u)); }
+  .footer-mark--wide::before { content: attr(data-text); font-size: calc(184.7 * var(--u)); top: calc(-6 * var(--u)); }
   .footer-mark--stack { --u: calc(100cqw / 640); height: calc(300 * var(--u)); display: none; }
-  .footer-mark--stack::before { content: "OPEN AGENT"; font-size: calc(139 * var(--u)); top: 0; }
-  .footer-mark--stack::after { content: "INDEX"; font-size: calc(288 * var(--u)); top: calc(92 * var(--u)); }
+  .footer-mark--stack::before { content: attr(data-a); font-size: calc(139 * var(--u)); top: 0; }
+  .footer-mark--stack::after { content: attr(data-b); font-size: calc(288 * var(--u)); top: calc(92 * var(--u)); }
 
   @media (max-width: 760px) {
     .site-footer { margin-top: 64px; padding-top: 32px; }

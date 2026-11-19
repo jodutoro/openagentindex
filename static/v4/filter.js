@@ -3,7 +3,7 @@
 var B=S.querySelector('.fbar'),I=B&&B.querySelector('input[type=search]');if(!I)return;
 var W=I.parentNode,C=B.querySelector('.fbar__count'),R=B.querySelector('.fbar__reset'),
 X=[].slice.call(B.querySelectorAll('input[type=checkbox]')),
-rows=[].slice.call(S.querySelectorAll('[data-q]')),T=rows.length,N=B.dataset.noun||'tools';
+rows=[].slice.call(S.querySelectorAll('[data-q]')),T=rows.length,N=B.dataset.noun;
 W.hidden=false;
 function run(keep){var sel=X.filter(function(c){return c.checked}).map(function(c){return c.value}),
 q=I.value.trim(),ql=q.toLowerCase(),n=0,act=sel.length||q;
@@ -12,7 +12,7 @@ if(ok===r.hasAttribute('data-miss')){r.toggleAttribute('data-miss',!ok);
 var d=r.nextElementSibling;if(d&&d.classList.contains('detail'))d.toggleAttribute('data-miss',!ok)}
 if(ok&&sel.every(function(s){return l.indexOf(' '+s+' ')>-1}))n++});
 S.toggleAttribute('data-empty',!!act&&!n);
-R.hidden=!act;C.textContent=act?n+' of '+T+' '+N:'';
+R.hidden=!act;C.textContent=act?B.dataset.tpl.replace('{n}',n).replace('{total}',T).replace('{noun}',N):'';
 if(!keep){var p=new URLSearchParams(location.search);sel.length?p.set('label',sel.join(',')):p.delete('label');q?p.set('q',q):p.delete('q');
 var s=p.toString().replace(/%2C/g,',');history.replaceState(null,'',location.pathname+(s?'?'+s:'')+location.hash)}}
 function read(){var p=new URLSearchParams(location.search),L=(p.get('label')||'').split(',');

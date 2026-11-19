@@ -122,7 +122,7 @@
   }
   .row > .rk { grid-area: rk; font-size: 24px; font-weight: 800; font-stretch: 75%; line-height: 1; }
   .row > .mono { grid-area: mono; }
-  .row > .tool-name { grid-area: name; min-width: 0; color: var(--fg); font-size: 18px; font-weight: 700; font-stretch: 92%; line-height: 1.15; text-decoration: none; }
+  .row > .tool-name { grid-area: name; min-width: 0; color: var(--fg); font-size: 18px; font-weight: 700; font-stretch: 92%; line-height: 1.15; text-decoration: none; overflow-wrap: anywhere; }
   .row > .go { grid-area: go; }
   .row .tool-name:active { color: var(--accent); }
   @media (hover: hover) and (pointer: fine) { .row .tool-name:hover { color: var(--accent); text-decoration: underline; } .row:hover { background: color-mix(in srgb, var(--ink-2) 55%, transparent); } }
@@ -221,6 +221,19 @@
     .row .go { flex-wrap: nowrap; }
     .figband--tool, .figband--fn2 { grid-template-columns: 1fr; }
   }
+  /* Below 1100px the results column is narrow (the rail takes a fixed share) and the stars tick plus number needs about 150px, more than its share of a row it splits with the
+     licence chip, so the chip took the neighbouring cell and was painted over the number. The licence chip gets its own line under the stars: they never share a cell, at any
+     length of chip label, in either language. */
+  @media (max-width: 1099px) {
+    /* Name and score never share a line here: with the tablet rail the name column is about 83px, so a long single-word name (Easy!Appointments) ran under the score. The name takes the full column and wraps inside it (overflow-wrap on .tool-name); the score sits on its own line below, same size. */
+    .row { grid-template-areas: "rk mono name name" "rk mono sc sc" "rk mono go go" "rk mono st st" "rk mono lc lc" "rk mono lb lb" "ev ev ev ev"; }
+    .row > .sc { justify-self: start; }
+    .row > .lc { justify-self: start; }
+    /* Tablet filter rail: a fixed 200-240px column (not 1fr of 4) so Spanish filter labels wrap to two lines instead of becoming tall blocks. The phone block below resets the grid to one column. */
+    .explorer { grid-template-columns: clamp(200px, 26%, 240px) minmax(0, 1fr); }
+    .rail { padding-right: 20px; }
+    .sw { padding-inline: 12px; }
+  }
   /* head readouts stack under the title below 1180 so the numerals never reach the 1:3 rule (STUDY-PICK 6) */
   @media (max-width: 1179px) {
     .head { grid-template-columns: 1fr; }
@@ -261,10 +274,12 @@
     .row { grid-template-columns: var(--rkw) 40px minmax(0, 1fr); grid-template-areas: "rk mono name" "sc sc sc" "st st lc" "lb lb lb" "go go go" "ev ev ev"; row-gap: 10px; padding: 16px 0; }
     .row > .rk { font-size: 20px; }
     .row > .tool-name { display: inline-flex; align-items: center; min-height: 44px; }
-    .results:has(.cov) .row { grid-template-columns: 40px minmax(0, 1fr); grid-template-areas: "mono name" "rk rk" "sc sc" "st lc" "lb lb" "go go" "ev ev"; }
+    .results:has(.cov) .row { grid-template-columns: 40px minmax(0, 1fr); grid-template-areas: "mono name" "rk rk" "sc sc" "st st" "lc lc" "lb lb" "go go" "ev ev"; }
     .cov { flex-direction: row; align-items: baseline; gap: 6px; font-size: 20px; }
     .row > .lc { justify-self: end; }
     .row > .st { grid-column: 1 / 3; }
+    .results:has(.cov) .row > .lc { justify-self: start; }
+    .results:has(.cov) .row > .st { grid-column: 1 / -1; }
     /* function and profile lists: the stars tick plus number need about 150px, more than the two narrow columns it spans on the hub variant, so it takes the full width and the licence label drops to its own line */
     .results:not(:has(.cov)) .row { grid-template-areas: "rk mono name" "sc sc sc" "st st st" "lc lc lc" "lb lb lb" "go go go" "ev ev ev"; }
     .results:not(:has(.cov)) .row > .st { grid-column: 1 / -1; }

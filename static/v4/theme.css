@@ -107,3 +107,97 @@ html[data-theme="light"] .footer-mark::after { background-image: none; backgroun
   :root:not([data-theme]) .footer-mark::before,
   :root:not([data-theme]) .footer-mark::after { background-image: none; background-color: var(--fill); }
 }
+
+/* ---------- header nav mode + language switcher (BILINGUAL-SPEC L8) ---------- */
+/* Why this block exists: the link row (8 links) plus a switcher and the theme toggle does not fit the 1280px header content at any width, and the Spanish link
+   names (row 1319px) never fit. So the Menu (details) mode now runs up to 1380px for EN and at every width for ES; EN keeps its inline link row from 1381px,
+   with 8px link padding and an icon-only theme toggle so the switcher fits. The switcher is one nav.lang-switch, the last child of .site-nav: inline in the header
+   row from 560px up, and inside the opened Menu panel below 560px (a permanent third control does not fit the 280px header at 320). Both themes read the v4 tokens. */
+.site-nav .lang-switch {
+  display: inline-flex;
+  align-items: stretch;
+  flex: none;
+  margin-left: 8px;
+  border: 1px solid var(--rule-strong);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.site-nav .lang-switch a {
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 0;
+  color: var(--fg);
+  letter-spacing: .02em;
+}
+.site-nav .lang-switch a[aria-current="true"] { background: var(--fill); color: var(--on-fill); }
+.site-nav .lang-switch a + a { border-left: 1px solid var(--rule-strong); }
+@media (min-width: 761px) { .site-nav .lang-switch a { min-height: 40px; } }
+@media (hover: hover) and (pointer: fine) {
+  .site-nav .lang-switch a:not([aria-current]):hover { background: var(--ink-2); }
+}
+.site-nav .lang-switch a:focus-visible { outline: 2px solid var(--focus); outline-offset: -3px; }
+/* The ring sits inside the link (the pill clips at its border, so a positive offset would be cut). On the filled current-language link --focus is the same blue as
+   --fill in the light theme (1.00:1); the ring takes --on-fill there, which contrasts with --fill (6.7:1 light, 6.2:1 dark) on both sides of the stroke. */
+.site-nav .lang-switch a[aria-current="true"]:focus-visible { outline-color: var(--on-fill); }
+
+/* Menu mode, EN 1101px to 1380px and ES from 1101px up (the same rules chrome.css applies at 1100px and below) */
+@media (min-width: 1101px) and (max-width: 1380px) {
+  .site-nav .nav-links--row { display: none; }
+  .site-nav .nav-menu { display: block; }
+  .site-nav .nav-links--menu { position: absolute; top: 100%; left: 0; right: 0; display: flex; flex-direction: column; max-height: calc(100dvh - 65px); overflow-y: auto; padding: 8px clamp(20px, 4vw, 64px) 16px; background: var(--ink-2); border-bottom: 1px solid var(--rule-strong); }
+  .site-nav .nav-links--menu li + li { border-top: 1px solid var(--rule); }
+  .site-nav .nav-links--menu a { display: flex; width: 100%; min-height: 48px; padding: 0 12px; border-radius: 999px; font-size: 15px; }
+  .site-nav .nav-links--menu li { padding-top: 4px; padding-bottom: 4px; }
+  .site-nav .nav-menu[open] .nav-links--menu { animation: chrome-menu-in 240ms var(--ease-out); }
+}
+@media (min-width: 1381px) {
+  html[lang="es"] .site-nav .nav-links--row { display: none; }
+  html[lang="es"] .site-nav .nav-menu { display: block; }
+  html[lang="es"] .site-nav .nav-links--menu { position: absolute; top: 100%; left: 0; right: 0; display: flex; flex-direction: column; max-height: calc(100dvh - 65px); overflow-y: auto; padding: 8px clamp(20px, 4vw, 64px) 16px; background: var(--ink-2); border-bottom: 1px solid var(--rule-strong); }
+  html[lang="es"] .site-nav .nav-links--menu li + li { border-top: 1px solid var(--rule); }
+  html[lang="es"] .site-nav .nav-links--menu a { display: flex; width: 100%; min-height: 48px; padding: 0 12px; border-radius: 999px; font-size: 15px; }
+  html[lang="es"] .site-nav .nav-links--menu li { padding-top: 4px; padding-bottom: 4px; }
+  html[lang="es"] .site-nav .nav-menu[open] .nav-links--menu { animation: chrome-menu-in 240ms var(--ease-out); }
+  /* EN row mode: tighten the link row and drop the toggle label so the switcher fits the 1280px content */
+  html[lang="en"] .site-nav .nav-links--row a { padding: 0 8px; }
+  html[lang="en"] .theme-toggle { min-width: 44px; padding: 0; }
+  html[lang="en"] .theme-toggle__label { display: none; }
+  html[lang="en"] .site-nav .lang-switch a { min-width: 36px; padding: 0 8px; }
+}
+@media (hover: hover) and (pointer: fine) {
+  .site-nav .nav-links--menu a:hover { background: var(--ink-1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .site-nav .nav-menu[open] .nav-links--menu,
+  html[lang] .site-nav .nav-menu[open] .nav-links--menu { animation: none; } /* html[lang] ties the ES-only menu rule above and wins by order, in every language and width */
+}
+/* Below 560px the switcher lives in the opened Menu panel */
+@media (max-width: 559px) {
+  .site-nav .lang-switch { display: none; margin-left: 0; }
+  .site-nav .nav-menu[open] ~ .lang-switch {
+    display: inline-flex;
+    position: absolute; /* against .site-header, like the Menu panel it sits in */
+    z-index: 1;
+    top: calc(100% + 12px);
+    right: clamp(20px, 4vw, 64px);
+    background: var(--ink-1);
+  }
+  .site-nav .nav-menu[open] .nav-links--menu { padding-top: 72px; }
+}
+
+.alternatives { margin-top: 48px; }
+.alternatives ol { margin: 12px 0 0; padding-left: 1.4em; }
+.alternatives li { padding: 4px 0; }
+.alternatives a { display: inline-flex; align-items: center; min-height: 44px; }
+
+/* L14 point 3: untranslated English prose on a noindex Spanish page keeps its lang="en" and carries a visible note */
+.orig-note { color: var(--fg-2); font-size: .875em; }
+
+/* ---------- ES overflow fixes (bilingual b2): Spanish labels are longer than the English ones the v4 layout was measured on.
+   Scoped to html[lang="es"] so the English pages stay byte-identical. ---------- */
+html[lang="es"] .chip { white-space: normal; max-width: 100%; border-radius: 18px; line-height: 1.3; }
+html[lang="es"] .row .go { flex-wrap: wrap; }
+html[lang="es"] .banner { overflow-wrap: anywhere; } /* the staging banner ends in the canonical URL; es/herramienta/<slug>/ is longer than tool/<slug>/ and overflowed at 320 */
