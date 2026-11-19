@@ -12,6 +12,3 @@ Method by Jonathan Duque (https://jonathanduque.com/). Scores come from publishe
 - [Scheduling and intake](https://openagentindex.com/scheduling-intake/): 9 tools ranked
 - [Back office](https://openagentindex.com/back-office/): 14 tools ranked
 - [Reporting and content](https://openagentindex.com/reporting-content/): 21 tools ranked
-
-## Español
-
