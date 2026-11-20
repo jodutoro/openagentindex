@@ -3,19 +3,19 @@
   "short_name": "Agent Index",
   "icons": [
     {
-      "src": "/openagentindex/static/v4/icons/icon-192.png",
+      "src": "/openagentindex/static/v4/icons/gorilla-v7-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/openagentindex/static/v4/icons/icon-512.png",
+      "src": "/openagentindex/static/v4/icons/gorilla-v7-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     }
   ],
   "theme_color": "#1f4fd6",
-  "background_color": "#0b1628",
+  "background_color": "#f4f6f9",
   "display": "browser"
 }
