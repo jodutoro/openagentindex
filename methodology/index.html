@@ -75,6 +75,10 @@
 <p><div class="table-wrap" tabindex="0" role="region" aria-label="Score component weights (scrollable table)"><table class="plain"><caption class="small">Score component weights</caption><thead><tr><th>Component</th><th>Weight</th></tr></thead><tbody><tr><td>Research evidence</td><td>35%</td></tr><tr><td>Owner fit</td><td>30%</td></tr><tr><td>Project health</td><td>25%</td></tr><tr><td>Licence clarity</td><td>10%</td></tr></tbody></table></div></p>
 <p>The displayed score is the weighted total, rounded half up to one decimal. Ties use research evidence, owner fit, project health and licence clarity in that order; exact ties share a rank. Bands are fixed and global: a tool&#39;s score does not move when another tool joins the list, and the star counts are shown but not scored.</p>
 </div></details>
+<details class="evidence" id="inputs-not-measured"><summary><span class="sum-t">Inputs we could not measure</span></summary><div class="ev-body">
+<p>An input we could not measure counts as 0 and is shown as not measured, with the reason. Release cadence is the example: when no release data exists, H1 is not measured and contributes 0; the remaining inputs are not re-weighted.</p>
+<p>Method change, 2026-11-20 (spec 1.1): unmeasured inputs now count as 0 and are never re-weighted, so project health always uses <code>(60*H1 + 40*H2) / 100</code> with an unmeasured H1 treated as 0.</p>
+</div></details>
 <details class="evidence" id="how-scored"><summary><span class="sum-t">How each component is scored</span></summary><div class="ev-body">
 <p>Every sub-score is a whole number. The full rules are summarised here so that anyone can re-compute one row.</p>
 <h3 id="gates-the-minimum-evidence-to-be-ranked">Gates: the minimum evidence to be ranked</h3>
@@ -113,7 +117,7 @@
 <details class="evidence" id="change-log"><summary><span class="sum-t">Change log</span></summary><div class="ev-body">
 <ul><li>2026-11-19: first edition, data collected on this date. No corrections have been accepted yet.</li></ul></div></details>
 <details class="evidence" id="edition"><summary><span class="sum-t">This edition</span></summary><div class="ev-body"><dl class="kv"><dt>Collection date</dt><dd><time datetime="2026-11-19">2026-11-19</time></dd>
-<dt>Scoring spec</dt><dd class="num">1.0</dd>
+<dt>Scoring spec</dt><dd class="num">1.1</dd>
 <dt>Assistant panel</dt><dd>Covered: Gemini (17 answers), Perplexity (5 answers). Not collected: ChatGPT (Cloudflare check on logged-out access); Google AI Overview (no human-driven session).</dd>
 <dt>Tools ranked</dt><dd class="num">111</dd></dl>
 <div class="table-wrap" tabindex="0" role="region" aria-label="Functions and tools in this edition (scrollable table)"><table class="plain"><caption class="small">Functions and tools in this edition</caption><thead><tr><th scope="col">Function</th><th scope="col">Tools ranked</th></tr></thead><tbody><tr><td><a href="/openagentindex/customer-support/">Customer support</a></td><td class="num">31</td></tr><tr><td><a href="/openagentindex/lead-follow-up/">Lead follow-up</a></td><td class="num">19</td></tr><tr><td><a href="/openagentindex/scheduling-intake/">Scheduling and intake</a></td><td class="num">10</td></tr><tr><td><a href="/openagentindex/back-office/">Back office</a></td><td class="num">14</td></tr><tr><td><a href="/openagentindex/reporting-content/">Reporting and content</a></td><td class="num">22</td></tr><tr><td><a href="/openagentindex/knowledge-base/">Knowledge base</a></td><td class="num">43</td></tr></tbody></table></div></div></details>
