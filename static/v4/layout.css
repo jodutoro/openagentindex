@@ -36,6 +36,10 @@
     font-size: 16px; font-weight: 800; font-stretch: 80%; line-height: 1; letter-spacing: 0; user-select: none;
   }
   .mono.mono--xl { width: 100%; max-width: 168px; aspect-ratio: 1; height: auto; font-size: clamp(48px, 5vw, 72px); }
+  /* tool detail page mark (DECISIONS 83): 168px white tile in both themes (logos assume white), 16px inset so the mark never
+     touches the edge. A raster narrower than the tile is drawn at its native size, centred (--cap from the template). */
+  .logo.logo--xl { box-sizing: border-box; width: 100%; max-width: 168px; height: auto; aspect-ratio: 1; padding: 16px; border-radius: 20px; background: #fff; }
+  .logo.logo--xl img, .logo.logo--xl.logo--padded img { width: 100%; height: 100%; max-width: var(--cap, 100%); max-height: var(--cap, 100%); object-fit: contain; }
   .tool-h1 { text-transform: none; font-size: clamp(44px, 6vw, 88px); overflow-wrap: anywhere; }
   .tool-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin: 16px 0 0; font-size: 16px; }
   .tool-meta .lchips { margin: 0; }
@@ -263,6 +267,8 @@
     .head--tool { grid-template-columns: 120px 1fr; }
     .head--tool .head-l { order: 0; padding: 32px 24px 0 0; flex-direction: column; }
     .head--tool .head-r { order: 0; padding-top: 28px; }
+    .logo.logo--xl { max-width: 96px; padding: 10px; border-radius: 14px; }
+    .mono.mono--xl { max-width: 96px; }
     .readout { display: flex; flex-wrap: wrap; gap: 16px 32px; }
   }
 
@@ -272,8 +278,11 @@
     .explorer--fn { grid-template-areas: "lead" "rail" "results"; }
     .explorer--fn > .lead-fig { grid-area: lead; padding: 16px 0 0; border-left: 0; }
     .lead-fig > .chart { margin-inline: calc(-1 * var(--gut)); border-inline: 0; padding-inline: var(--gut); }
-    .head--tool { grid-template-columns: 96px 1fr; }
-    .mono--xl { font-size: calc(48px * .5); letter-spacing: -.02em; }
+    /* the detail-page mark sits above the H1 on phones (DECISIONS 83): one column, 96px tile */
+    .head--tool { grid-template-columns: minmax(0, 1fr); }
+    .head--tool .head-l { padding: 24px 0 0; }
+    .head--tool .head-r { padding-top: 16px; }
+    .mono--xl { font-size: 40px; letter-spacing: -.02em; }
     .rail {
       top: var(--hdr-h); z-index: 30; max-height: none; overflow: visible; padding: 0 var(--gut);
       margin-inline: calc(-1 * var(--gut)); background: var(--ink-0); border-block: 1px solid var(--rule-strong);
@@ -320,7 +329,7 @@
   }
   @media (max-width: 400px) {
     .head h1 { overflow-wrap: anywhere; }
-    .head--tool { grid-template-columns: 72px 1fr; }
+    .head--tool { grid-template-columns: minmax(0, 1fr); }
     .tool-h1 { font-size: 40px; }
   }
 }
