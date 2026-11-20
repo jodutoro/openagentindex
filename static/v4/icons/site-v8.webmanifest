@@ -3,13 +3,13 @@
   "short_name": "Agent Index",
   "icons": [
     {
-      "src": "/openagentindex/static/v4/icons/gorilla-v7-192.png",
+      "src": "/v4/icons/fox-v8-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/openagentindex/static/v4/icons/gorilla-v7-512.png",
+      "src": "/v4/icons/fox-v8-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
