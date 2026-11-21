@@ -137,12 +137,21 @@
   .bd__sources a { overflow-wrap:anywhere; word-break:break-word; }
   .bd__sources summary { font-size: 14px; color: var(--fg-2); cursor: pointer; }
   .bd__sources ul { margin: 4px 0 8px; padding-left: 20px; font-size: 14px; }
-  .alt-row { display: grid; grid-template-columns: 40px 1fr auto; gap: 12px; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--rule); list-style: none; }
-  .alt-rows { padding: 0; margin: 0 0 12px; }
-  .alt-score { display: flex; align-items: center; gap: 8px; }
-  @media (max-width: 480px) {
-    .alt-score { gap: 4px; }
-    .alt-score .sdots { --d: 6px; --pitch: 7px; }
+  .alt-row { display: grid; grid-template-columns: 40px 1fr auto; gap: 12px; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--rule); list-style: none; min-width: 0; }
+  .alt-row > :first-child { grid-column: 1; min-width: 0; }
+  .alt-row > .tool-name { min-width: 0; overflow-wrap: normal; word-break: normal; }
+  .alt-score { display: flex; align-items: center; gap: 8px; min-width: 0; }
+  .owner-source { display: inline-flex; align-items: center; min-height: 24px; max-width: 100%; min-width: 0; padding: 2px 4px; white-space: normal; overflow-wrap: anywhere; word-break: break-word; }
+  .owner-paths { display: inline-flex; flex-wrap: wrap; gap: 4px 10px; }
+  .owner-paths a { white-space: nowrap; }
+  .owner-label { font-weight: 600; }
+  .owner-price { white-space: normal; }
+  @media (max-width: 760px) {
+    .alt-row { grid-template-columns: 40px minmax(0, 1fr); grid-template-areas: "mark name" "score score"; align-items: center; row-gap: 6px; }
+    .alt-row > :first-child { grid-area: mark; }
+    .alt-row > .tool-name { grid-area: name; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .alt-row > .alt-score { grid-area: score; width: 100%; }
+    .alt-row > .alt-score .sdots { flex: 1 1 auto; width: 100%; --pitch: 5%; }
   }
   .rh { display: grid; grid-template-columns: var(--cols); column-gap: 12px; padding: 0 0 8px; border-bottom: 1px solid var(--rule-strong); font-size: 14px; color: var(--fg-2); }
   .rows { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }

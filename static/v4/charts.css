@@ -107,12 +107,15 @@
   }
 
   /* visually hidden table equivalent */
+  /* The table stays in the accessibility tree but cannot contribute intrinsic width on phones. */
   .sr-only {
     position: absolute !important;
-    width: 1px; height: 1px; margin: -1px; padding: 0; border: 0;
+    width: 1px; height: 1px; max-width: 1px; min-width: 0; margin: -1px; padding: 0; border: 0;
     overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%);
     white-space: nowrap;
   }
+  .sr-only table { width: 1px; max-width: 1px; min-width: 0; table-layout: fixed; overflow-wrap: anywhere; }
+
 }
 
 /* Enhancement only. Base state is the finished chart. Explicit from/to (DIRECTION-v3 5.4), transform and opacity only. */
