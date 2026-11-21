@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://openagentindex.com/sitemap.xml
+Sitemap: https://faronodo.com/sitemap.xml

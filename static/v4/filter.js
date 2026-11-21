@@ -1,4 +1,4 @@
-/* Open Agent Index v4 filter: text search over data-q, ?label=a,b&q=text state both ways, live result count, reset. Chips filter without this file (filter.css). */
+/* Faronodo v4 filter: text search over data-q, ?label=a,b&q=text state both ways, live result count, reset. Chips filter without this file (filter.css). */
 (()=>{var S=document.querySelector('[data-filter-scope]');if(!S)return;
 var B=S.querySelector('.fbar'),I=B&&B.querySelector('input[type=search]');if(!I)return;
 var W=I.parentNode,C=B.querySelector('.fbar__count'),R=B.querySelector('.fbar__reset'),

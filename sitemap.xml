@@ -2,35 +2,115 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://openagentindex.com/</loc>
+    <loc>https://faronodo.com/</loc>
     <lastmod>2026-11-19</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://faronodo.com/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://faronodo.com/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://faronodo.com/"/>
   </url>
   <url>
-    <loc>https://openagentindex.com/customer-support/</loc>
+    <loc>https://faronodo.com/customer-support/</loc>
     <lastmod>2026-11-19</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://faronodo.com/customer-support/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://faronodo.com/es/atencion-al-cliente/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://faronodo.com/customer-support/"/>
   </url>
   <url>
-    <loc>https://openagentindex.com/lead-follow-up/</loc>
+    <loc>https://faronodo.com/lead-follow-up/</loc>
     <lastmod>2026-11-19</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://faronodo.com/lead-follow-up/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://faronodo.com/es/seguimiento-de-clientes-potenciales/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://faronodo.com/lead-follow-up/"/>
   </url>
   <url>
-    <loc>https://openagentindex.com/scheduling-intake/</loc>
+    <loc>https://faronodo.com/scheduling-intake/</loc>
     <lastmod>2026-11-19</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://faronodo.com/scheduling-intake/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://faronodo.com/es/agenda-de-citas/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://faronodo.com/scheduling-intake/"/>
   </url>
   <url>
-    <loc>https://openagentindex.com/back-office/</loc>
+    <loc>https://faronodo.com/back-office/</loc>
     <lastmod>2026-11-19</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://faronodo.com/back-office/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://faronodo.com/es/administracion-y-facturacion/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://faronodo.com/back-office/"/>
   </url>
   <url>
-    <loc>https://openagentindex.com/reporting-content/</loc>
+    <loc>https://faronodo.com/reporting-content/</loc>
     <lastmod>2026-11-19</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://faronodo.com/reporting-content/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://faronodo.com/es/informes-y-contenido/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://faronodo.com/reporting-content/"/>
   </url>
   <url>
-    <loc>https://openagentindex.com/methodology/</loc>
+    <loc>https://faronodo.com/methodology/</loc>
     <lastmod>2026-11-19</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://faronodo.com/methodology/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://faronodo.com/es/metodologia/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://faronodo.com/methodology/"/>
   </url>
   <url>
-    <loc>https://openagentindex.com/about/</loc>
+    <loc>https://faronodo.com/about/</loc>
     <lastmod>2026-11-19</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://faronodo.com/about/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://faronodo.com/es/acerca-de/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://faronodo.com/about/"/>
+  </url>
+  <url>
+    <loc>https://faronodo.com/es/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://faronodo.com/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://faronodo.com/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://faronodo.com/"/>
+  </url>
+  <url>
+    <loc>https://faronodo.com/es/atencion-al-cliente/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://faronodo.com/customer-support/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://faronodo.com/es/atencion-al-cliente/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://faronodo.com/customer-support/"/>
+  </url>
+  <url>
+    <loc>https://faronodo.com/es/seguimiento-de-clientes-potenciales/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://faronodo.com/lead-follow-up/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://faronodo.com/es/seguimiento-de-clientes-potenciales/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://faronodo.com/lead-follow-up/"/>
+  </url>
+  <url>
+    <loc>https://faronodo.com/es/agenda-de-citas/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://faronodo.com/scheduling-intake/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://faronodo.com/es/agenda-de-citas/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://faronodo.com/scheduling-intake/"/>
+  </url>
+  <url>
+    <loc>https://faronodo.com/es/administracion-y-facturacion/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://faronodo.com/back-office/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://faronodo.com/es/administracion-y-facturacion/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://faronodo.com/back-office/"/>
+  </url>
+  <url>
+    <loc>https://faronodo.com/es/informes-y-contenido/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://faronodo.com/reporting-content/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://faronodo.com/es/informes-y-contenido/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://faronodo.com/reporting-content/"/>
+  </url>
+  <url>
+    <loc>https://faronodo.com/es/metodologia/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://faronodo.com/methodology/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://faronodo.com/es/metodologia/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://faronodo.com/methodology/"/>
+  </url>
+  <url>
+    <loc>https://faronodo.com/es/acerca-de/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://faronodo.com/about/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://faronodo.com/es/acerca-de/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://faronodo.com/about/"/>
   </url>
 </urlset>

@@ -222,11 +222,13 @@
     background-image: radial-gradient(circle at 50% 50%, var(--dot) calc(3.1 * var(--u)), transparent calc(3.1 * var(--u) + .6px));
     background-size: calc(9 * var(--u)) calc(9 * var(--u));
   }
-  .footer-mark--wide { --u: calc(100cqw / 1280); height: calc(126 * var(--u)); }
-  .footer-mark--wide::before { content: attr(data-text); font-size: calc(184.7 * var(--u)); top: calc(-6 * var(--u)); }
-  .footer-mark--stack { --u: calc(100cqw / 640); height: calc(300 * var(--u)); display: none; }
-  .footer-mark--stack::before { content: attr(data-a); font-size: calc(139 * var(--u)); top: 0; }
-  .footer-mark--stack::after { content: attr(data-b); font-size: calc(288 * var(--u)); top: calc(92 * var(--u)); }
+  /* Sizes fit the 8-letter name (DECISIONS 87): each line spans ~99.9% of its box in Archivo 850 at 62% (measured widths per 100px:
+     FARONODO 404.0, FARO 192.4, NODO 211.6). Cap top and crop keep the 16-letter version's proportions (crop through the lower ~17% of the caps). */
+  .footer-mark--wide { --u: calc(100cqw / 1280); height: calc(216 * var(--u)); }
+  .footer-mark--wide::before { content: attr(data-text); font-size: calc(316.5 * var(--u)); top: calc(-10.3 * var(--u)); }
+  .footer-mark--stack { --u: calc(100cqw / 640); height: calc(462 * var(--u)); display: none; }
+  .footer-mark--stack::before { content: attr(data-a); font-size: calc(332.4 * var(--u)); top: calc(-10 * var(--u)); }
+  .footer-mark--stack::after { content: attr(data-b); font-size: calc(302.2 * var(--u)); top: calc(243 * var(--u)); }
 
   @media (max-width: 760px) {
     .site-footer { margin-top: 64px; padding-top: 32px; }

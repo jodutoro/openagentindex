@@ -1,14 +1,24 @@
-# Open Agent Index
+# Faronodo
 
 > A dated, transparent ranking of self-hostable agent tools for five business functions. Collected 2026-11-19. Scores come from research evidence: public documentation, repository data, licence files and independent reviews.
 
 Method by Jonathan Duque (https://jonathanduque.com/). Scores come from published evidence only: documentation, repositories, licences, project health, independent reviews. GitHub stars are shown on the page and are not scored. Components: Research evidence (weight 0.35); Owner fit (weight 0.3); Project health (weight 0.25); Licence clarity (weight 0.1). Licence classes are labelled exactly (OSI-approved open source, fair-code, source-available, mixed). Assistant answers are reported next to the ranking and never scored.
 
 ## Pages
-- [Methodology](https://openagentindex.com/methodology/): sources, components, licence labels, corrections
-- [About](https://openagentindex.com/about/)
-- [Customer support](https://openagentindex.com/customer-support/): 31 tools ranked
-- [Lead follow-up](https://openagentindex.com/lead-follow-up/): 19 tools ranked
-- [Scheduling and intake](https://openagentindex.com/scheduling-intake/): 10 tools ranked
-- [Back office](https://openagentindex.com/back-office/): 14 tools ranked
-- [Reporting and content](https://openagentindex.com/reporting-content/): 22 tools ranked
+- [Methodology](https://faronodo.com/methodology/): sources, components, licence labels, corrections
+- [About](https://faronodo.com/about/)
+- [Customer support](https://faronodo.com/customer-support/): 31 tools ranked
+- [Lead follow-up](https://faronodo.com/lead-follow-up/): 19 tools ranked
+- [Scheduling and intake](https://faronodo.com/scheduling-intake/): 10 tools ranked
+- [Back office](https://faronodo.com/back-office/): 14 tools ranked
+- [Reporting and content](https://faronodo.com/reporting-content/): 22 tools ranked
+
+## Español
+- [Faronodo · Directorio de herramientas de IA autoalojables](https://faronodo.com/es/)
+- [Atención al cliente con IA: chatbots autoalojables](https://faronodo.com/es/atencion-al-cliente/)
+- [Seguimiento de clientes potenciales: IA autoalojable](https://faronodo.com/es/seguimiento-de-clientes-potenciales/)
+- [Software para agendar citas: opciones autoalojables](https://faronodo.com/es/agenda-de-citas/)
+- [Facturación y contabilidad con IA: opciones autoalojables](https://faronodo.com/es/administracion-y-facturacion/)
+- [Informes y contenido con IA: herramientas autoalojables](https://faronodo.com/es/informes-y-contenido/)
+- [Cómo se hace el ranking: metodología](https://faronodo.com/es/metodologia/)
+- [Acerca de Faronodo](https://faronodo.com/es/acerca-de/)

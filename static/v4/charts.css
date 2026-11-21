@@ -1,4 +1,4 @@
-/* Open Agent Index v4: chart slot. Pairs with site/lib/v4/charts.mjs.
+/* Faronodo v4: chart slot. Pairs with site/lib/v4/charts.mjs.
    Colour only through tokens (tokens.css). No hex here. Charts are static: no JS, no canvas.
    Text in the SVGs is set in user units: 15px in the 320 viewBox (narrow) and 17px in the 800 viewBox (wide).
    The narrow SVG is shown below a 704px figure width, the wide one from 704px up, and neither is ever

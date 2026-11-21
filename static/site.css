@@ -1,4 +1,4 @@
-/* Open Agent Index: research ledger. Tokens documented in DESIGN.md. No shadows, 0 radius (chips 2px). */
+/* Faronodo: research ledger. Tokens documented in DESIGN.md. No shadows, 0 radius (chips 2px). */
 @font-face { font-family: "IBM Plex Sans"; font-weight: 400; font-style: normal; font-display: swap; src: url("fonts/IBMPlexSans-Regular.woff2") format("woff2"); }
 @font-face { font-family: "IBM Plex Sans"; font-weight: 600; font-style: normal; font-display: swap; src: url("fonts/IBMPlexSans-SemiBold.woff2") format("woff2"); }
 @font-face { font-family: "IBM Plex Mono"; font-weight: 400; font-style: normal; font-display: swap; src: url("fonts/IBMPlexMono-Regular.woff2") format("woff2"); }
